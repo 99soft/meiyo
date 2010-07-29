@@ -15,10 +15,12 @@
  */
 package com.googlecode.meiyo.filter;
 
-import static com.googlecode.meiyo.filter.Filters.*;
+import static com.googlecode.meiyo.filter.Filters.annotatedWithType;
+import static com.googlecode.meiyo.filter.Filters.inPackage;
 
 import java.util.List;
 
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.googlecode.meiyo.ClassPath;
@@ -28,14 +30,19 @@ import com.googlecode.meiyo.ClassPath;
  *
  * @version $Id$
  */
+@Test
 public final class FiltersTestCase {
 
-    @Test
-    public void verifyAnnotatedWith() {
-        
+    public void verifyAnnotatedWithType() {
+        assert annotatedWithType(Test.class).matches(this.getClass());
+        assert !annotatedWithType(Parameters.class).matches(this.getClass());
     }
 
-    @Test
+    @Test(expectedExceptions = { IllegalArgumentException.class })
+    public void noRuntimeRetention() {
+        annotatedWithType(NoRuntimeRetention.class);
+    }
+
     public void verifyInPackage() {
         Filter inMeiyoPackage = inPackage("com.googlecode.meiyo");
         assert inMeiyoPackage.matches(ClassPath.class);
