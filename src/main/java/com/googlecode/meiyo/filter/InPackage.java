@@ -22,16 +22,9 @@ package com.googlecode.meiyo.filter;
  */
 final class InPackage implements Filter {
 
-    private final Package targetPackage;
+    private final String targetPackage;
 
     public InPackage(String targetPackage) {
-        if (targetPackage == null) {
-            throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
-        }
-        this.targetPackage = Package.getPackage(targetPackage);
-    }
-
-    public InPackage(Package targetPackage) {
         if (targetPackage == null) {
             throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
         }
@@ -42,13 +35,13 @@ final class InPackage implements Filter {
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return this.targetPackage.equals(clazz.getPackage());
+        return this.targetPackage.equals(clazz.getPackage().getName());
     }
 
     @Override
     public String toString() {
         return "inPackage("
-                + this.targetPackage.getName()
+                + this.targetPackage
                 + ")";
     }
 

@@ -50,10 +50,6 @@ public final class Filters {
         return new InPackage(targetPackage);
     }
 
-    public static Filter inPackage(Package targetPackage) {
-        return new InPackage(targetPackage);
-    }
-
     public static Filter inSubpackage(String targetPackage) {
         return new InSubpackage(targetPackage);
     }
