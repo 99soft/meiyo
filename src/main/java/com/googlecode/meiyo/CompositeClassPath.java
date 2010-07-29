@@ -37,9 +37,9 @@ final class CompositeClassPath implements ClassPath {
     /**
      * {@inheritDoc}
      */
-    public void acceptVisitor(Filter matcher, ClassPathVisitor visitor) {
+    public void scan(Filter matcher, ClassPathVisitor visitor) {
         for (ClassPath classPath : this.classPaths) {
-            classPath.acceptVisitor(matcher, visitor);
+            classPath.scan(matcher, visitor);
         }
     }
 

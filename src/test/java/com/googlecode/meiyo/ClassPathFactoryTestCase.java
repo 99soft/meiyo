@@ -32,7 +32,7 @@ public final class ClassPathFactoryTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        ClassPathFactory.createFromJVM().acceptVisitor(inSubpackage("com.googlecode.cscanner"),
+        ClassPathFactory.createFromJVM().scan(inSubpackage("com.googlecode.cscanner"),
                 new ClassPathVisitor() {
 
                     public void doHandle(Class<?> clazz) {

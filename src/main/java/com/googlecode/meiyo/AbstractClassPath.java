@@ -47,7 +47,7 @@ abstract class AbstractClassPath implements ClassPath {
     /**
      * {@inheritDoc}
      */
-    public final void acceptVisitor(Filter matcher, ClassPathVisitor visitor) {
+    public final void scan(Filter matcher, ClassPathVisitor visitor) {
         for (Class<?> entry : this.entries) {
             if (matcher.matches(entry)) {
                 visitor.doHandle(entry);
