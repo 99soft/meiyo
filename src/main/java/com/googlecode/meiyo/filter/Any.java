@@ -20,7 +20,7 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-public final class Any implements Filter {
+final class Any implements Filter {
 
     /**
      * {@inheritDoc}

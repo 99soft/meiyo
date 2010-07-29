@@ -22,7 +22,7 @@ import java.lang.annotation.Annotation;
  *
  * @version $Id$
  */
-public final class AnnotatedWith implements Filter {
+final class AnnotatedWith implements Filter {
 
     private final Annotation annotation;
 

@@ -20,7 +20,7 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-public final class SubclassesOf implements Filter {
+final class SubclassesOf implements Filter {
 
     private final Class<?> superclass;
 

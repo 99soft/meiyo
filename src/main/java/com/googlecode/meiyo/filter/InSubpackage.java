@@ -20,7 +20,7 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-public final class InSubpackage implements Filter {
+final class InSubpackage implements Filter {
 
     private final String targetPackageName;
 

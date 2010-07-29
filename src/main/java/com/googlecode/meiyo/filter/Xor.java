@@ -19,7 +19,7 @@ package com.googlecode.meiyo.filter;
  * 
  * @version $Id$
  */
-public final class Xor implements Filter {
+final class Xor implements Filter {
 
     private final Filter a;
 

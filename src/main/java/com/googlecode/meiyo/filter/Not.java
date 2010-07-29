@@ -20,7 +20,7 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-public final class Not implements Filter {
+final class Not implements Filter {
 
     final Filter delegate;
 

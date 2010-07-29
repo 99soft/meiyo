@@ -20,7 +20,7 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-final class Or implements Filter {
+class Or implements Filter {
 
     private final Filter a;
 
