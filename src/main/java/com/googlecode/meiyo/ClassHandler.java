@@ -20,7 +20,7 @@ package com.googlecode.meiyo;
  *
  * @version $Id$
  */
-public interface ClassPathVisitor {
+public interface ClassHandler {
 
     void doHandle(Class<?> clazz);
 

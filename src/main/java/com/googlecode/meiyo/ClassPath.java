@@ -25,6 +25,6 @@ import com.googlecode.meiyo.filter.Filter;
  */
 public interface ClassPath {
 
-    void scan(Filter matcher, ClassPathVisitor visitor);
+    void scan(Filter matcher, ClassHandler visitor);
 
 }
