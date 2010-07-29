@@ -48,13 +48,13 @@ public final class ClassPathFactoryTestCase {
                         }
 
                     }
-                )/* , new ClassPathHandler(any(), new ClassHandler() {
+                ), new ClassPathHandler(any(), new ClassHandler() {
 
                     public void doHandle(Class<?> clazz) {
                         System.err.println(clazz.getName());
                     }
 
-                })*/
+                })
         );
 
         assert 0 < classes.size();
