@@ -32,8 +32,9 @@ public final class FiltersTestCase {
 
     @Test
     public void verifyInPackage() {
-        assert inPackage("com.googlecode.meiyo").matches(ClassPath.class);
-        assert !inPackage("com.googlecode.meiyo").matches(List.class);
+        Filter inMeiyoPackage = inPackage("com.googlecode.meiyo");
+        assert inMeiyoPackage.matches(ClassPath.class);
+        assert !inMeiyoPackage.matches(List.class);
     }
 
 }
