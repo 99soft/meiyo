@@ -19,8 +19,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.googlecode.meiyo.filter.Filter;
-
 /**
  * 
  *
@@ -47,10 +45,10 @@ abstract class AbstractClassPath implements ClassPath {
     /**
      * {@inheritDoc}
      */
-    public final void scan(Filter matcher, ClassHandler visitor) {
+    public void scan(ClassPathHandler... classPathHandlers) {
         for (Class<?> entry : this.entries) {
-            if (matcher.matches(entry)) {
-                visitor.doHandle(entry);
+            for (ClassPathHandler classPathHandler : classPathHandlers) {
+                classPathHandler.doHandle(entry);
             }
         }
     }

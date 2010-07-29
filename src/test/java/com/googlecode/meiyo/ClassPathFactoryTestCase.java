@@ -15,7 +15,7 @@
  */
 package com.googlecode.meiyo;
 
-import static com.googlecode.meiyo.filter.Filters.inSubpackage;
+import static com.googlecode.meiyo.filter.Filters.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +32,29 @@ public final class ClassPathFactoryTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        ClassPathFactory.createFromJVM().scan(inSubpackage("com.googlecode.cscanner"),
-                new ClassPathVisitor() {
+        ClassPathFactory.createFromJVM().scan(
+                new ClassPathHandler(inSubpackage("com.googlecode.meiyo"),
+                    new ClassHandler() {
+
+                        public void doHandle(Class<?> clazz) {
+                            classes.add(clazz);
+                        }
+
+                    },
+                    new ClassHandler() {
+
+                        public void doHandle(Class<?> clazz) {
+                            System.out.println(clazz.getName());
+                        }
+
+                    }
+                )/* , new ClassPathHandler(any(), new ClassHandler() {
 
                     public void doHandle(Class<?> clazz) {
-                        classes.add(clazz);
+                        System.err.println(clazz.getName());
                     }
 
-                }
+                })*/
         );
 
         assert 0 < classes.size();

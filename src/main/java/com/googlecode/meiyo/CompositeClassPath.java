@@ -19,8 +19,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.googlecode.meiyo.filter.Filter;
-
 /**
  * 
  *
@@ -34,12 +32,9 @@ final class CompositeClassPath implements ClassPath {
         this.classPaths.add(classPath);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void scan(Filter matcher, ClassHandler visitor) {
+    public void scan(ClassPathHandler... classPathHandlers) {
         for (ClassPath classPath : this.classPaths) {
-            classPath.scan(matcher, visitor);
+            classPath.scan(classPathHandlers);
         }
     }
 
