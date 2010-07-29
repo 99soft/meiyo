@@ -15,7 +15,7 @@
  */
 package com.googlecode.meiyo.filter;
 
-import static com.googlecode.meiyo.filter.Filters.inPackage;
+import static com.googlecode.meiyo.filter.Filters.*;
 
 import java.util.List;
 
@@ -29,6 +29,11 @@ import com.googlecode.meiyo.ClassPath;
  * @version $Id$
  */
 public final class FiltersTestCase {
+
+    @Test
+    public void verifyAnnotatedWith() {
+        
+    }
 
     @Test
     public void verifyInPackage() {

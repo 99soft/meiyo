@@ -22,26 +22,23 @@ package com.googlecode.meiyo.filter;
  */
 final class IsAssignableTo implements Filter {
 
-    private final Class<?> superclass;
+    private final Class<?> superclassOrInterface;
 
-    public IsAssignableTo(Class<?> superclass) {
-        if (superclass == null) {
-            throw new IllegalArgumentException("Parameter 'superclass' must be not null");
-        }
-        this.superclass = superclass;
+    public IsAssignableTo(Class<?> superclassOrInterface) {
+        this.superclassOrInterface = superclassOrInterface;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return this.superclass.isAssignableFrom(clazz);
+        return this.superclassOrInterface.isAssignableFrom(clazz);
     }
 
     @Override
     public String toString() {
         return "isAssignableTo("
-                + this.superclass.getSimpleName()
+                + this.superclassOrInterface.getSimpleName()
                 + ")";
     }
 

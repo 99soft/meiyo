@@ -25,9 +25,6 @@ final class InPackage implements Filter {
     private final String targetPackage;
 
     public InPackage(String targetPackage) {
-        if (targetPackage == null) {
-            throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
-        }
         this.targetPackage = targetPackage;
     }
 

@@ -22,20 +22,20 @@ package com.googlecode.meiyo.filter;
  */
 class Or implements Filter {
 
-    private final Filter a;
+    private final Filter left;
 
-    private final Filter b;
+    private final Filter right;
 
-    public Or(Filter a, Filter b) {
-        this.a = a;
-        this.b = b;
+    public Or(Filter left, Filter right) {
+        this.left = left;
+        this.right = right;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return this.a.matches(clazz) || this.b.matches(clazz);
+        return this.left.matches(clazz) || this.right.matches(clazz);
     }
 
     /**
@@ -44,9 +44,9 @@ class Or implements Filter {
     @Override
     public String toString() {
         return "or("
-              + this.a
+              + this.left
               + ", "
-              + this.b
+              + this.right
               + ")";
     }
 

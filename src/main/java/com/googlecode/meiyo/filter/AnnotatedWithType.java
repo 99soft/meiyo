@@ -16,8 +16,6 @@
 package com.googlecode.meiyo.filter;
 
 import java.lang.annotation.Annotation;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /**
  * 
@@ -29,17 +27,6 @@ final class AnnotatedWithType implements Filter {
     private final Class<? extends Annotation> annotationType;
 
     public AnnotatedWithType(Class<? extends Annotation> annotationType) {
-        if (annotationType == null) {
-            throw new IllegalArgumentException("Parameter 'annotationType' must not be null");
-        }
-
-        Retention retention = annotationType.getAnnotation(Retention.class);
-        if (retention == null || RetentionPolicy.RUNTIME != retention.value()) {
-            throw new IllegalArgumentException("Annotation @"
-                    + annotationType.getName()
-                    + " is missing RUNTIME retention");
-        }
-
         this.annotationType = annotationType;
     }
 

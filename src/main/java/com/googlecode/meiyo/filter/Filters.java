@@ -16,6 +16,8 @@
 package com.googlecode.meiyo.filter;
 
 import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * 
@@ -30,16 +32,44 @@ public final class Filters {
         // do nothing
     }
 
-    public static Filter and(Filter a, Filter b) {
-        return new And(a, b);
+    public static Filter and(Filter left, Filter right) {
+        if (left == null) {
+            throw new IllegalArgumentException("Parameter 'left' must not be null");
+        }
+        if (right == null) {
+            throw new IllegalArgumentException("Parameter 'right' must not be null");
+        }
+
+        return new And(left, right);
     }
 
     public static Filter annotatedWith(Annotation annotation) {
+        if (annotation == null) {
+            throw new IllegalArgumentException("Parameter 'annotation' must not be null");
+        }
+
+        checkForRuntimeRetention(annotation.annotationType());
+
         return new AnnotatedWith(annotation);
     }
 
     public static Filter annotatedWithType(Class<? extends Annotation> annotationType) {
+        if (annotationType == null) {
+            throw new IllegalArgumentException("Parameter 'annotationType' must not be null");
+        }
+
+        checkForRuntimeRetention(annotationType);
+
         return new AnnotatedWithType(annotationType);
+    }
+
+    private static void checkForRuntimeRetention(Class<? extends Annotation> annotationType) {
+        Retention retention = annotationType.getAnnotation(Retention.class);
+        if (retention == null || RetentionPolicy.RUNTIME != retention.value()) {
+            throw new IllegalArgumentException("Annotation @"
+                    + annotationType.getName()
+                    + " is missing RUNTIME retention");
+        }
     }
 
     public static Filter any() {
@@ -47,39 +77,69 @@ public final class Filters {
     }
 
     public static Filter inPackage(String targetPackage) {
+        if (targetPackage == null) {
+            throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
+        }
+
         return new InPackage(targetPackage);
     }
 
     public static Filter inSubpackage(String targetPackage) {
+        if (targetPackage == null) {
+            throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
+        }
+
         return new InSubpackage(targetPackage);
     }
 
-    public static Filter isAssignableTo(Class<?> superclass) {
-        return new IsAssignableTo(superclass);
+    public static Filter isAssignableTo(Class<?> superclassOrInterface) {
+        if (superclassOrInterface == null) {
+            throw new IllegalArgumentException("Parameter 'superclassOrInterface' must be not null");
+        }
+
+        return new IsAssignableTo(superclassOrInterface);
     }
 
-    public static Filter nand(Filter a, Filter b) {
-        return new Not(new And(a, b));
+    public static Filter nand(Filter left, Filter right) {
+        return not(and(left, right));
     }
 
-    public static Filter nor(Filter a, Filter b) {
-        return new Not(new Or(a, b));
+    public static Filter nor(Filter left, Filter right) {
+        return not(or(left, right));
     }
 
     public static Filter not(Filter delegate) {
+        if (delegate == null) {
+            throw new IllegalArgumentException("Parameter 'delegate' must be not null");
+        }
+
         return new Not(delegate);
     }
 
-    public static Filter or(Filter a, Filter b) {
-        return new Or(a, b);
+    public static Filter or(Filter left, Filter right) {
+        if (left == null) {
+            throw new IllegalArgumentException("Parameter 'left' must not be null");
+        }
+        if (right == null) {
+            throw new IllegalArgumentException("Parameter 'right' must not be null");
+        }
+
+        return new Or(left, right);
     }
 
-    public static Filter xor(Filter a, Filter b) {
-        return new Xor(a, b);
+    public static Filter xor(Filter left, Filter right) {
+        if (left == null) {
+            throw new IllegalArgumentException("Parameter 'left' must not be null");
+        }
+        if (right == null) {
+            throw new IllegalArgumentException("Parameter 'right' must not be null");
+        }
+
+        return new Xor(left, right);
     }
 
     public static Filter xnor(Filter a, Filter b) {
-        return new Not(new Xor(a, b));
+        return not(xor(a, b));
     }
 
 }
