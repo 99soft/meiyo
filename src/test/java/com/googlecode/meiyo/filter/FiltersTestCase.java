@@ -17,6 +17,7 @@ package com.googlecode.meiyo.filter;
 
 import static com.googlecode.meiyo.filter.Filters.annotatedWithType;
 import static com.googlecode.meiyo.filter.Filters.inPackage;
+import static com.googlecode.meiyo.filter.Filters.inSubpackage;
 
 import java.util.List;
 
@@ -46,6 +47,12 @@ public final class FiltersTestCase {
     public void verifyInPackage() {
         Filter inMeiyoPackage = inPackage("com.googlecode.meiyo");
         assert inMeiyoPackage.matches(ClassPath.class);
+        assert !inMeiyoPackage.matches(List.class);
+    }
+
+    public void verifyInSubPackage() {
+        Filter inMeiyoPackage = inSubpackage("com.googlecode.meiyo");
+        assert inMeiyoPackage.matches(Filters.class);
         assert !inMeiyoPackage.matches(List.class);
     }
 
