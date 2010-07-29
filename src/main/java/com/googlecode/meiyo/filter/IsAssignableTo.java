@@ -20,11 +20,11 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-final class SubclassesOf implements Filter {
+final class IsAssignableTo implements Filter {
 
     private final Class<?> superclass;
 
-    public SubclassesOf(Class<?> superclass) {
+    public IsAssignableTo(Class<?> superclass) {
         if (superclass == null) {
             throw new IllegalArgumentException("Parameter 'superclass' must be not null");
         }
@@ -40,7 +40,7 @@ final class SubclassesOf implements Filter {
 
     @Override
     public String toString() {
-        return "subclassesOf("
+        return "isAssignableTo("
                 + this.superclass.getSimpleName()
                 + ")";
     }

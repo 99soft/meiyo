@@ -54,6 +54,10 @@ public final class Filters {
         return new InSubpackage(targetPackage);
     }
 
+    public static Filter isAssignableTo(Class<?> superclass) {
+        return new IsAssignableTo(superclass);
+    }
+
     public static Filter nand(Filter a, Filter b) {
         return new Not(new And(a, b));
     }
@@ -68,10 +72,6 @@ public final class Filters {
 
     public static Filter or(Filter a, Filter b) {
         return new Or(a, b);
-    }
-
-    public static Filter subclassesOf(Class<?> superclass) {
-        return new SubclassesOf(superclass);
     }
 
     public static Filter xor(Filter a, Filter b) {
