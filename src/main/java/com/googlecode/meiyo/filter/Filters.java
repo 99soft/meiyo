@@ -138,8 +138,8 @@ public final class Filters {
         return new Xor(left, right);
     }
 
-    public static Filter xnor(Filter a, Filter b) {
-        return not(xor(a, b));
+    public static Filter xnor(Filter left, Filter right) {
+        return not(xor(left, right));
     }
 
 }
