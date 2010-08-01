@@ -32,7 +32,7 @@ final class DirectoryClassPath extends FileClassPath {
         if (file.isDirectory()) {
 
             for (File child : file.listFiles()) {
-                traverse(child);
+                this.traverse(child);
             }
 
             return;
