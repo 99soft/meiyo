@@ -30,12 +30,20 @@ public final class ClassPathBuilder {
     }
 
     public ClassLoaderBuilder createFromPath(String classpath) {
-        if (classpath == null) {
-            throw new IllegalArgumentException("Parameter 'classpath' must not be null");
+        if (classpath == null || classpath.length() == 0) {
+            throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
+        }
+
+        return this.createFromPath(classpath.split(File.pathSeparator));
+    }
+
+    public ClassLoaderBuilder createFromPath(String...classpath) {
+        if (classpath == null || classpath.length == 0) {
+            throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
 
         CompositeClassPath compositeClassPath = new CompositeClassPath();
-        compositeClassPath.setPaths(classpath.split(File.pathSeparator));
+        compositeClassPath.setPaths(classpath);
         return new ClassLoaderBuilder(compositeClassPath);
     }
 
