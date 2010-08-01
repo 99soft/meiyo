@@ -17,6 +17,8 @@ package com.googlecode.meiyo.builder;
 
 import java.io.File;
 
+import com.googlecode.meiyo.ClassPath;
+
 /**
  * 
  * @version $Id$
@@ -24,6 +26,13 @@ import java.io.File;
 public final class ClassPathBuilder {
 
     private static final String JAVA_CLASS_PATH = "java.class.path";
+
+    public static ClassPath createByDefaults() {
+        return new ClassPathBuilder()
+                    .createFromJVM()
+                    .usingDefaultClassLoader()
+                    .usingDefaultErrorHandler();
+    }
 
     public ClassLoaderBuilder createFromJVM() {
         return this.createFromPath(System.getProperty(JAVA_CLASS_PATH));

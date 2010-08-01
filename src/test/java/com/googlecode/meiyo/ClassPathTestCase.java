@@ -35,32 +35,29 @@ public final class ClassPathTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        new ClassPathBuilder()
-                    .createFromJVM()
-                    .usingDefaultClassLoader()
-                    .usingDefaultErrorHandler().scan(
-                new ClassPathHandler(inSubpackage("com.googlecode.meiyo"),
-                    new ClassHandler() {
-
-                        public void doHandle(Class<?> clazz) {
-                            classes.add(clazz);
-                        }
-
-                    },
-                    new ClassHandler() {
-
-                        public void doHandle(Class<?> clazz) {
-                            System.out.println(">>>> " + clazz.getName());
-                        }
-
-                    }
-                ), new ClassPathHandler(any(), new ClassHandler() {
+        ClassPathBuilder.createByDefaults().scan(
+            new ClassPathHandler(inSubpackage("com.googlecode.meiyo"),
+                new ClassHandler() {
 
                     public void doHandle(Class<?> clazz) {
-                        System.out.println("[INFO] found " + clazz.getName());
+                        classes.add(clazz);
                     }
 
-                })
+                },
+                new ClassHandler() {
+
+                    public void doHandle(Class<?> clazz) {
+                        System.out.println(">>>> " + clazz.getName());
+                    }
+
+                }
+            ), new ClassPathHandler(any(), new ClassHandler() {
+
+                public void doHandle(Class<?> clazz) {
+                    System.out.println("[INFO] found " + clazz.getName());
+                }
+
+            })
         );
 
         assert 0 < classes.size();
