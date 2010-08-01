@@ -37,6 +37,10 @@ public final class ErrorHandlerBuilder {
     }
 
     public ClassPath usingErrorHandler(ErrorHandler errorHandler) {
+        if (errorHandler == null) {
+            throw new IllegalArgumentException("Parameter 'errorHandler' must not be null");
+        }
+
         this.compositeClassPath.setErrorHandler(errorHandler);
         this.compositeClassPath.init();
         return compositeClassPath;

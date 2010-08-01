@@ -34,6 +34,10 @@ public final class ClassLoaderBuilder {
     }
 
     public ErrorHandlerBuilder usingClassLoader(ClassLoader classLoader) {
+        if (classLoader == null) {
+            throw new IllegalArgumentException("Parameter 'classLoader' must not be null");
+        }
+
         this.compositeClassPath.setClassLoader(classLoader);
 
         ErrorHandlerBuilder errorHandlerBuilder = new ErrorHandlerBuilder(this.compositeClassPath);

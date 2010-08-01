@@ -30,6 +30,10 @@ public final class ClassPathBuilder {
     }
 
     public ClassLoaderBuilder createFromPath(String classpath) {
+        if (classpath == null) {
+            throw new IllegalArgumentException("Parameter 'classpath' must not be null");
+        }
+
         CompositeClassPath compositeClassPath = new CompositeClassPath();
         compositeClassPath.setPaths(classpath.split(File.pathSeparator));
         return new ClassLoaderBuilder(compositeClassPath);
