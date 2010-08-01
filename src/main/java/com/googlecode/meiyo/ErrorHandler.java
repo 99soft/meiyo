@@ -15,6 +15,9 @@
  */
 package com.googlecode.meiyo;
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * 
  *
@@ -23,5 +26,7 @@ package com.googlecode.meiyo;
 public interface ErrorHandler {
 
     void onClassNotFound(String className);
+
+    void onJARReadingError(File file, IOException e);
 
 }

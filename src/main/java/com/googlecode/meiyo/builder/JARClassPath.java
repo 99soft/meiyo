@@ -36,15 +36,13 @@ final class JARClassPath extends AbstractClassPath {
             JarFile jarFile = new JarFile(file);
             Enumeration<JarEntry> enumeration = jarFile.entries();
             while (enumeration.hasMoreElements()) {
-                    JarEntry entry = enumeration.nextElement();
-                    if (!entry.isDirectory() && this.isJavaClass(entry.getName())) {
-                        this.addEntry(entry.getName());
-                    }
+                JarEntry entry = enumeration.nextElement();
+                if (!entry.isDirectory() && this.isJavaClass(entry.getName())) {
+                    this.addEntry(entry.getName());
+                }
             }
         } catch (IOException e) {
-            throw new RuntimeException("An error occurred while loading '"
-                    + file
-                    + "' jar entry", e);
+            errorHandler.onJARReadingError(file, e);
         }
     }
 

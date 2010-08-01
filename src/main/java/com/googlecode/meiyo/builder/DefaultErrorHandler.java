@@ -15,6 +15,9 @@
  */
 package com.googlecode.meiyo.builder;
 
+import java.io.File;
+import java.io.IOException;
+
 import com.googlecode.meiyo.ErrorHandler;
 
 /**
@@ -28,7 +31,16 @@ final class DefaultErrorHandler implements ErrorHandler {
      * {@inheritDoc}
      */
     public void onClassNotFound(String className) {
-        // do nothing
+        // do nothing, just ignore it
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void onJARReadingError(File file, IOException e) {
+        throw new RuntimeException("An error occurred while loading '"
+                + file
+                + "' jar entry", e);
     }
 
 }
