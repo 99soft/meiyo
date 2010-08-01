@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo;
+package com.googlecode.meiyo.builder;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,14 +21,16 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import com.googlecode.meiyo.ErrorHandler;
+
 /**
  * 
  * @version $Id$
  */
 final class JARClassPath extends AbstractClassPath {
 
-    public JARClassPath(File file, ClassLoader classLoader) {
-        super(file.getAbsolutePath(), classLoader);
+    public JARClassPath(File file, ClassLoader classLoader, ErrorHandler errorHandler) {
+        super(file.getAbsolutePath(), classLoader, errorHandler);
 
         try {
             JarFile jarFile = new JarFile(file);

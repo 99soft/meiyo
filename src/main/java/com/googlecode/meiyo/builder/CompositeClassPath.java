@@ -13,11 +13,16 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo;
+package com.googlecode.meiyo.builder;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
+import com.googlecode.meiyo.ClassPath;
+import com.googlecode.meiyo.ClassPathHandler;
+import com.googlecode.meiyo.ErrorHandler;
 
 /**
  * 
@@ -26,10 +31,42 @@ import java.util.List;
  */
 final class CompositeClassPath implements ClassPath {
 
+    private static final Pattern JAR_FILE = Pattern.compile(".+\\.[jJ][aA][rR]");
+
     private final List<ClassPath> classPaths = new ArrayList<ClassPath>();
 
-    public void addClasspath(ClassPath classPath) {
-        this.classPaths.add(classPath);
+    private String[] paths;
+
+    private ClassLoader classLoader;
+
+    private ErrorHandler errorHandler;
+
+    public void setPaths(String[] paths) {
+        this.paths = paths;
+    }
+
+    public void setClassLoader(ClassLoader classLoader) {
+        this.classLoader = classLoader;
+    }
+
+    public void setErrorHandler(ErrorHandler errorHandler) {
+        this.errorHandler = errorHandler;
+    }
+
+    public void init() {
+        for (String path: paths) {
+            File file = new File(path);
+            if (file.isDirectory()) {
+                this.classPaths.add(new DirectoryClassPath(file, this.classLoader, this.errorHandler));
+            } else {
+                if (JAR_FILE.matcher(path).matches()) {
+                    this.classPaths.add(new JARClassPath(file, this.classLoader, this.errorHandler));
+                } else {
+                    this.classPaths.add(new FileClassPath(file, this.classLoader, this.errorHandler));
+                }
+            }
+            // else ignore it
+        }
     }
 
     public void scan(ClassPathHandler... classPathHandlers) {

@@ -13,11 +13,15 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo;
+package com.googlecode.meiyo.builder;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.googlecode.meiyo.ClassPath;
+import com.googlecode.meiyo.ClassPathHandler;
+import com.googlecode.meiyo.ErrorHandler;
 
 /**
  * 
@@ -37,9 +41,12 @@ abstract class AbstractClassPath implements ClassPath {
 
     private final ClassLoader classLoader;
 
-    public AbstractClassPath(String path, ClassLoader classLoader) {
+    private final ErrorHandler errorHandler;
+
+    public AbstractClassPath(String path, ClassLoader classLoader, ErrorHandler errorHandler) {
         this.path = path;
         this.classLoader = classLoader;
+        this.errorHandler = errorHandler;
     }
 
     /**
@@ -59,9 +66,7 @@ abstract class AbstractClassPath implements ClassPath {
             Class<?> clazz = this.classLoader.loadClass(entry);
             this.entries.add(clazz);
         } catch (Throwable t) {
-            /* throw new RuntimeException("An error occurred while resolving '"
-                    + path
-                    + "' class"); */
+            this.errorHandler.onClassNotFound(entry);
         }
     }
 

@@ -13,32 +13,10 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo;
-
-import com.googlecode.meiyo.filter.Filter;
 
 /**
- * 
+ * Contains the backport SPI APIs implementation.
  *
  * @version $Id$
  */
-public final class ClassPathHandler {
-
-    private final Filter filter;
-
-    private final ClassHandler[] classHandlers;
-
-    public ClassPathHandler(Filter filter, ClassHandler...classHandlers) {
-        this.filter = filter;
-        this.classHandlers = classHandlers;
-    }
-
-    public void doHandle(Class<?> clazz) {
-        if (this.filter.matches(clazz)) {
-            for (ClassHandler classHandler : this.classHandlers) {
-                classHandler.doHandle(clazz);
-            }
-        }
-    }
-
-}
+package com.googlecode.meiyo.builder;

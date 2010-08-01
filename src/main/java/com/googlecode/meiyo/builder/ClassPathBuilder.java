@@ -13,32 +13,26 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo;
+package com.googlecode.meiyo.builder;
 
-import com.googlecode.meiyo.filter.Filter;
+import java.io.File;
 
 /**
  * 
- *
  * @version $Id$
  */
-public final class ClassPathHandler {
+public final class ClassPathBuilder {
 
-    private final Filter filter;
+    private static final String JAVA_CLASS_PATH = "java.class.path";
 
-    private final ClassHandler[] classHandlers;
-
-    public ClassPathHandler(Filter filter, ClassHandler...classHandlers) {
-        this.filter = filter;
-        this.classHandlers = classHandlers;
+    public ClassLoaderBuilder createFromJVM() {
+        return this.createFromPath(System.getProperty(JAVA_CLASS_PATH));
     }
 
-    public void doHandle(Class<?> clazz) {
-        if (this.filter.matches(clazz)) {
-            for (ClassHandler classHandler : this.classHandlers) {
-                classHandler.doHandle(clazz);
-            }
-        }
+    public ClassLoaderBuilder createFromPath(String classpath) {
+        CompositeClassPath compositeClassPath = new CompositeClassPath();
+        compositeClassPath.setPaths(classpath.split(File.pathSeparator));
+        return new ClassLoaderBuilder(compositeClassPath);
     }
 
 }

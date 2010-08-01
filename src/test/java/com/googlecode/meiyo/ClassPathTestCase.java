@@ -15,24 +15,30 @@
  */
 package com.googlecode.meiyo;
 
-import static com.googlecode.meiyo.filter.Filters.*;
+import static com.googlecode.meiyo.filter.Filters.any;
+import static com.googlecode.meiyo.filter.Filters.inSubpackage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.testng.annotations.Test;
 
+import com.googlecode.meiyo.builder.ClassPathBuilder;
+
 /**
  * 
  * @version $Id$
  */
-public final class ClassPathFactoryTestCase {
+public final class ClassPathTestCase {
 
     @Test
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        ClassPathFactory.createFromJVM().scan(
+        new ClassPathBuilder()
+                    .createFromJVM()
+                    .usingDefaultClassLoader()
+                    .usingDefaultErrorHandler().scan(
                 new ClassPathHandler(inSubpackage("com.googlecode.meiyo"),
                     new ClassHandler() {
 
@@ -44,14 +50,14 @@ public final class ClassPathFactoryTestCase {
                     new ClassHandler() {
 
                         public void doHandle(Class<?> clazz) {
-                            System.out.println(clazz.getName());
+                            System.out.println(">>>> " + clazz.getName());
                         }
 
                     }
                 ), new ClassPathHandler(any(), new ClassHandler() {
 
                     public void doHandle(Class<?> clazz) {
-                        System.err.println(clazz.getName());
+                        System.out.println("[INFO] found " + clazz.getName());
                     }
 
                 })

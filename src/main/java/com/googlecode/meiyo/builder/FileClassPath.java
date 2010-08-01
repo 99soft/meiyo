@@ -13,32 +13,25 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo;
+package com.googlecode.meiyo.builder;
 
 import java.io.File;
+
+import com.googlecode.meiyo.ErrorHandler;
 
 /**
  * 
  * @version $Id$
  */
-final class DirectoryClassPath extends FileClassPath {
+class FileClassPath extends AbstractClassPath {
 
-    public DirectoryClassPath(File rootDirectory, ClassLoader classLoader) {
-        super(rootDirectory, classLoader);
+    public FileClassPath(File root, ClassLoader classLoader, ErrorHandler errorHandler) {
+        super(root.getAbsolutePath(), classLoader, errorHandler);
+        this.traverse(root);
     }
 
-    @Override
     protected void traverse(final File file) {
-        if (file.isDirectory()) {
-
-            for (File child : file.listFiles()) {
-                this.traverse(child);
-            }
-
-            return;
-        }
-
-        super.traverse(file);
+        this.addEntry(file.getAbsolutePath().substring(this.toString().length() + 1));
     }
 
 }
