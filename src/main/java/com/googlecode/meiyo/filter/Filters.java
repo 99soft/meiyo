@@ -120,6 +120,10 @@ public final class Filters {
         return new IsPublic();
     }
 
+    public static Filter isStatic() {
+        return new IsStatic();
+    }
+
     public static Filter nand(Filter left, Filter right) {
         return not(and(left, right));
     }
