@@ -108,6 +108,10 @@ public final class Filters {
         return new IsFinal();
     }
 
+    public static Filter isPrivate() {
+        return new IsPrivate();
+    }
+
     public static Filter nand(Filter left, Filter right) {
         return not(and(left, right));
     }
