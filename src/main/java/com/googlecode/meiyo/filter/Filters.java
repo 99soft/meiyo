@@ -92,6 +92,10 @@ public final class Filters {
         return new InSubpackage(targetPackage);
     }
 
+    public static Filter isAbstract() {
+        return new IsAbstract();
+    }
+
     public static Filter isAssignableTo(Class<?> superclassOrInterface) {
         if (superclassOrInterface == null) {
             throw new IllegalArgumentException("Parameter 'superclassOrInterface' must be not null");
