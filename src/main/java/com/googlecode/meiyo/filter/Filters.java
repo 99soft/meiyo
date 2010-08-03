@@ -112,6 +112,10 @@ public final class Filters {
         return new IsInterface();
     }
 
+    public static Filter isPublic() {
+        return new IsPublic();
+    }
+
     public static Filter nand(Filter left, Filter right) {
         return not(and(left, right));
     }
