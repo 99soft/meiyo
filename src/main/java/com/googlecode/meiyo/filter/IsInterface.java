@@ -22,7 +22,7 @@ import java.lang.reflect.Modifier;
  *
  * @version $Id$
  */
-final class IsPrivate implements Filter {
+final class IsInterface implements Filter {
 
     /**
      * {@inheritDoc}
