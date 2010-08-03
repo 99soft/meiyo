@@ -112,6 +112,10 @@ public final class Filters {
         return new IsInterface();
     }
 
+    public static Filter isPrivate() {
+        return new IsPrivate();
+    }
+
     public static Filter isPublic() {
         return new IsPublic();
     }
