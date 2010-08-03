@@ -31,7 +31,7 @@ import com.googlecode.meiyo.ErrorHandler;
  */
 final class CompositeClassPath implements ClassPath {
 
-    private static final Pattern JAR_FILE = Pattern.compile(".+\\.[jJ][aA][rR]");
+    private static final Pattern JAR_FILE = Pattern.compile(".+\\.(jar|zip)", Pattern.CASE_INSENSITIVE);
 
     private final List<ClassPath> classPaths = new ArrayList<ClassPath>();
 
