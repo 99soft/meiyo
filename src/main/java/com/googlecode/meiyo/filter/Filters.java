@@ -124,6 +124,10 @@ public final class Filters {
         return new IsStatic();
     }
 
+    public static Filter isStrict() {
+        return new IsStrict();
+    }
+
     public static Filter nand(Filter left, Filter right) {
         return not(and(left, right));
     }
