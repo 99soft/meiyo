@@ -104,6 +104,10 @@ public final class Filters {
         return new IsAssignableTo(superclassOrInterface);
     }
 
+    public static Filter isFinal() {
+        return new IsFinal();
+    }
+
     public static Filter nand(Filter left, Filter right) {
         return not(and(left, right));
     }
