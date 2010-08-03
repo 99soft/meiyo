@@ -15,8 +15,7 @@
  */
 package com.googlecode.meiyo;
 
-import static com.googlecode.meiyo.filter.Filters.any;
-import static com.googlecode.meiyo.filter.Filters.inSubpackage;
+import static com.googlecode.meiyo.filter.Filters.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public final class ClassPathTestCase {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
         ClassPathBuilder.createByDefaults().scan(
-            new ClassPathHandler(inSubpackage("com.googlecode.meiyo"),
+            new ClassPathHandler(and(inSubpackage("com.googlecode.meiyo"), isPublic()),
                 new ClassHandler() {
 
                     public void doHandle(Class<?> clazz) {
