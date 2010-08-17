@@ -35,6 +35,9 @@ final class InPackage implements Filter {
         return this.targetPackage.equals(clazz.getPackage().getName());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "inPackage("

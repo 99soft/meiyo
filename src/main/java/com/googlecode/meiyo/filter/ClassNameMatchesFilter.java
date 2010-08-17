@@ -29,10 +29,16 @@ final class ClassNameMatchesFilter implements Filter {
         this.pattern = Pattern.compile(regex);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean matches(Class<?> clazz) {
         return this.pattern.matcher(clazz.getSimpleName()).matches();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "classNameMatches("

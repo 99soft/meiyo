@@ -35,6 +35,9 @@ final class IsAssignableTo implements Filter {
         return this.superclassOrInterface.isAssignableFrom(clazz);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "isAssignableTo("

@@ -37,6 +37,9 @@ final class InSubpackage implements Filter {
                 || classPackageName.startsWith(this.targetPackageName + '.');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
       return "inSubPackage("

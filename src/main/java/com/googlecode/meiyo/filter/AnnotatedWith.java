@@ -38,6 +38,9 @@ final class AnnotatedWith implements Filter {
         return fromElement != null && this.annotation.equals(fromElement);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "annotatedWith("

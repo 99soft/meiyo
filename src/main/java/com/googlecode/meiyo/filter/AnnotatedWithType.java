@@ -37,10 +37,14 @@ final class AnnotatedWithType implements Filter {
         return clazz.isAnnotationPresent(this.annotationType);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "annotatedWith("
             + this.annotationType.getName()
             + ")";
     }
+
 }

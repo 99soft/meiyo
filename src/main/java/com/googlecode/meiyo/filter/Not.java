@@ -38,6 +38,9 @@ final class Not implements Filter {
         return !this.delegate.matches(clazz);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "not("
