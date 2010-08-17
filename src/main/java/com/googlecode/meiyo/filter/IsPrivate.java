@@ -36,7 +36,7 @@ final class IsPrivate implements Filter {
      */
     @Override
     public String toString() {
-        return "IsPrivate()";
+        return "isPrivate()";
     }
 
 }
