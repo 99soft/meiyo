@@ -57,6 +57,7 @@ public final class FiltersTestCase {
     public void verifyInterface() {
         Filter isInterface = isInterface();
         assert !isInterface.matches(DummyAnnotation.class);
+        assert isInterface.matches(ClassPath.class);
     }
 
     public void verifyAbstract() {
