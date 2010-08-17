@@ -56,4 +56,9 @@ public final class FiltersTestCase {
         assert !inMeiyoPackage.matches(List.class);
     }
 
+    public void verifyInterface() {
+        Filter isInterface = new IsInterface();
+        assert !isInterface.matches(DummyAnnotation.class);
+    }
+
 }

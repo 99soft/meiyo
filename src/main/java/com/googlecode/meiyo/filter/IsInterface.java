@@ -28,7 +28,7 @@ final class IsInterface implements Filter {
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return Modifier.isInterface(clazz.getModifiers());
+        return Modifier.isInterface(clazz.getModifiers()) && !clazz.isAnnotation();
     }
 
     /**
