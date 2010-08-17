@@ -32,15 +32,15 @@ public final class Filters {
         // do nothing
     }
 
-    public static Filter and(Filter left, Filter right) {
-        if (left == null) {
-            throw new IllegalArgumentException("Parameter 'left' must not be null");
+    public static Filter and(Filter...filters) {
+        if (filters == null) {
+            throw new IllegalArgumentException("Parameter 'filters' must be not null");
         }
-        if (right == null) {
-            throw new IllegalArgumentException("Parameter 'right' must not be null");
+        if (filters.length == 0) {
+            throw new IllegalArgumentException("Empty filters list not allowed");
         }
 
-        return new And(left, right);
+        return new And(filters);
     }
 
     public static Filter annotatedWith(Annotation annotation) {
@@ -128,12 +128,12 @@ public final class Filters {
         return new IsStrict();
     }
 
-    public static Filter nand(Filter left, Filter right) {
-        return not(and(left, right));
+    public static Filter nand(Filter...filters) {
+        return not(and(filters));
     }
 
-    public static Filter nor(Filter left, Filter right) {
-        return not(or(left, right));
+    public static Filter nor(Filter...filters) {
+        return not(or(filters));
     }
 
     public static Filter not(Filter delegate) {
@@ -144,30 +144,30 @@ public final class Filters {
         return new Not(delegate);
     }
 
-    public static Filter or(Filter left, Filter right) {
-        if (left == null) {
-            throw new IllegalArgumentException("Parameter 'left' must not be null");
+    public static Filter or(Filter...filters) {
+        if (filters == null) {
+            throw new IllegalArgumentException("Parameter 'filters' must be not null");
         }
-        if (right == null) {
-            throw new IllegalArgumentException("Parameter 'right' must not be null");
+        if (filters.length == 0) {
+            throw new IllegalArgumentException("Empty filters list not allowed");
         }
 
-        return new Or(left, right);
+        return new Or(filters);
     }
 
-    public static Filter xor(Filter left, Filter right) {
-        if (left == null) {
-            throw new IllegalArgumentException("Parameter 'left' must not be null");
+    public static Filter xor(Filter...filters) {
+        if (filters == null) {
+            throw new IllegalArgumentException("Parameter 'filters' must be not null");
         }
-        if (right == null) {
-            throw new IllegalArgumentException("Parameter 'right' must not be null");
+        if (filters.length == 0) {
+            throw new IllegalArgumentException("Empty filters list not allowed");
         }
 
-        return new Xor(left, right);
+        return new Xor(filters);
     }
 
-    public static Filter xnor(Filter left, Filter right) {
-        return not(xor(left, right));
+    public static Filter xnor(Filter...filters) {
+        return not(xor(filters));
     }
 
 }

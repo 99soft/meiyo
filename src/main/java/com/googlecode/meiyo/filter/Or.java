@@ -20,34 +20,22 @@ package com.googlecode.meiyo.filter;
  *
  * @version $Id$
  */
-class Or implements Filter {
+class Or extends AbstractMultipleArgumentFilter implements Filter {
 
-    private final Filter left;
-
-    private final Filter right;
-
-    public Or(Filter left, Filter right) {
-        this.left = left;
-        this.right = right;
+    public Or(Filter...filters) {
+        super(filters);
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return this.left.matches(clazz) || this.right.matches(clazz);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "or("
-              + this.left
-              + ", "
-              + this.right
-              + ")";
+        for (Filter filter : this.getFilters()) {
+            if (filter.matches(clazz)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

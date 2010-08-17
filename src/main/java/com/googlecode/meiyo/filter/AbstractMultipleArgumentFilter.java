@@ -17,25 +17,32 @@ package com.googlecode.meiyo.filter;
 
 /**
  * 
- *
  * @version $Id$
  */
-final class And extends AbstractMultipleArgumentFilter implements Filter {
+abstract class AbstractMultipleArgumentFilter {
 
-    public And(Filter...filters) {
-        super(filters);
+    private final Filter[] filters;
+
+    public AbstractMultipleArgumentFilter(Filter...filters) {
+        this.filters = filters;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public boolean matches(Class<?> clazz) {
-        for (Filter filter : this.getFilters()) {
-            if (!filter.matches(clazz)) {
-                return false;
+    protected Filter[] getFilters() {
+        return this.filters;
+    }
+
+    @Override
+    public final String toString() {
+        StringBuilder builder = new StringBuilder(this.getClass().getSimpleName().toLowerCase());
+        builder.append('(');
+        for (int i = 0; i < this.filters.length; i++) {
+            if (i > 0) {
+                builder.append(',');
             }
+            builder.append(this.filters[i]);
         }
-        return true;
+        builder.append(')');
+        return builder.toString();
     }
 
 }

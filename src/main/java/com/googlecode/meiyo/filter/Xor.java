@@ -19,34 +19,29 @@ package com.googlecode.meiyo.filter;
  * 
  * @version $Id$
  */
-final class Xor implements Filter {
+final class Xor extends AbstractMultipleArgumentFilter implements Filter {
 
-    private final Filter left;
-
-    private final Filter right;
-
-    public Xor(Filter left, Filter right) {
-        this.left = left;
-        this.right = right;
+    public Xor(Filter...filters) {
+        super(filters);
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return this.left.matches(clazz) ^ this.right.matches(clazz);
-    }
+        boolean matches = false;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return "xor("
-              + this.left
-              + ", "
-              + this.right
-              + ")";
+        for (Filter filter : this.getFilters()) {
+            if (filter.matches(clazz)) {
+                if (matches) {
+                    return false;
+                } else {
+                    matches = true;
+                }
+            }
+        }
+
+        return matches;
     }
 
 }
