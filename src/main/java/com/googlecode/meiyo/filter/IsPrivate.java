@@ -28,7 +28,7 @@ final class IsPrivate implements Filter {
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return Modifier.isInterface(clazz.getModifiers());
+        return Modifier.isPrivate(clazz.getModifiers());
     }
 
     /**
@@ -36,7 +36,7 @@ final class IsPrivate implements Filter {
      */
     @Override
     public String toString() {
-        return "isInterface()";
+        return "IsPrivate()";
     }
 
 }
