@@ -107,6 +107,10 @@ public final class Filters {
         return new IsAbstract();
     }
 
+    public static Filter isAnnotation() {
+        return new IsAnnotation();
+    }
+
     public static Filter isAssignableTo(Class<?> superclassOrInterface) {
         if (superclassOrInterface == null) {
             throw new IllegalArgumentException("Parameter 'superclassOrInterface' must be not null");
