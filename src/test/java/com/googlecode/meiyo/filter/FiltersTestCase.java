@@ -61,4 +61,10 @@ public final class FiltersTestCase {
         assert !isInterface.matches(DummyAnnotation.class);
     }
 
+    public void verifyAbstract() {
+        Filter isAbstract = new IsAbstract();
+        assert isAbstract.matches(AbstractMultipleArgumentFilter.class);
+        assert !isAbstract.matches(Filter.class);
+    }
+
 }

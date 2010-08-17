@@ -28,7 +28,7 @@ final class IsAbstract implements Filter {
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        return Modifier.isAbstract(clazz.getModifiers());
+        return Modifier.isAbstract(clazz.getModifiers()) && !clazz.isInterface();
     }
 
     /**
