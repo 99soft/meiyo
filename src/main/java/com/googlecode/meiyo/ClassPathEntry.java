@@ -26,6 +26,12 @@ public final class ClassPathEntry {
     private final ClassPath classPath;
 
     public ClassPathEntry(Class<?> clazz, ClassPath classPath) {
+        if (clazz == null) {
+            throw new IllegalArgumentException("Parameter 'clazz' must not be null");
+        }
+        if (classPath == null) {
+            throw new IllegalArgumentException("Parameter 'classPath' must not be null");
+        }
         this.clazz = clazz;
         this.classPath = classPath;
     }
