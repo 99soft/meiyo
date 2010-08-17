@@ -35,7 +35,12 @@ public final class ClassPathTestCase {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
         ClassPathBuilder.createByDefaults().scan(
-            new ClassPathHandler(and(inSubpackage("com.googlecode.meiyo"), isPublic(), not(isAbstract()), not(classNameMatches(".*TestCase"))),
+            new ClassPathHandler(and(
+                    inSubpackage("com.googlecode.meiyo"),
+                    isPublic(),
+                    not(isAbstract()),
+                    not(isAnnotation()),
+                    not(classNameMatches(".*TestCase"))),
                 new ClassHandler() {
 
                     public void doHandle(Class<?> clazz) {
