@@ -17,11 +17,33 @@ package com.googlecode.meiyo;
 
 /**
  * 
- *
  * @version $Id$
  */
-public interface ClassHandler {
+public final class ClassPathEntry {
 
-    void doHandle(Class<?> clazz);
+    private final Class<?> clazz;
+
+    private final ClassPath classPath;
+
+    public ClassPathEntry(Class<?> clazz, ClassPath classPath) {
+        this.clazz = clazz;
+        this.classPath = classPath;
+    }
+
+    public Class<?> getClazz() {
+        return this.clazz;
+    }
+
+    public ClassPath getClassPath() {
+        return this.classPath;
+    }
+
+    @Override
+    public String toString() {
+        return this.clazz.getName()
+            + " ("
+            + this.classPath
+            + ")";
+    }
 
 }

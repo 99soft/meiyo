@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.googlecode.meiyo.ClassPath;
+import com.googlecode.meiyo.ClassPathEntry;
 import com.googlecode.meiyo.ClassPathHandler;
 import com.googlecode.meiyo.ErrorHandler;
 
@@ -35,7 +36,7 @@ abstract class AbstractClassPath implements ClassPath {
      */
     private static final String CLASS_EXTENSION = ".class";
 
-    private final List<Class<?>> entries = new ArrayList<Class<?>>();
+    private final List<ClassPathEntry> entries = new ArrayList<ClassPathEntry>();
 
     private final String path;
 
@@ -53,7 +54,7 @@ abstract class AbstractClassPath implements ClassPath {
      * {@inheritDoc}
      */
     public void scan(ClassPathHandler... classPathHandlers) {
-        for (Class<?> entry : this.entries) {
+        for (ClassPathEntry entry : this.entries) {
             for (ClassPathHandler classPathHandler : classPathHandlers) {
                 classPathHandler.doHandle(entry);
             }
@@ -64,7 +65,7 @@ abstract class AbstractClassPath implements ClassPath {
         entry = entry.substring(0, entry.lastIndexOf('.')).replace('/', '.');
         try {
             Class<?> clazz = this.classLoader.loadClass(entry);
-            this.entries.add(clazz);
+            this.entries.add(new ClassPathEntry(clazz, this));
         } catch (Throwable t) {
             this.errorHandler.onClassNotFound(entry);
         }

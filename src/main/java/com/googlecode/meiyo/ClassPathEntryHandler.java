@@ -15,30 +15,13 @@
  */
 package com.googlecode.meiyo;
 
-import com.googlecode.meiyo.filter.Filter;
-
 /**
  * 
  *
  * @version $Id$
  */
-public final class ClassPathHandler {
+public interface ClassPathEntryHandler {
 
-    private final Filter filter;
-
-    private final ClassPathEntryHandler[] classHandlers;
-
-    public ClassPathHandler(Filter filter, ClassPathEntryHandler...classHandlers) {
-        this.filter = filter;
-        this.classHandlers = classHandlers;
-    }
-
-    public void doHandle(ClassPathEntry entry) {
-        if (this.filter.matches(entry.getClazz())) {
-            for (ClassPathEntryHandler classHandler : this.classHandlers) {
-                classHandler.doHandle(entry);
-            }
-        }
-    }
+    void doHandle(ClassPathEntry classPathEntry);
 
 }

@@ -41,24 +41,24 @@ public final class ClassPathTestCase {
                     not(isAbstract()),
                     not(isAnnotation()),
                     not(classNameMatches(".*TestCase"))),
-                new ClassHandler() {
+                new ClassPathEntryHandler() {
 
-                    public void doHandle(Class<?> clazz) {
-                        classes.add(clazz);
+                    public void doHandle(ClassPathEntry classPathEntry) {
+                        classes.add(classPathEntry.getClazz());
                     }
 
                 },
-                new ClassHandler() {
+                new ClassPathEntryHandler() {
 
-                    public void doHandle(Class<?> clazz) {
-                        System.out.println(">>>> " + clazz.getName());
+                    public void doHandle(ClassPathEntry classPathEntry) {
+                        System.out.println(">>>> " + classPathEntry);
                     }
 
                 }
-            ), new ClassPathHandler(any(), new ClassHandler() {
+            ), new ClassPathHandler(any(), new ClassPathEntryHandler() {
 
-                public void doHandle(Class<?> clazz) {
-                    System.out.println("[INFO] found " + clazz.getName());
+                public void doHandle(ClassPathEntry classPathEntry) {
+                    System.out.println("[INFO] found " + classPathEntry);
                 }
 
             })
