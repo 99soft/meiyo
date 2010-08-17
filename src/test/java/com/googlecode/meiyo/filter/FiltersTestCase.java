@@ -15,9 +15,7 @@
  */
 package com.googlecode.meiyo.filter;
 
-import static com.googlecode.meiyo.filter.Filters.annotatedWithType;
-import static com.googlecode.meiyo.filter.Filters.inPackage;
-import static com.googlecode.meiyo.filter.Filters.inSubpackage;
+import static com.googlecode.meiyo.filter.Filters.*;
 
 import java.util.List;
 
@@ -57,12 +55,12 @@ public final class FiltersTestCase {
     }
 
     public void verifyInterface() {
-        Filter isInterface = new IsInterface();
+        Filter isInterface = isInterface();
         assert !isInterface.matches(DummyAnnotation.class);
     }
 
     public void verifyAbstract() {
-        Filter isAbstract = new IsAbstract();
+        Filter isAbstract = isAbstract();
         assert isAbstract.matches(AbstractMultipleArgumentFilter.class);
         assert !isAbstract.matches(Filter.class);
     }
