@@ -27,10 +27,13 @@ abstract class AbstractMultipleArgumentFilter {
         this.filters = filters;
     }
 
-    protected Filter[] getFilters() {
+    protected final Filter[] getFilters() {
         return this.filters;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final String toString() {
         StringBuilder builder = new StringBuilder(this.getClass().getSimpleName().toLowerCase());
