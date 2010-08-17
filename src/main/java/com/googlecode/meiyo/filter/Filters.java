@@ -76,6 +76,17 @@ public final class Filters {
         return new Any();
     }
 
+    public static Filter classNameMatches(String regex) {
+        if (regex == null) {
+            throw new IllegalArgumentException("Parameter 'regex' must not be null");
+        }
+        if (regex.length() == 0) {
+            throw new IllegalArgumentException("Empty 'regex' not allowed");
+        }
+
+        return new ClassNameMatchesFilter(regex);
+    }
+
     public static Filter inPackage(String targetPackage) {
         if (targetPackage == null) {
             throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
