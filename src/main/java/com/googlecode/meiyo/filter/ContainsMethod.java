@@ -42,7 +42,7 @@ final class ContainsMethod implements Filter {
     public boolean matches(Class<?> clazz) {
         Class<?> current = clazz;
         while (current != Object.class) {
-            for (Method method : getMethods(current)) {
+            for (Method method : getDeclaredMethods(current)) {
                 if (this.name.equals(method.getName())
                         && Arrays.equals(this.argumentsType, method.getParameterTypes())) {
                     return true;
@@ -53,13 +53,13 @@ final class ContainsMethod implements Filter {
         return false;
     }
 
-    private static Method[] getMethods(final Class<?> type) {
+    private static Method[] getDeclaredMethods(final Class<?> type) {
         return AccessController.doPrivileged(
                 new PrivilegedAction<Method[]>() {
                     public Method[] run() {
-                        final Method[] mm = type.getDeclaredMethods();
-                        AccessibleObject.setAccessible(mm, true);
-                        return mm;
+                        final Method[] declaredMethods = type.getDeclaredMethods();
+                        AccessibleObject.setAccessible(declaredMethods, true);
+                        return declaredMethods;
                     }
                 });
     }
