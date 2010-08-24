@@ -87,6 +87,14 @@ public final class Filters {
         return new ClassNameMatchesFilter(regex);
     }
 
+    public static Filter containsMethod(String name, Class<?>...argumentsType) {
+        if (name == null) {
+            throw new IllegalArgumentException("Parameter 'name' must not be null");
+        }
+
+        return new ContainsMethod(name, argumentsType);
+    }
+
     public static Filter inPackage(String targetPackage) {
         if (targetPackage == null) {
             throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
