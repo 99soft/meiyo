@@ -41,7 +41,7 @@ final class ContainsMethod implements Filter {
      */
     public boolean matches(Class<?> clazz) {
         Class<?> current = clazz;
-        while (current != Object.class) {
+        while (current != null) {
             for (Method method : getDeclaredMethods(current)) {
                 if (this.name.equals(method.getName())
                         && Arrays.equals(this.argumentsType, method.getParameterTypes())) {
