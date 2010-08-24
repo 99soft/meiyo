@@ -23,6 +23,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.googlecode.meiyo.ClassPath;
+import com.googlecode.meiyo.ClassPathEntry;
+import com.googlecode.meiyo.ClassPathHandler;
 
 /**
  * 
@@ -32,7 +34,7 @@ import com.googlecode.meiyo.ClassPath;
 @Test
 public final class FiltersTestCase {
 
-    public void verifyAnnotatedWithType() {
+    public void matchesAnnotatedWithType() {
         assert annotatedWithType(Test.class).matches(this.getClass());
         assert !annotatedWithType(Parameters.class).matches(this.getClass());
     }
@@ -42,28 +44,40 @@ public final class FiltersTestCase {
         annotatedWithType(NoRuntimeRetention.class);
     }
 
-    public void verifyInPackage() {
+    public void matchesInPackage() {
         Filter inMeiyoPackage = inPackage("com.googlecode.meiyo");
         assert inMeiyoPackage.matches(ClassPath.class);
         assert !inMeiyoPackage.matches(List.class);
     }
 
-    public void verifyInSubPackage() {
+    public void matchesInSubPackage() {
         Filter inMeiyoPackage = inSubpackage("com.googlecode.meiyo");
         assert inMeiyoPackage.matches(Filters.class);
         assert !inMeiyoPackage.matches(List.class);
     }
 
-    public void verifyInterface() {
+    public void matchesInterface() {
         Filter isInterface = isInterface();
         assert !isInterface.matches(DummyAnnotation.class);
         assert isInterface.matches(ClassPath.class);
     }
 
-    public void verifyAbstract() {
+    public void matchesAbstract() {
         Filter isAbstract = isAbstract();
         assert isAbstract.matches(AbstractMultipleArgumentFilter.class);
         assert !isAbstract.matches(Filter.class);
+    }
+
+    public void matchesContainsMethodWithNoArguments() {
+        Filter containsMethod = containsMethod("getClazz");
+        assert containsMethod.matches(ClassPathEntry.class);
+        assert !containsMethod.matches(Filter.class);
+    }
+
+    public void matchesContainsMethodWithArguments() {
+        Filter containsMethod = containsMethod("doHandle", ClassPathEntry.class);
+        assert containsMethod.matches(ClassPathHandler.class);
+        assert !containsMethod.matches(Filter.class);
     }
 
 }
