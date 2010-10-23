@@ -16,14 +16,22 @@
 package com.googlecode.meiyo.filter;
 
 /**
- * 
+ * Filter that verifies the found class is in the given package or subpackage.
  *
  * @version $Id$
  */
 final class InSubpackage implements Filter {
 
+    /**
+     * The root package where classes are looked for.
+     */
     private final String targetPackageName;
 
+    /**
+     * Creates a new (sub)package based filter.
+     *
+     * @param targetPackageName the package where classes are looked for.
+     */
     public InSubpackage(String targetPackageName) {
         this.targetPackageName = targetPackageName;
     }
