@@ -16,14 +16,22 @@
 package com.googlecode.meiyo.filter;
 
 /**
- * 
+ * Filter that verifies the found class is exactly in the given package.
  *
  * @version $Id$
  */
 final class InPackage implements Filter {
 
+    /**
+     * The package where classes are looked for.
+     */
     private final String targetPackage;
 
+    /**
+     * Creates a new package based filter.
+     *
+     * @param targetPackage the package where classes are looked for.
+     */
     public InPackage(String targetPackage) {
         this.targetPackage = targetPackage;
     }
