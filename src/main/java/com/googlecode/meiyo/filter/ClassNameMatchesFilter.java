@@ -32,10 +32,19 @@ final class ClassNameMatchesFilter implements Filter {
     /**
      * Creates a new class name matcher.
      *
-     * @param regex the class name pattern has to be matched.
+     * @param regex the class name regexp pattern has to be matched.
      */
     public ClassNameMatchesFilter(String regex) {
-        this.pattern = Pattern.compile(regex);
+        this(Pattern.compile(regex));
+    }
+
+    /**
+     * Creates a new class name matcher.
+     *
+     * @param pattern the class name pattern has to be matched.
+     */
+    public ClassNameMatchesFilter(Pattern pattern) {
+        this.pattern = pattern;
     }
 
     /**
