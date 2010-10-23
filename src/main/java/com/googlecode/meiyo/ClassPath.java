@@ -16,12 +16,17 @@
 package com.googlecode.meiyo;
 
 /**
- * 
+ * Representation of the java classpath.
  *
  * @version $Id$
  */
 public interface ClassPath {
 
-    void scan(ClassPathHandler...classPathHandler);
+    /**
+     * Performs the scan operation notifying matching entries to passed handlers.
+     *
+     * @param classPathHandler the classpath entries handlers.
+     */
+    void scan(ClassPathHandler...classPathHandlers);
 
 }

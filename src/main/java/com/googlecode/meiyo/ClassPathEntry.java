@@ -16,15 +16,28 @@
 package com.googlecode.meiyo;
 
 /**
- * 
+ * A classpath entry is a class found while performing the scan operations.
+ *
  * @version $Id$
  */
 public final class ClassPathEntry {
 
+    /**
+     * The class found during the scan operations.
+     */
     private final Class<?> clazz;
 
+    /**
+     * The classpath reference the the class was found.
+     */
     private final ClassPath classPath;
 
+    /**
+     * Creates a new classpath entry.
+     *
+     * @param clazz the class found during the scan operations.
+     * @param classPath the classpath reference the the class was found.
+     */
     public ClassPathEntry(Class<?> clazz, ClassPath classPath) {
         if (clazz == null) {
             throw new IllegalArgumentException("Parameter 'clazz' must not be null");
@@ -36,14 +49,27 @@ public final class ClassPathEntry {
         this.classPath = classPath;
     }
 
+    /**
+     * Return the class found during the scan operations.
+     *
+     * @return the class found during the scan operations.
+     */
     public Class<?> getClazz() {
         return this.clazz;
     }
 
+    /**
+     * Return the classpath reference the the class was found.
+     *
+     * @return the classpath reference the the class was found.
+     */
     public ClassPath getClassPath() {
         return this.classPath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return this.clazz.getName()

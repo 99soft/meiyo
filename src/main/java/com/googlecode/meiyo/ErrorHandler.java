@@ -19,14 +19,25 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * 
+ * Handler for error occurred while scanning the classpath.
  *
  * @version $Id$
  */
 public interface ErrorHandler {
 
+    /**
+     * Invoked if a class found can't be resolved using the current classloader.
+     *
+     * @param className the class name not resolved.
+     */
     void onClassNotFound(String className);
 
+    /**
+     * Invoked if a JAR/ZIP archive can't be read.
+     *
+     * @param file the file that can't be read.
+     * @param e the occurred error.
+     */
     void onJARReadingError(File file, IOException e);
 
 }

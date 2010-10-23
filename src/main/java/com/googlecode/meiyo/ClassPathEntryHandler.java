@@ -16,12 +16,17 @@
 package com.googlecode.meiyo;
 
 /**
- * 
+ * The handler which receives {@link ClassPathEntry} notifications.
  *
  * @version $Id$
  */
 public interface ClassPathEntryHandler {
 
+    /**
+     * Receive a {@link ClassPathEntry} notification event.
+     *
+     * @param classPathEntry the notified {@link ClassPathEntry}.
+     */
     void doHandle(ClassPathEntry classPathEntry);
 
 }
