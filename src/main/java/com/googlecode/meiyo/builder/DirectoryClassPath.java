@@ -17,6 +17,7 @@ package com.googlecode.meiyo.builder;
 
 import java.io.File;
 
+import com.googlecode.meiyo.ClassPathHandler;
 import com.googlecode.meiyo.ErrorHandler;
 
 /**
@@ -30,17 +31,17 @@ final class DirectoryClassPath extends FileClassPath {
     }
 
     @Override
-    protected void traverse(final File file) {
+    protected void traverse(final File file, ClassPathHandler... classPathHandler) {
         if (file.isDirectory()) {
 
             for (File child : file.listFiles()) {
-                this.traverse(child);
+                this.traverse(child, classPathHandler);
             }
 
             return;
         }
 
-        super.traverse(file);
+        super.traverse(file, classPathHandler);
     }
 
 }

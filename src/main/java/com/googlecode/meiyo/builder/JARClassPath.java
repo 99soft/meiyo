@@ -21,6 +21,7 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import com.googlecode.meiyo.ClassPathHandler;
 import com.googlecode.meiyo.ErrorHandler;
 
 /**
@@ -30,19 +31,21 @@ import com.googlecode.meiyo.ErrorHandler;
 final class JARClassPath extends AbstractClassPath {
 
     public JARClassPath(File file, ClassLoader classLoader, ErrorHandler errorHandler) {
-        super(file.getAbsolutePath(), classLoader, errorHandler);
+        super(file, classLoader, errorHandler);
+    }
 
+    public void scan(ClassPathHandler... classPathHandlers) {
         try {
-            JarFile jarFile = new JarFile(file);
+            JarFile jarFile = new JarFile(this.getPath());
             Enumeration<JarEntry> enumeration = jarFile.entries();
             while (enumeration.hasMoreElements()) {
                 JarEntry entry = enumeration.nextElement();
                 if (!entry.isDirectory() && this.isJavaClass(entry.getName())) {
-                    this.addEntry(entry.getName());
+                    this.handleEntry(entry.getName(), classPathHandlers);
                 }
             }
         } catch (IOException e) {
-            errorHandler.onJARReadingError(file, e);
+            this.getErrorHandler().onJARReadingError(this.getPath(), e);
         }
     }
 

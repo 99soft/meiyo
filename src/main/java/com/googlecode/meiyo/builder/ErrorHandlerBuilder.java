@@ -42,7 +42,6 @@ public final class ErrorHandlerBuilder {
         }
 
         this.compositeClassPath.setErrorHandler(errorHandler);
-        this.compositeClassPath.init();
         return compositeClassPath;
     }
 

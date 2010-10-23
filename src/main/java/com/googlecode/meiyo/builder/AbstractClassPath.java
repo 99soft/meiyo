@@ -16,8 +16,6 @@
 package com.googlecode.meiyo.builder;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.googlecode.meiyo.ClassPath;
 import com.googlecode.meiyo.ClassPathEntry;
@@ -36,39 +34,37 @@ abstract class AbstractClassPath implements ClassPath {
      */
     private static final String CLASS_EXTENSION = ".class";
 
-    private final List<ClassPathEntry> entries = new ArrayList<ClassPathEntry>();
-
-    private final String path;
+    private final File path;
 
     private final ClassLoader classLoader;
 
     private final ErrorHandler errorHandler;
 
-    public AbstractClassPath(String path, ClassLoader classLoader, ErrorHandler errorHandler) {
+    public AbstractClassPath(File path, ClassLoader classLoader, ErrorHandler errorHandler) {
         this.path = path;
         this.classLoader = classLoader;
         this.errorHandler = errorHandler;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void scan(ClassPathHandler... classPathHandlers) {
-        for (ClassPathEntry entry : this.entries) {
-            for (ClassPathHandler classPathHandler : classPathHandlers) {
-                classPathHandler.doHandle(entry);
-            }
-        }
-    }
-
-    protected final void addEntry(String entry) {
+    protected final void handleEntry(String entry, ClassPathHandler... classPathHandlers) {
         entry = entry.substring(0, entry.lastIndexOf('.')).replace('/', '.');
         try {
             Class<?> clazz = this.classLoader.loadClass(entry);
-            this.entries.add(new ClassPathEntry(clazz, this));
+            ClassPathEntry cpe = new ClassPathEntry(clazz, this);
+            for (ClassPathHandler classPathHandler : classPathHandlers) {
+                classPathHandler.doHandle(cpe);
+            }
         } catch (Throwable t) {
             this.errorHandler.onClassNotFound(entry);
         }
+    }
+
+    protected final File getPath() {
+        return this.path;
+    }
+
+    protected final ErrorHandler getErrorHandler() {
+        return this.errorHandler;
     }
 
     protected final boolean isJavaClass(File resource) {
@@ -81,7 +77,7 @@ abstract class AbstractClassPath implements ClassPath {
 
     @Override
     public final String toString() {
-        return this.path;
+        return this.path.getAbsolutePath();
     }
 
 }

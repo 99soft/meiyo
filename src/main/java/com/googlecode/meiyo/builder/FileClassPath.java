@@ -17,6 +17,7 @@ package com.googlecode.meiyo.builder;
 
 import java.io.File;
 
+import com.googlecode.meiyo.ClassPathHandler;
 import com.googlecode.meiyo.ErrorHandler;
 
 /**
@@ -25,13 +26,19 @@ import com.googlecode.meiyo.ErrorHandler;
  */
 class FileClassPath extends AbstractClassPath {
 
-    public FileClassPath(File root, ClassLoader classLoader, ErrorHandler errorHandler) {
-        super(root.getAbsolutePath(), classLoader, errorHandler);
-        this.traverse(root);
+    public FileClassPath(File path, ClassLoader classLoader, ErrorHandler errorHandler) {
+        super(path, classLoader, errorHandler);
     }
 
-    protected void traverse(final File file) {
-        this.addEntry(file.getAbsolutePath().substring(this.toString().length() + 1));
+    /**
+     * {@inheritDoc}
+     */
+    public final void scan(ClassPathHandler... classPathHandlers) {
+        this.traverse(this.getPath(), classPathHandlers);
+    }
+
+    protected void traverse(final File file, ClassPathHandler... classPathHandlers) {
+        this.handleEntry(file.getAbsolutePath().substring(this.toString().length() + 1), classPathHandlers);
     }
 
 }
