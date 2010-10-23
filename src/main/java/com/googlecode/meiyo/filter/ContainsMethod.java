@@ -22,15 +22,28 @@ import java.security.PrivilegedAction;
 import java.util.Arrays;
 
 /**
- * 
+ * A filter that verifies the class found contains a method with the given signature.
+ *
  * @version $Id$
  */
 final class ContainsMethod implements Filter {
 
+    /**
+     * The method name has to be contained in the class found.
+     */
     private final String name;
 
+    /**
+     * The method arguments type.
+     */
     private final Class<?>[] argumentsType;
 
+    /**
+     * Creates a new {@code ContainsMethod} instance.
+     *
+     * @param name the method name has to be contained in the class found.
+     * @param argumentsType the optional method arguments type.
+     */
     public ContainsMethod(String name, Class<?>...argumentsType) {
         this.name = name;
         this.argumentsType = argumentsType;
@@ -53,6 +66,12 @@ final class ContainsMethod implements Filter {
         return false;
     }
 
+    /**
+     * Returns all the declared methods in the given class, using the privileged access.
+     *
+     * @param type the class from which extract the declared methods.
+     * @return the declared methods array.
+     */
     private static Method[] getDeclaredMethods(final Class<?> type) {
         return AccessController.doPrivileged(
                 new PrivilegedAction<Method[]>() {
