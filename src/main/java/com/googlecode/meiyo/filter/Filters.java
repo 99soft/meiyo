@@ -20,13 +20,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * 
+ * Simple filters language implementation.
+ *
  * @version $Id$
  */
 public final class Filters {
 
     /**
-     * This class can't be instantiated directly
+     * This class can't be instantiated.
      */
     private Filters() {
         // do nothing
