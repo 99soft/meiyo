@@ -40,7 +40,7 @@ final class JARClassPath extends AbstractClassPath {
             Enumeration<JarEntry> enumeration = jarFile.entries();
             while (enumeration.hasMoreElements()) {
                 JarEntry entry = enumeration.nextElement();
-                if (!entry.isDirectory() && this.isJavaClass(entry.getName())) {
+                if (!entry.isDirectory()) {
                     this.handleEntry(entry.getName(), classPathHandlers);
                 }
             }

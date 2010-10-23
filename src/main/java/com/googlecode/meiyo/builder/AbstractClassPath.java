@@ -47,6 +47,10 @@ abstract class AbstractClassPath implements ClassPath {
     }
 
     protected final void handleEntry(String entry, ClassPathHandler... classPathHandlers) {
+        if (!entry.endsWith(CLASS_EXTENSION)) {
+            return;
+        }
+
         entry = entry.substring(0, entry.lastIndexOf('.')).replace('/', '.');
         try {
             Class<?> clazz = this.classLoader.loadClass(entry);
@@ -65,14 +69,6 @@ abstract class AbstractClassPath implements ClassPath {
 
     protected final ErrorHandler getErrorHandler() {
         return this.errorHandler;
-    }
-
-    protected final boolean isJavaClass(File resource) {
-        return this.isJavaClass(resource.getName());
-    }
-
-    protected final boolean isJavaClass(String resourceName) {
-        return resourceName.endsWith(CLASS_EXTENSION);
     }
 
     @Override
