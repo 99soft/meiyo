@@ -15,7 +15,7 @@
  */
 
 /**
- * Contains the backport SPI APIs implementation.
+ * Contains the base classpath scanner interfaces.
  *
  * @version $Id$
  */
