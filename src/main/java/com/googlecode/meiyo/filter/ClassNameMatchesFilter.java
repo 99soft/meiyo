@@ -18,13 +18,22 @@ package com.googlecode.meiyo.filter;
 import java.util.regex.Pattern;
 
 /**
- * 
+ * A filter that verifies the class found name matches against a given pattern.
+ *
  * @version $Id$
  */
 final class ClassNameMatchesFilter implements Filter {
 
+    /**
+     * The class name pattern has to be matched.
+     */
     private final Pattern pattern;
 
+    /**
+     * Creates a new class name matcher.
+     *
+     * @param regex the class name pattern has to be matched.
+     */
     public ClassNameMatchesFilter(String regex) {
         this.pattern = Pattern.compile(regex);
     }

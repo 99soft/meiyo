@@ -18,14 +18,22 @@ package com.googlecode.meiyo.filter;
 import java.lang.annotation.Annotation;
 
 /**
- * 
+ * A filter that verifies the class found is annotated with the given annotation.
  *
  * @version $Id$
  */
 final class AnnotatedWith implements Filter {
 
+    /**
+     * The annotation has to be searched on classes.
+     */
     private final Annotation annotation;
 
+    /**
+     * Crates a new annotation filter.
+     *
+     * @param annotation the annotation has to be searched on classes.
+     */
     public AnnotatedWith(Annotation annotation) {
         this.annotation = annotation;
     }

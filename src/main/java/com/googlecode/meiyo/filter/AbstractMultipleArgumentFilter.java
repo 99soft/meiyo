@@ -16,17 +16,31 @@
 package com.googlecode.meiyo.filter;
 
 /**
- * 
+ * Abstract implementation of a composite filter.
+ *
  * @version $Id$
  */
 abstract class AbstractMultipleArgumentFilter {
 
+    /**
+     * The filters array have to be applied.
+     */
     private final Filter[] filters;
 
+    /**
+     * Creates a new composite filter.
+     *
+     * @param filters the filters array have to be applied.
+     */
     public AbstractMultipleArgumentFilter(Filter...filters) {
         this.filters = filters;
     }
 
+    /**
+     * Return the filters array have to be applied.
+     *
+     * @return the filters array have to be applied.
+     */
     protected final Filter[] getFilters() {
         return this.filters;
     }

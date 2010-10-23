@@ -16,16 +16,16 @@
 package com.googlecode.meiyo.filter;
 
 /**
- * 
+ * A filter is a class, found in the classpath, discriminator.
  *
  * @version $Id$
  */
 public interface Filter {
 
     /**
-     * Returns {@code true} if this matches {@code t}, {@code false} otherwise.
+     * Returns {@code true} if the given class satisfies the requirements, {@code false} otherwise.
      *
-     * @return {@code true} if this matches {@code t}, {@code false} otherwise.
+     * @return {@code true} if the given class satisfies the requirements, {@code false} otherwise.
      */
     boolean matches(Class<?> clazz);
 

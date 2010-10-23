@@ -16,12 +16,18 @@
 package com.googlecode.meiyo.filter;
 
 /**
- * 
+ * Implementation of the logic AND between filters, return true if all
+ * the given filters return true.
  *
  * @version $Id$
  */
 final class And extends AbstractMultipleArgumentFilter implements Filter {
 
+    /**
+     * Creates a new and filer.
+     *
+     * @param filters the filters array have to be applied.
+     */
     public And(Filter...filters) {
         super(filters);
     }

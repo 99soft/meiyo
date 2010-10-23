@@ -16,7 +16,7 @@
 package com.googlecode.meiyo.filter;
 
 /**
- * 
+ * A filter that returns true for any class found.
  *
  * @version $Id$
  */

@@ -18,14 +18,22 @@ package com.googlecode.meiyo.filter;
 import java.lang.annotation.Annotation;
 
 /**
- * 
+ * A filter that verifies the given annotation type is present on the class found.
  *
  * @version $Id$
  */
 final class AnnotatedWithType implements Filter {
 
+    /**
+     * The annotation type has to be present on the class found.
+     */
     private final Class<? extends Annotation> annotationType;
 
+    /**
+     * Creates a new annotation type matcher filter.
+     *
+     * @param annotationType the annotation type has to be present on the class found.
+     */
     public AnnotatedWithType(Class<? extends Annotation> annotationType) {
         this.annotationType = annotationType;
     }
