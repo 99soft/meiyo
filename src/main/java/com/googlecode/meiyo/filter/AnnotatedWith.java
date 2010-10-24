@@ -43,7 +43,7 @@ final class AnnotatedWith implements Filter {
      */
     public boolean matches(Class<?> clazz) {
         Annotation fromElement = clazz.getAnnotation(this.annotation.annotationType());
-        return fromElement != null && this.annotation.equals(fromElement);
+        return this.annotation.equals(fromElement);
     }
 
     /**
