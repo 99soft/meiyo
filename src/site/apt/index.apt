@@ -29,6 +29,8 @@ Welcome to Meiyo!
   Simply because provides even-based alike APIs that allow users perform
   efficient and lightweight classpath scan operation without storing any data.
 
+  Meiyo is a Japanes word that means "Honour".
+
 Before starting
 
   Rocoto is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
