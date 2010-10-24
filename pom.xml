@@ -516,7 +516,7 @@
                                     <uploads>
                                         <upload>
                                             <file>${project.build.directory}/${project.artifactId}-${project.version}-bundle.tar.gz</file>
-                                            <summary>${project.description} ${project.version} release</summary>
+                                            <summary>Meiyo ${project.version} release</summary>
                                             <labels>
                                                 <label>Featured</label>
                                                 <label>Type-Archive</label>
