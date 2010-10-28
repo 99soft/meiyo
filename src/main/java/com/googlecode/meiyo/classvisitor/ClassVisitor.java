@@ -19,9 +19,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.Map;
-
-import com.googlecode.meiyo.classvisitor.handlers.FieldHandler;
 
 /**
  * FILL ME.
@@ -29,8 +26,6 @@ import com.googlecode.meiyo.classvisitor.handlers.FieldHandler;
  * @version $Id$
  */
 public final class ClassVisitor {
-
-    
 
     public void visit(Class<?> type) {
         if (type == null || Object.class == type) {
