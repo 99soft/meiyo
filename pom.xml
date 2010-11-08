@@ -164,9 +164,7 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>
-                    
-                </artifactId>
+                <artifactId>maven-pmd-plugin</artifactId>
                 <version>2.5</version>
                 <configuration>
                     <linkXref>true</linkXref>
