@@ -15,11 +15,12 @@
  */
 package org.nnsoft.commons.meiyo.classvisitor;
 
+import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.PrivilegedActions.getDeclaredConstructors;
+import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.PrivilegedActions.getDeclaredFields;
+import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.PrivilegedActions.getDeclaredMethods;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-
 
 /**
  * FILL ME.
@@ -37,16 +38,16 @@ public final class ClassVisitor {
         // TYPE
         this.visitElements(type);
 
-        if (type.isInterface()) {
+        if (!type.isInterface()) {
             // CONSTRUCTOR
-            this.visitElements(run(new GetDeclaredConstructorsPrivilegedAction(type)));
+            this.visitElements(getDeclaredConstructors(type));
 
             // FIELD
-            this.visitElements(run(new GetDeclaredFieldsPrivilegedAction(type)));
+            this.visitElements(getDeclaredFields(type));
         }
 
         // METHOD
-        this.visitElements(run(new GetDeclaredMethodsPrivilegedAction(type)));
+        this.visitElements(getDeclaredMethods(type));
 
         this.visit(type.getSuperclass());
     }
@@ -57,19 +58,6 @@ public final class ClassVisitor {
                 
             }
         }
-    }
-
-    /**
-     * Perform action with AccessController.doPrivileged() if possible.
-     *
-     * @param action - the action to run
-     * @return result of running the action
-     */
-    private static <T> T run(PrivilegedAction<T> action) {
-        if (System.getSecurityManager() != null) {
-            return AccessController.doPrivileged(action);
-        }
-        return action.run();
     }
 
 }

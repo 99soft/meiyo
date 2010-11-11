@@ -13,26 +13,30 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.nnsoft.commons.meiyo.classvisitor;
+package org.nnsoft.commons.meiyo.classvisitor.privilegedactions;
 
-import java.lang.reflect.Constructor;
+import java.security.PrivilegedAction;
 
 /**
  * FILL ME.
  *
  * @version $Id$
  */
-final class GetDeclaredConstructorsPrivilegedAction extends AbstractMeiyoPrivilegedAction<Constructor<?>[]> {
+abstract class AbstractMeiyoPrivilegedAction<T> implements PrivilegedAction<T> {
 
-    public GetDeclaredConstructorsPrivilegedAction(Class<?> type) {
-        super(type);
+    private final Class<?> type;
+
+    public AbstractMeiyoPrivilegedAction(Class<?> type) {
+        this.type = type;
+    }
+
+    protected final Class<?> getType() {
+        return this.type;
     }
 
     /**
      * {@inheritDoc}
      */
-    public Constructor<?>[] run() {
-        return this.getType().getDeclaredConstructors();
-    }
+    public abstract T run();
 
 }

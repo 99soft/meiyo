@@ -13,30 +13,26 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.nnsoft.commons.meiyo.classvisitor;
+package org.nnsoft.commons.meiyo.classvisitor.privilegedactions;
 
-import java.security.PrivilegedAction;
+import java.lang.reflect.Method;
 
 /**
  * FILL ME.
  *
  * @version $Id$
  */
-abstract class AbstractMeiyoPrivilegedAction<T> implements PrivilegedAction<T> {
+final class GetDeclaredMethodsPrivilegedAction extends AbstractMeiyoPrivilegedAction<Method[]> {
 
-    private final Class<?> type;
-
-    public AbstractMeiyoPrivilegedAction(Class<?> type) {
-        this.type = type;
-    }
-
-    protected final Class<?> getType() {
-        return this.type;
+    public GetDeclaredMethodsPrivilegedAction(Class<?> type) {
+        super(type);
     }
 
     /**
      * {@inheritDoc}
      */
-    public abstract T run();
+    public Method[] run() {
+        return this.getType().getDeclaredMethods();
+    }
 
 }
