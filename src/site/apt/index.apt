@@ -39,7 +39,7 @@ Before starting
 <dependencies>
     ...
     <dependency>
-        <groupId>com.googlecode.meiyo</groupId>
+        <groupId>org.99soft.commons</groupId>
         <artifactId>meiyo</artifactId>
         <version>XX.XX</version>
     </dependency>
