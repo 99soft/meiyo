@@ -33,7 +33,7 @@ Welcome to Meiyo!
 
 Before starting
 
-  Rocoto is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
+  Meiyo is available on the Maven Central repo, you just need to add the dependency below in your <<<pom.xml>>> file:
 
 +--------------------------------------+
 <dependencies>
