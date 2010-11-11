@@ -13,21 +13,21 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo.classpath.filter;
+package org.nnsoft.commons.meiyo.classpath.filter;
 
-import static com.googlecode.meiyo.classpath.filter.Filters.*;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.*;
 
 import java.util.List;
 
+import org.nnsoft.commons.meiyo.classpath.ClassPath;
+import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
+import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
+import org.nnsoft.commons.meiyo.classpath.filter.AbstractMultipleArgumentFilter;
+import org.nnsoft.commons.meiyo.classpath.filter.Filter;
+import org.nnsoft.commons.meiyo.classpath.filter.Filters;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.googlecode.meiyo.classpath.ClassPath;
-import com.googlecode.meiyo.classpath.ClassPathEntry;
-import com.googlecode.meiyo.classpath.ClassPathHandler;
-import com.googlecode.meiyo.classpath.filter.AbstractMultipleArgumentFilter;
-import com.googlecode.meiyo.classpath.filter.Filter;
-import com.googlecode.meiyo.classpath.filter.Filters;
 
 /**
  * 
@@ -48,13 +48,13 @@ public final class FiltersTestCase {
     }
 
     public void matchesInPackage() {
-        Filter inMeiyoPackage = inPackage("com.googlecode.meiyo");
+        Filter inMeiyoPackage = inPackage("org.nnsoft.commons.meiyo.classpath");
         assert inMeiyoPackage.matches(ClassPath.class);
         assert !inMeiyoPackage.matches(List.class);
     }
 
     public void matchesInSubPackage() {
-        Filter inMeiyoPackage = inSubpackage("com.googlecode.meiyo");
+        Filter inMeiyoPackage = inSubpackage("org.nnsoft.commons.meiyo.classpath");
         assert inMeiyoPackage.matches(Filters.class);
         assert !inMeiyoPackage.matches(List.class);
     }
