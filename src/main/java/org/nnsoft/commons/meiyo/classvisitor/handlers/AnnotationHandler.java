@@ -23,7 +23,7 @@ import java.lang.reflect.AnnotatedElement;
  *
  * @version $Id$
  */
-interface AnnotationHandler<A extends Annotation, E extends AnnotatedElement> {
+public interface AnnotationHandler<A extends Annotation, E extends AnnotatedElement> {
 
     void handle(A annotation, E element);
 
