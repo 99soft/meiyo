@@ -13,19 +13,19 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo.classpath;
+package org.nnsoft.commons.meiyo.classpath;
 
-import static com.googlecode.meiyo.classpath.filter.Filters.*;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
+import org.nnsoft.commons.meiyo.classpath.ClassPathEntryHandler;
+import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
+import org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder;
 import org.testng.annotations.Test;
 
-import com.googlecode.meiyo.classpath.ClassPathEntry;
-import com.googlecode.meiyo.classpath.ClassPathEntryHandler;
-import com.googlecode.meiyo.classpath.ClassPathHandler;
-import com.googlecode.meiyo.classpath.builder.ClassPathBuilder;
 
 /**
  * 
@@ -39,7 +39,7 @@ public final class ClassPathTestCase {
 
         ClassPathBuilder.createByDefaults().scan(
             new ClassPathHandler(and(
-                    inSubpackage("com.googlecode.meiyo"),
+                    inSubpackage("org.nnsoft.commons.meiyo.classpath"),
                     isPublic(),
                     not(isAbstract()),
                     not(isAnnotation()),
