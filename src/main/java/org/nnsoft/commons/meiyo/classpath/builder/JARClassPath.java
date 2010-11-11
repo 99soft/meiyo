@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo.classpath.builder;
+package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +21,9 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import com.googlecode.meiyo.classpath.ClassPathHandler;
-import com.googlecode.meiyo.classpath.ErrorHandler;
+import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
+import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
+
 
 /**
  * 

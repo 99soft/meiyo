@@ -13,12 +13,13 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo.classvisitor;
+package org.nnsoft.commons.meiyo.classvisitor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+
 
 /**
  * FILL ME.
@@ -27,6 +28,7 @@ import java.security.PrivilegedAction;
  */
 public final class ClassVisitor {
 
+    @SuppressWarnings("unchecked")
     public void visit(Class<?> type) {
         if (type == null || Object.class == type) {
             return;

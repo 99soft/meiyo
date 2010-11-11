@@ -1,4 +1,4 @@
-package com.googlecode.meiyo.classpath.filter;
+package org.nnsoft.commons.meiyo.classpath.filter;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

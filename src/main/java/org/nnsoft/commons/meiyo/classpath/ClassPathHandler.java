@@ -13,9 +13,9 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo.classpath;
+package org.nnsoft.commons.meiyo.classpath;
 
-import com.googlecode.meiyo.classpath.filter.Filter;
+import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 
 /**
  * A classpath handler notifies {@link ClassPathEntry} found to {@link ClassPathEntryHandler}

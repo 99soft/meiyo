@@ -13,11 +13,12 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.googlecode.meiyo.classpath.builder;
+package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
 
-import com.googlecode.meiyo.classpath.ClassPath;
+import org.nnsoft.commons.meiyo.classpath.ClassPath;
+
 
 /**
  * 

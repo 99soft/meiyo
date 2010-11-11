@@ -19,4 +19,4 @@
  *
  * @version $Id$
  */
-package com.googlecode.meiyo.classpath;
+package org.nnsoft.commons.meiyo.classpath;
