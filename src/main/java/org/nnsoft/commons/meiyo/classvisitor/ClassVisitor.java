@@ -15,12 +15,13 @@
  */
 package org.nnsoft.commons.meiyo.classvisitor;
 
-import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.PrivilegedActions.getDeclaredConstructors;
-import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.PrivilegedActions.getDeclaredFields;
-import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.PrivilegedActions.getDeclaredMethods;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public final class ClassVisitor {
         return null;
     }
 
-    public void visit(Class<?> type) {
+    public void visit(final Class<?> type) {
         if (type == null || Object.class == type) {
             return;
         }
@@ -51,16 +52,41 @@ public final class ClassVisitor {
 
         if (!type.isInterface()) {
             // CONSTRUCTOR
-            visitElements(getDeclaredConstructors(type));
+            visitElements(run(new PrivilegedAction<Constructor<?>[]>() {
+                public Constructor<?>[] run() {
+                    return type.getDeclaredConstructors();
+                }
+            }));
 
             // FIELD
-            visitElements(getDeclaredFields(type));
+            visitElements(run(new PrivilegedAction<Field[]>() {
+                public Field[] run() {
+                    return type.getDeclaredFields();
+                }
+            }));
         }
 
         // METHOD
-        visitElements(getDeclaredMethods(type));
+        visitElements(run(new PrivilegedAction<Method[]>() {
+            public Method[] run() {
+                return type.getDeclaredMethods();
+            }
+        }));
 
         this.visit(type.getSuperclass());
+    }
+
+    /**
+     * Perform action with AccessController.doPrivileged() if possible.
+     *
+     * @param action - the action to run
+     * @return result of running the action
+     */
+    private static <T> T run(PrivilegedAction<T> action) {
+        if (System.getSecurityManager() != null) {
+            return AccessController.doPrivileged(action);
+        }
+        return action.run();
     }
 
     private void visitElements(AnnotatedElement...elements) {
