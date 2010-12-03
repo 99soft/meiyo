@@ -25,7 +25,6 @@ import java.security.PrivilegedAction;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
  * FILL ME.
  */
@@ -34,7 +33,23 @@ public final class ClassVisitor {
     private final Map<Key, AnnotationHandler<AnnotatedElement, Annotation>> registry =
         new HashMap<Key, AnnotationHandler<AnnotatedElement, Annotation>>();
 
-    public <E extends AnnotatedElement> AnnotatedHandlerBuilder<E> handleElement(final Class<E> annotatedElementType) {
+    public AnnotatedHandlerBuilder<Class> handleClass() {
+        return this.handleElement(Class.class);
+    }
+
+    public AnnotatedHandlerBuilder<Constructor> handleConstructor() {
+        return this.handleElement(Constructor.class);
+    }
+
+    public AnnotatedHandlerBuilder<Field> handleField() {
+        return this.handleElement(Field.class);
+    }
+
+    public AnnotatedHandlerBuilder<Method> handleMethod() {
+        return this.handleElement(Method.class);
+    }
+
+    private <E extends AnnotatedElement> AnnotatedHandlerBuilder<E> handleElement(final Class<E> annotatedElementType) {
         return new AnnotatedHandlerBuilder<E>() {
             public <A extends Annotation> LinkedHandlingBuilder<E, A> annotatedWith(final Class<A> annotationType) {
                 return new LinkedHandlingBuilder<E, A>() {
