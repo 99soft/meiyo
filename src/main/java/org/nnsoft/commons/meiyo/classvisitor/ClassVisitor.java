@@ -28,16 +28,23 @@ import java.util.Map;
 
 /**
  * FILL ME.
- *
- * @version $Id$
  */
 public final class ClassVisitor {
 
     private final Map<Key, AnnotationHandler<AnnotatedElement, Annotation>> registry =
         new HashMap<Key, AnnotationHandler<AnnotatedElement, Annotation>>();
 
-    public <E extends AnnotatedElement> AnnotatedHandlerBuilder<E> handleElement(Class<E> elementType) {
-        return null;
+    public <E extends AnnotatedElement> AnnotatedHandlerBuilder<E> handleElement(final Class<E> annotatedElementType) {
+        return new AnnotatedHandlerBuilder<E>() {
+            public <A extends Annotation> LinkedHandlingBuilder<E, A> annotatedWith(final Class<A> annotationType) {
+                return new LinkedHandlingBuilder<E, A>() {
+                    @SuppressWarnings("unchecked")
+                    public void withHandler(AnnotationHandler<E, A> handler) {
+                        registry.put(new Key(annotatedElementType, annotationType), (AnnotationHandler<AnnotatedElement, Annotation>) handler);
+                    }
+                };
+            }
+        };
     }
 
     public void visit(final Class<?> type) {
