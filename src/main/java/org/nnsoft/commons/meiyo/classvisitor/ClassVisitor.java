@@ -48,18 +48,18 @@ public final class ClassVisitor {
         }
 
         // TYPE
-        visitElements(type);
+        this.visitElements(type);
 
         if (!type.isInterface()) {
             // CONSTRUCTOR
-            visitElements(run(new PrivilegedAction<Constructor<?>[]>() {
+            this.visitElements(run(new PrivilegedAction<Constructor<?>[]>() {
                 public Constructor<?>[] run() {
                     return type.getDeclaredConstructors();
                 }
             }));
 
             // FIELD
-            visitElements(run(new PrivilegedAction<Field[]>() {
+            this.visitElements(run(new PrivilegedAction<Field[]>() {
                 public Field[] run() {
                     return type.getDeclaredFields();
                 }
@@ -67,7 +67,7 @@ public final class ClassVisitor {
         }
 
         // METHOD
-        visitElements(run(new PrivilegedAction<Method[]>() {
+        this.visitElements(run(new PrivilegedAction<Method[]>() {
             public Method[] run() {
                 return type.getDeclaredMethods();
             }
