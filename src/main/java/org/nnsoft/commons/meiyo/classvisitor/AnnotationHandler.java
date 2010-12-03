@@ -25,6 +25,6 @@ import java.lang.reflect.AnnotatedElement;
  */
 public interface AnnotationHandler<E extends AnnotatedElement, A extends Annotation> {
 
-    void handle(E element, A annotation);
+    void handle(E annnotatedElement, A annotation);
 
 }
