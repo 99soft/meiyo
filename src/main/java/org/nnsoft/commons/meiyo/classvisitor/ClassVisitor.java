@@ -21,6 +21,11 @@ import static org.nnsoft.commons.meiyo.classvisitor.privilegedactions.Privileged
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.nnsoft.commons.meiyo.classvisitor.handlers.AnnotatedHandlerBuilder;
+import org.nnsoft.commons.meiyo.classvisitor.handlers.AnnotationHandler;
 
 /**
  * FILL ME.
@@ -29,33 +34,44 @@ import java.lang.reflect.AnnotatedElement;
  */
 public final class ClassVisitor {
 
-    @SuppressWarnings("unchecked")
+    private final Map<Key, AnnotationHandler<AnnotatedElement, Annotation>> registry =
+        new HashMap<Key, AnnotationHandler<AnnotatedElement, Annotation>>();
+
+    public <E extends AnnotatedElement> AnnotatedHandlerBuilder<E> handleElement(Class<E> elementType) {
+        return null;
+    }
+
     public void visit(Class<?> type) {
         if (type == null || Object.class == type) {
             return;
         }
 
         // TYPE
-        this.visitElements(type);
+        visitElements(type);
 
         if (!type.isInterface()) {
             // CONSTRUCTOR
-            this.visitElements(getDeclaredConstructors(type));
+            visitElements(getDeclaredConstructors(type));
 
             // FIELD
-            this.visitElements(getDeclaredFields(type));
+            visitElements(getDeclaredFields(type));
         }
 
         // METHOD
-        this.visitElements(getDeclaredMethods(type));
+        visitElements(getDeclaredMethods(type));
 
         this.visit(type.getSuperclass());
     }
 
-    private <E extends AnnotatedElement> void visitElements(E...elements) {
-        for (E element : elements) {
+    private void visitElements(AnnotatedElement...elements) {
+        for (AnnotatedElement element : elements) {
             for (Annotation annotation : element.getAnnotations()) {
-                
+                AnnotationHandler<AnnotatedElement, Annotation> handler =
+                    this.registry.get(new Key(element.getClass(), annotation.annotationType()));
+
+                if (handler != null) {
+                    handler.handle(element, annotation);
+                }
             }
         }
     }
