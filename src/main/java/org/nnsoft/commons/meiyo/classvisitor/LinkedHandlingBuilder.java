@@ -1,4 +1,4 @@
-package org.nnsoft.commons.meiyo.classvisitor.handlers;
+package org.nnsoft.commons.meiyo.classvisitor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
