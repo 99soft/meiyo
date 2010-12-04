@@ -84,28 +84,45 @@ public final class ClassVisitor {
 
         if (!type.isInterface()) {
             // CONSTRUCTOR
-            this.visitElements(run(new PrivilegedAction<Constructor<?>[]>() {
+            this.visitElements(new PrivilegedAction<Constructor<?>[]>() {
                 public Constructor<?>[] run() {
                     return type.getDeclaredConstructors();
                 }
-            }));
+            });
 
             // FIELD
-            this.visitElements(run(new PrivilegedAction<Field[]>() {
+            this.visitElements(new PrivilegedAction<Field[]>() {
                 public Field[] run() {
                     return type.getDeclaredFields();
                 }
-            }));
+            });
         }
 
         // METHOD
-        this.visitElements(run(new PrivilegedAction<Method[]>() {
+        this.visitElements(new PrivilegedAction<Method[]>() {
             public Method[] run() {
                 return type.getDeclaredMethods();
             }
-        }));
+        });
 
         this.visit(type.getSuperclass());
+    }
+
+    private <AE extends AnnotatedElement> void visitElements(PrivilegedAction<AE[]> action) {
+        this.visitElements(run(action));
+    }
+
+    private void visitElements(AnnotatedElement...annotatedElements) {
+        for (AnnotatedElement element : annotatedElements) {
+            for (Annotation annotation : element.getAnnotations()) {
+                AnnotationHandler<AnnotatedElement, Annotation> handler =
+                    this.registry.get(new Key(element.getClass(), annotation.annotationType()));
+
+                if (handler != null) {
+                    handler.handle(element, annotation);
+                }
+            }
+        }
     }
 
     /**
@@ -119,19 +136,6 @@ public final class ClassVisitor {
             return AccessController.doPrivileged(action);
         }
         return action.run();
-    }
-
-    private void visitElements(AnnotatedElement...elements) {
-        for (AnnotatedElement element : elements) {
-            for (Annotation annotation : element.getAnnotations()) {
-                AnnotationHandler<AnnotatedElement, Annotation> handler =
-                    this.registry.get(new Key(element.getClass(), annotation.annotationType()));
-
-                if (handler != null) {
-                    handler.handle(element, annotation);
-                }
-            }
-        }
     }
 
 }
