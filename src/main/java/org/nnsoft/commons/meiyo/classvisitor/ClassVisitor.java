@@ -109,7 +109,13 @@ public final class ClassVisitor {
     }
 
     private <AE extends AnnotatedElement> void visitElements(PrivilegedAction<AE[]> action) {
-        this.visitElements(run(action));
+        AE[] annotatedElements = null;
+        if (System.getSecurityManager() != null) {
+            annotatedElements = AccessController.doPrivileged(action);
+        } else {
+            annotatedElements = action.run();
+        }
+        this.visitElements(annotatedElements);
     }
 
     private void visitElements(AnnotatedElement...annotatedElements) {
@@ -123,19 +129,6 @@ public final class ClassVisitor {
                 }
             }
         }
-    }
-
-    /**
-     * Perform action with AccessController.doPrivileged() if possible.
-     *
-     * @param action - the action to run
-     * @return result of running the action
-     */
-    private static <T> T run(PrivilegedAction<T> action) {
-        if (System.getSecurityManager() != null) {
-            return AccessController.doPrivileged(action);
-        }
-        return action.run();
     }
 
 }
