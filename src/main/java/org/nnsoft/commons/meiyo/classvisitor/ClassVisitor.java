@@ -30,6 +30,8 @@ import java.util.Map;
  */
 public final class ClassVisitor {
 
+    private static final String JAVA_PACKAGE = "java";
+
     public static ClassVisitor newClassVisitor() {
         return new ClassVisitor();
     }
@@ -75,7 +77,7 @@ public final class ClassVisitor {
     }
 
     public void visit(final Class<?> type) {
-        if (type == null || Object.class == type) {
+        if (type == null || type.getPackage().getName().startsWith(JAVA_PACKAGE)) {
             return;
         }
 
