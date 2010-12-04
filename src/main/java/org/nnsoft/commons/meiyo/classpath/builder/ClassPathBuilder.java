@@ -36,7 +36,7 @@ public final class ClassPathBuilder {
         // do nothing
     }
 
-    public static ClassPath createClassPathByDefaults() {
+    public static ClassPath createClassPathByDefaultSettings() {
         return createClassPathFromJVM()
                 .usingDefaultClassLoader()
                 .usingDefaultErrorHandler();

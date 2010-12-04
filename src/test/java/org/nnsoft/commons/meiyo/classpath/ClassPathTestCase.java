@@ -15,7 +15,7 @@
  */
 package org.nnsoft.commons.meiyo.classpath;
 
-import static org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder.createClassPathByDefaults;
+import static org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder.createClassPathByDefaultSettings;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.and;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.any;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.classNameMatches;
@@ -40,7 +40,7 @@ public final class ClassPathTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        createClassPathByDefaults()
+        createClassPathByDefaultSettings()
             .ifMatches(and(
                     inSubpackage("org.nnsoft.commons.meiyo.classpath"),
                     isPublic(),
