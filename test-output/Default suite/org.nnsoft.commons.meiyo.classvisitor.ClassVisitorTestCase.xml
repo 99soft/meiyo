@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite hostname="Simone-Tripodis-MacBook-Pro.local" name="org.nnsoft.commons.meiyo.classvisitor.ClassVisitorTestCase" tests="3" failures="0" timestamp="4 Dec 2010 12:32:56 GMT" time="0.051" errors="0">
-  <testcase name="verifyClassAnnotationsFound" time="0.0030" classname="org.nnsoft.commons.meiyo.classvisitor.ClassVisitorTestCase"/>
-  <testcase name="verifyConstructorAnnotationsFound" time="0.0020" classname="org.nnsoft.commons.meiyo.classvisitor.ClassVisitorTestCase"/>
-  <testcase name="verifyMethodAnnotationsFound" time="0.0020" classname="org.nnsoft.commons.meiyo.classvisitor.ClassVisitorTestCase"/>
-</testsuite>
