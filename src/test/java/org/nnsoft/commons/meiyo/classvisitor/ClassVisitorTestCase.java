@@ -34,23 +34,23 @@ public final class ClassVisitorTestCase {
 
     @BeforeClass
     public void setUp() {
-        ClassVisitor classVisitor = new ClassVisitor();
-        classVisitor.handleClass().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
-            public void handle(Class annnotatedElement, ClassAnnotation annotation) {
-                foundClassAnnotation = true;
-            }
-        });
-        classVisitor.handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
-            public void handle(Constructor annnotatedElement, ConstructorAnnotation annotation) {
-                foundConstructorAnnotation = true;
-            }
-        });
-        classVisitor.handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
-            public void handle(Method annnotatedElement, MethodAnnotation annotation) {
-                foundMethodAnnotation = true;
-            }
-        });
-        classVisitor.visit(AnnotatedBean.class);
+        new ClassVisitor()
+            .handleClass().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
+                public void handle(Class annnotatedElement, ClassAnnotation annotation) {
+                    foundClassAnnotation = true;
+                }
+            })
+            .handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
+                public void handle(Constructor annnotatedElement, ConstructorAnnotation annotation) {
+                    foundConstructorAnnotation = true;
+                }
+            })
+            .handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
+                public void handle(Method annnotatedElement, MethodAnnotation annotation) {
+                    foundMethodAnnotation = true;
+                }
+            })
+            .visit(AnnotatedBean.class);
     }
 
     @Test

@@ -23,6 +23,6 @@ import java.lang.reflect.AnnotatedElement;
  */
 public interface LinkedHandlingBuilder<E extends AnnotatedElement, A extends Annotation> {
 
-    void withHandler(AnnotationHandler<E, A> handler);
+    ClassVisitor withHandler(AnnotationHandler<E, A> handler);
 
 }
