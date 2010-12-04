@@ -18,6 +18,7 @@ package org.nnsoft.commons.meiyo.classpath.builder;
 import java.io.File;
 
 import org.nnsoft.commons.meiyo.classpath.ClassPath;
+import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 
 
 /**
@@ -39,7 +40,7 @@ public final class ClassPathBuilder {
         return this.createFromPath(System.getProperty(JAVA_CLASS_PATH));
     }
 
-    public ClassLoaderBuilder createFromPath(String classpath) {
+    public ClassLoaderBuilder createFromPath(final String classpath) {
         if (classpath == null || classpath.length() == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
@@ -47,14 +48,38 @@ public final class ClassPathBuilder {
         return this.createFromPath(classpath.split(File.pathSeparator));
     }
 
-    public ClassLoaderBuilder createFromPath(String...classpath) {
+    public ClassLoaderBuilder createFromPath(final String...classpath) {
         if (classpath == null || classpath.length == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
 
-        CompositeClassPath compositeClassPath = new CompositeClassPath();
-        compositeClassPath.setPaths(classpath);
-        return new ClassLoaderBuilder(compositeClassPath);
+        return new ClassLoaderBuilder() {
+
+            public ErrorHandlerBuilder usingDefaultClassLoader() {
+                return this.usingClassLoader(Thread.currentThread().getContextClassLoader());
+            }
+
+            public ErrorHandlerBuilder usingClassLoader(final ClassLoader classLoader) {
+                if (classLoader == null) {
+                    throw new IllegalArgumentException("Parameter 'classLoader' must not be null");
+                }
+
+                return new ErrorHandlerBuilder() {
+
+                    public ClassPath usingDefaultErrorHandler() {
+                        return this.usingErrorHandler(new DefaultErrorHandler());
+                    }
+
+                    public ClassPath usingErrorHandler(final ErrorHandler errorHandler) {
+                        if (errorHandler == null) {
+                            throw new IllegalArgumentException("Parameter 'errorHandler' must not be null");
+                        }
+
+                        return new CompositeClassPath(classpath, classLoader, errorHandler);
+                    }
+                };
+            }
+        };
     }
 
 }

@@ -33,21 +33,15 @@ final class CompositeClassPath implements ClassPath {
 
     private static final Pattern JAR_FILE = Pattern.compile(".+\\.(jar|zip)", Pattern.CASE_INSENSITIVE);
 
-    private String[] paths;
+    private final String[] paths;
 
-    private ClassLoader classLoader;
+    private final ClassLoader classLoader;
 
-    private ErrorHandler errorHandler;
+    private final ErrorHandler errorHandler;
 
-    public void setPaths(String[] paths) {
+    public CompositeClassPath(String[] paths, ClassLoader classLoader, ErrorHandler errorHandler) {
         this.paths = paths;
-    }
-
-    public void setClassLoader(ClassLoader classLoader) {
         this.classLoader = classLoader;
-    }
-
-    public void setErrorHandler(ErrorHandler errorHandler) {
         this.errorHandler = errorHandler;
     }
 

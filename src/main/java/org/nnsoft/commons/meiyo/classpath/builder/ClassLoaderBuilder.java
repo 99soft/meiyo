@@ -19,29 +19,10 @@ package org.nnsoft.commons.meiyo.classpath.builder;
  * 
  * @version $Id$
  */
-public final class ClassLoaderBuilder {
+public interface ClassLoaderBuilder {
 
-    private static final ClassLoader DEFULT_CLASSLOADER = Thread.currentThread().getContextClassLoader();
+    ErrorHandlerBuilder usingDefaultClassLoader();
 
-    private final CompositeClassPath compositeClassPath;
-
-    protected ClassLoaderBuilder(CompositeClassPath compositeClassPath) {
-        this.compositeClassPath = compositeClassPath;
-    }
-
-    public ErrorHandlerBuilder usingDefaultClassLoader() {
-        return this.usingClassLoader(DEFULT_CLASSLOADER);
-    }
-
-    public ErrorHandlerBuilder usingClassLoader(ClassLoader classLoader) {
-        if (classLoader == null) {
-            throw new IllegalArgumentException("Parameter 'classLoader' must not be null");
-        }
-
-        this.compositeClassPath.setClassLoader(classLoader);
-
-        ErrorHandlerBuilder errorHandlerBuilder = new ErrorHandlerBuilder(this.compositeClassPath);
-        return errorHandlerBuilder;
-    }
+    ErrorHandlerBuilder usingClassLoader(ClassLoader classLoader);
 
 }

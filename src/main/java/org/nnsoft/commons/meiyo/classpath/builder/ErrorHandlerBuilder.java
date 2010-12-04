@@ -22,27 +22,10 @@ import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
  * 
  * @version $Id$
  */
-public final class ErrorHandlerBuilder {
+public interface ErrorHandlerBuilder {
 
-    private static final ErrorHandler DEFAULT_ERROR_HANDLER = new DefaultErrorHandler();
+    ClassPath usingDefaultErrorHandler();
 
-    private final CompositeClassPath compositeClassPath;
-
-    protected ErrorHandlerBuilder(CompositeClassPath compositeClassPath) {
-        this.compositeClassPath = compositeClassPath;
-    }
-
-    public ClassPath usingDefaultErrorHandler() {
-        return this.usingErrorHandler(DEFAULT_ERROR_HANDLER);
-    }
-
-    public ClassPath usingErrorHandler(ErrorHandler errorHandler) {
-        if (errorHandler == null) {
-            throw new IllegalArgumentException("Parameter 'errorHandler' must not be null");
-        }
-
-        this.compositeClassPath.setErrorHandler(errorHandler);
-        return compositeClassPath;
-    }
+    ClassPath usingErrorHandler(ErrorHandler errorHandler);
 
 }
