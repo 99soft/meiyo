@@ -30,8 +30,19 @@ import java.util.Map;
  */
 public final class ClassVisitor {
 
+    public static ClassVisitor newClassVisitor() {
+        return new ClassVisitor();
+    }
+
     private final Map<Key, AnnotationHandler<AnnotatedElement, Annotation>> registry =
         new HashMap<Key, AnnotationHandler<AnnotatedElement, Annotation>>();
+
+    /**
+     * This class can't be instantiated.
+     */
+    private ClassVisitor() {
+        // do nothing
+    }
 
     public AnnotatedHandlerBuilder<Class> handleClass() {
         return this.handleElement(Class.class);

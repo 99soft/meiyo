@@ -15,6 +15,8 @@
  */
 package org.nnsoft.commons.meiyo.classvisitor;
 
+import static org.nnsoft.commons.meiyo.classvisitor.ClassVisitor.newClassVisitor;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
@@ -34,7 +36,7 @@ public final class ClassVisitorTestCase {
 
     @BeforeClass
     public void setUp() {
-        new ClassVisitor()
+        newClassVisitor()
             .handleClass().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
                 public void handle(Class annnotatedElement, ClassAnnotation annotation) {
                     foundClassAnnotation = true;
