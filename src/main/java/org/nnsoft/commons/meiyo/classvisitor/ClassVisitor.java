@@ -55,7 +55,7 @@ public final class ClassVisitor {
                 return new LinkedHandlingBuilder<E, A>() {
                     @SuppressWarnings("unchecked")
                     public ClassVisitor withHandler(AnnotationHandler<E, A> handler) {
-                        registry.put(new Key(annotatedElementType, annotationType), (AnnotationHandler<AnnotatedElement, Annotation>) handler);
+                        ClassVisitor.this.registry.put(new Key(annotatedElementType, annotationType), (AnnotationHandler<AnnotatedElement, Annotation>) handler);
                         return ClassVisitor.this;
                     }
                 };
