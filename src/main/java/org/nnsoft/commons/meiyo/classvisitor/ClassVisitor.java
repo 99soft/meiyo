@@ -65,9 +65,17 @@ public final class ClassVisitor {
     private <E extends AnnotatedElement> AnnotatedHandlerBuilder<E> handleElement(final Class<E> annotatedElementType) {
         return new AnnotatedHandlerBuilder<E>() {
             public <A extends Annotation> LinkedHandlingBuilder<E, A> annotatedWith(final Class<A> annotationType) {
+                if (annotationType == null) {
+                    throw new IllegalArgumentException("Parameter 'annotationType' must not be null");
+                }
+
                 return new LinkedHandlingBuilder<E, A>() {
                     @SuppressWarnings("unchecked")
                     public ClassVisitor withHandler(AnnotationHandler<E, A> handler) {
+                        if (handler == null) {
+                            throw new IllegalArgumentException("Parameter 'handler' must not be null");
+                        }
+
                         ClassVisitor.this.registry.put(new Key(annotatedElementType, annotationType), (AnnotationHandler<AnnotatedElement, Annotation>) handler);
                         return ClassVisitor.this;
                     }
