@@ -15,6 +15,8 @@
  */
 package org.nnsoft.commons.meiyo.classpath;
 
+import org.nnsoft.commons.meiyo.classpath.filter.Filter;
+
 /**
  * Representation of the java classpath.
  *
@@ -22,11 +24,8 @@ package org.nnsoft.commons.meiyo.classpath;
  */
 public interface ClassPath {
 
-    /**
-     * Performs the scan operation notifying matching entries to passed handlers.
-     *
-     * @param classPathHandler the classpath entries handlers.
-     */
-    void scan(ClassPathHandler...classPathHandlers);
+    LinkedHandlerBuilder ifMatches(Filter filter);
+
+    void scan();
 
 }

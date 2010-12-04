@@ -15,16 +15,17 @@
  */
 package org.nnsoft.commons.meiyo.classpath.filter;
 
-import static org.nnsoft.commons.meiyo.classpath.filter.Filters.*;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.annotatedWithType;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.containsMethod;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.inPackage;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.inSubpackage;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isAbstract;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isInterface;
 
 import java.util.List;
 
 import org.nnsoft.commons.meiyo.classpath.ClassPath;
 import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
-import org.nnsoft.commons.meiyo.classpath.filter.AbstractMultipleArgumentFilter;
-import org.nnsoft.commons.meiyo.classpath.filter.Filter;
-import org.nnsoft.commons.meiyo.classpath.filter.Filters;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -78,9 +79,9 @@ public final class FiltersTestCase {
     }
 
     public void matchesContainsMethodWithArguments() {
-        Filter containsMethod = containsMethod("doHandle", ClassPathEntry.class);
-        assert containsMethod.matches(ClassPathHandler.class);
-        assert !containsMethod.matches(Filter.class);
+        Filter containsMethod = containsMethod("matches", Class.class);
+        assert containsMethod.matches(Filter.class);
+        assert !containsMethod.matches(ClassPath.class);
     }
 
 }

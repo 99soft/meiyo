@@ -17,12 +17,15 @@ package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.nnsoft.commons.meiyo.classpath.ClassPath;
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
+import org.nnsoft.commons.meiyo.classpath.ClassPathEntryHandler;
 import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
-
+import org.nnsoft.commons.meiyo.classpath.LinkedHandlerBuilder;
+import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 
 /**
  * 
@@ -32,6 +35,8 @@ import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 final class CompositeClassPath implements ClassPath {
 
     private static final Pattern JAR_FILE = Pattern.compile(".+\\.(jar|zip)", Pattern.CASE_INSENSITIVE);
+
+    private final List<ClassPathHandler> handlers = new LinkedList<ClassPathHandler>();
 
     private final String[] paths;
 
@@ -45,16 +50,28 @@ final class CompositeClassPath implements ClassPath {
         this.errorHandler = errorHandler;
     }
 
-    public void scan(ClassPathHandler... classPathHandlers) {
+    public LinkedHandlerBuilder ifMatches(final Filter filter) {
+        return new LinkedHandlerBuilder() {
+
+            public ClassPath handle(final ClassPathEntryHandler...entryHandler) {
+                CompositeClassPath.this.handlers.add(new ClassPathHandler(filter, entryHandler));
+
+                return CompositeClassPath.this;
+            }
+
+        };
+    }
+
+    public void scan() {
         for (String path: paths) {
             File file = new File(path);
             if (file.isDirectory()) {
-                new DirectoryClassPath(file, this.classLoader, this.errorHandler).scan(classPathHandlers);
+                new DirectoryClassPath(file, this.classLoader, this.errorHandler).scan(this.handlers);
             } else {
                 if (JAR_FILE.matcher(path).matches()) {
-                    new JARClassPath(file, this.classLoader, this.errorHandler).scan(classPathHandlers);
+                    new JARClassPath(file, this.classLoader, this.errorHandler).scan(this.handlers);
                 } else {
-                    new FileClassPath(file, this.classLoader, this.errorHandler).scan(classPathHandlers);
+                    new FileClassPath(file, this.classLoader, this.errorHandler).scan(this.handlers);
                 }
             }
             // else ignore it

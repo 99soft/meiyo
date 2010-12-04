@@ -16,8 +16,8 @@
 package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
+import java.util.Collection;
 
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
 import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 
 
@@ -34,11 +34,11 @@ class FileClassPath extends AbstractClassPath {
     /**
      * {@inheritDoc}
      */
-    public final void scan(ClassPathHandler... classPathHandlers) {
+    public final void scan(Collection<ClassPathHandler> classPathHandlers) {
         this.traverse(this.getPath(), classPathHandlers);
     }
 
-    protected void traverse(final File file, ClassPathHandler... classPathHandlers) {
+    protected void traverse(final File file, Collection<ClassPathHandler> classPathHandlers) {
         this.handleEntry(file.getAbsolutePath().substring(this.toString().length() + 1), classPathHandlers);
     }
 

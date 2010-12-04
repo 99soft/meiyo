@@ -16,8 +16,8 @@
 package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
+import java.util.Collection;
 
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
 import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 
 
@@ -32,17 +32,17 @@ final class DirectoryClassPath extends FileClassPath {
     }
 
     @Override
-    protected void traverse(final File file, ClassPathHandler... classPathHandler) {
+    protected void traverse(final File file, Collection<ClassPathHandler> classPathHandlers) {
         if (file.isDirectory()) {
 
             for (File child : file.listFiles()) {
-                this.traverse(child, classPathHandler);
+                this.traverse(child, classPathHandlers);
             }
 
             return;
         }
 
-        super.traverse(file, classPathHandler);
+        super.traverse(file, classPathHandlers);
     }
 
 }

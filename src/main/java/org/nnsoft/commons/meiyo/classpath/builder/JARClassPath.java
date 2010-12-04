@@ -17,11 +17,11 @@ package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
 import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 
 
@@ -35,7 +35,7 @@ final class JARClassPath extends AbstractClassPath {
         super(file, classLoader, errorHandler);
     }
 
-    public void scan(ClassPathHandler... classPathHandlers) {
+    public void scan(Collection<ClassPathHandler> classPathHandlers) {
         try {
             JarFile jarFile = new JarFile(this.getPath());
             Enumeration<JarEntry> enumeration = jarFile.entries();

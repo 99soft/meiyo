@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<JDepend>
+    <Packages>
+
+        <Package name="java.io">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang.annotation">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.lang.reflect">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.security">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util.jar">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="java.util.regex">
+            <error>No stats available: package referenced, but not analyzed.</error>
+        </Package>
+
+        <Package name="org.nnsoft.commons.meiyo.classpath">
+            <Stats>
+                <TotalClasses>5</TotalClasses>
+                <ConcreteClasses>2</ConcreteClasses>
+                <AbstractClasses>3</AbstractClasses>
+                <Ca>1</Ca>
+                <Ce>3</Ce>
+                <A>0.6</A>
+                <I>0.75</I>
+                <D>0.35</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="ClassPath.java">
+                    org.nnsoft.commons.meiyo.classpath.ClassPath
+                </Class>
+                <Class sourceFile="ClassPathEntryHandler.java">
+                    org.nnsoft.commons.meiyo.classpath.ClassPathEntryHandler
+                </Class>
+                <Class sourceFile="ErrorHandler.java">
+                    org.nnsoft.commons.meiyo.classpath.ErrorHandler
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="ClassPathEntry.java">
+                    org.nnsoft.commons.meiyo.classpath.ClassPathEntry
+                </Class>
+                <Class sourceFile="ClassPathHandler.java">
+                    org.nnsoft.commons.meiyo.classpath.ClassPathHandler
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>org.nnsoft.commons.meiyo.classpath.filter</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>org.nnsoft.commons.meiyo.classpath.builder</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="org.nnsoft.commons.meiyo.classpath.builder">
+            <Stats>
+                <TotalClasses>10</TotalClasses>
+                <ConcreteClasses>9</ConcreteClasses>
+                <AbstractClasses>1</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>6</Ce>
+                <A>0.1</A>
+                <I>1</I>
+                <D>0.1</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="AbstractClassPath.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.AbstractClassPath
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="ClassLoaderBuilder.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.ClassLoaderBuilder
+                </Class>
+                <Class sourceFile="ClassPathBuilder.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder
+                </Class>
+                <Class sourceFile="CompositeClassPath.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.CompositeClassPath
+                </Class>
+                <Class sourceFile="DefaultErrorHandler.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.DefaultErrorHandler
+                </Class>
+                <Class sourceFile="DirectoryClassPath.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.DirectoryClassPath
+                </Class>
+                <Class sourceFile="ErrorHandlerBuilder.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.ErrorHandlerBuilder
+                </Class>
+                <Class sourceFile="FileClassPath.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.FileClassPath
+                </Class>
+                <Class sourceFile="FileFileFilter.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.FileFileFilter
+                </Class>
+                <Class sourceFile="JARClassPath.java">
+                    org.nnsoft.commons.meiyo.classpath.builder.JARClassPath
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.io</Package>
+                <Package>java.lang</Package>
+                <Package>java.util</Package>
+                <Package>java.util.jar</Package>
+                <Package>java.util.regex</Package>
+                <Package>org.nnsoft.commons.meiyo.classpath</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="org.nnsoft.commons.meiyo.classpath.filter">
+            <Stats>
+                <TotalClasses>24</TotalClasses>
+                <ConcreteClasses>22</ConcreteClasses>
+                <AbstractClasses>2</AbstractClasses>
+                <Ca>1</Ca>
+                <Ce>6</Ce>
+                <A>0.08</A>
+                <I>0.86</I>
+                <D>0.06</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="AbstractMultipleArgumentFilter.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.AbstractMultipleArgumentFilter
+                </Class>
+                <Class sourceFile="Filter.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.Filter
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="And.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.And
+                </Class>
+                <Class sourceFile="AnnotatedWith.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.AnnotatedWith
+                </Class>
+                <Class sourceFile="AnnotatedWithType.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.AnnotatedWithType
+                </Class>
+                <Class sourceFile="Any.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.Any
+                </Class>
+                <Class sourceFile="ClassNameMatchesFilter.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.ClassNameMatchesFilter
+                </Class>
+                <Class sourceFile="ContainsMethod.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.ContainsMethod
+                </Class>
+                <Class sourceFile="ContainsMethod.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.ContainsMethod$1
+                </Class>
+                <Class sourceFile="Filters.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.Filters
+                </Class>
+                <Class sourceFile="InPackage.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.InPackage
+                </Class>
+                <Class sourceFile="InSubpackage.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.InSubpackage
+                </Class>
+                <Class sourceFile="IsAbstract.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsAbstract
+                </Class>
+                <Class sourceFile="IsAnnotation.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsAnnotation
+                </Class>
+                <Class sourceFile="IsAssignableTo.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsAssignableTo
+                </Class>
+                <Class sourceFile="IsFinal.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsFinal
+                </Class>
+                <Class sourceFile="IsInterface.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsInterface
+                </Class>
+                <Class sourceFile="IsPrivate.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsPrivate
+                </Class>
+                <Class sourceFile="IsPublic.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsPublic
+                </Class>
+                <Class sourceFile="IsStatic.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsStatic
+                </Class>
+                <Class sourceFile="IsStrict.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.IsStrict
+                </Class>
+                <Class sourceFile="Not.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.Not
+                </Class>
+                <Class sourceFile="Or.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.Or
+                </Class>
+                <Class sourceFile="Xor.java">
+                    org.nnsoft.commons.meiyo.classpath.filter.Xor
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+                <Package>java.lang.annotation</Package>
+                <Package>java.lang.reflect</Package>
+                <Package>java.security</Package>
+                <Package>java.util</Package>
+                <Package>java.util.regex</Package>
+            </DependsUpon>
+
+            <UsedBy>
+                <Package>org.nnsoft.commons.meiyo.classpath</Package>
+            </UsedBy>
+        </Package>
+
+        <Package name="org.nnsoft.commons.meiyo.classvisitor">
+            <Stats>
+                <TotalClasses>5</TotalClasses>
+                <ConcreteClasses>4</ConcreteClasses>
+                <AbstractClasses>1</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>3</Ce>
+                <A>0.2</A>
+                <I>1</I>
+                <D>0.2</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="AbstractAnnotatedElementPrivilegedAction.java">
+                    org.nnsoft.commons.meiyo.classvisitor.AbstractMeiyoPrivilegedAction
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+                <Class sourceFile="ClassVisitor.java">
+                    org.nnsoft.commons.meiyo.classvisitor.ClassVisitor
+                </Class>
+                <Class sourceFile="GetDeclaredConstructorsPrivilegedAction.java">
+                    org.nnsoft.commons.meiyo.classvisitor.GetDeclaredConstructorsPrivilegedAction
+                </Class>
+                <Class sourceFile="GetDeclaredFieldsPrivilegedAction.java">
+                    org.nnsoft.commons.meiyo.classvisitor.GetDeclaredFieldsPrivilegedAction
+                </Class>
+                <Class sourceFile="GetDeclaredMethodsPrivilegedAction.java">
+                    org.nnsoft.commons.meiyo.classvisitor.GetDeclaredMethodsPrivilegedAction
+                </Class>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+                <Package>java.lang.reflect</Package>
+                <Package>java.security</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+
+        <Package name="org.nnsoft.commons.meiyo.classvisitor.handlers">
+            <Stats>
+                <TotalClasses>4</TotalClasses>
+                <ConcreteClasses>0</ConcreteClasses>
+                <AbstractClasses>4</AbstractClasses>
+                <Ca>0</Ca>
+                <Ce>3</Ce>
+                <A>1</A>
+                <I>1</I>
+                <D>1</D>
+                <V>1</V>
+            </Stats>
+
+            <AbstractClasses>
+                <Class sourceFile="AnnotationHandler.java">
+                    org.nnsoft.commons.meiyo.classvisitor.handlers.AnnotationHandler
+                </Class>
+                <Class sourceFile="ConstructorHandler.java">
+                    org.nnsoft.commons.meiyo.classvisitor.handlers.ConstructorHandler
+                </Class>
+                <Class sourceFile="FieldHandler.java">
+                    org.nnsoft.commons.meiyo.classvisitor.handlers.FieldHandler
+                </Class>
+                <Class sourceFile="MethodHandler.java">
+                    org.nnsoft.commons.meiyo.classvisitor.handlers.MethodHandler
+                </Class>
+            </AbstractClasses>
+
+            <ConcreteClasses>
+            </ConcreteClasses>
+
+            <DependsUpon>
+                <Package>java.lang</Package>
+                <Package>java.lang.annotation</Package>
+                <Package>java.lang.reflect</Package>
+            </DependsUpon>
+
+            <UsedBy>
+            </UsedBy>
+        </Package>
+    </Packages>
+
+    <Cycles>
+    </Cycles>
+</JDepend>

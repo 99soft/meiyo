@@ -16,10 +16,9 @@
 package org.nnsoft.commons.meiyo.classpath.builder;
 
 import java.io.File;
+import java.util.Collection;
 
-import org.nnsoft.commons.meiyo.classpath.ClassPath;
 import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
 import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 
 
@@ -28,7 +27,7 @@ import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
  *
  * @version $Id$
  */
-abstract class AbstractClassPath implements ClassPath {
+abstract class AbstractClassPath {
 
     /**
      * Regular expression that matches a Java identifier.
@@ -47,7 +46,7 @@ abstract class AbstractClassPath implements ClassPath {
         this.errorHandler = errorHandler;
     }
 
-    protected final void handleEntry(String entry, ClassPathHandler... classPathHandlers) {
+    protected final void handleEntry(String entry, Collection<ClassPathHandler> classPathHandlers) {
         if (!entry.endsWith(CLASS_EXTENSION)) {
             return;
         }
@@ -55,7 +54,7 @@ abstract class AbstractClassPath implements ClassPath {
         entry = entry.substring(0, entry.lastIndexOf('.')).replace('/', '.');
         try {
             Class<?> clazz = this.classLoader.loadClass(entry);
-            ClassPathEntry cpe = new ClassPathEntry(clazz, this);
+            ClassPathEntry cpe = new ClassPathEntry(clazz, this.toString());
             for (ClassPathHandler classPathHandler : classPathHandlers) {
                 classPathHandler.doHandle(cpe);
             }

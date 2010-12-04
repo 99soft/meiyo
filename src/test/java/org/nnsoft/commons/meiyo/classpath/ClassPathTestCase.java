@@ -30,7 +30,6 @@ import java.util.List;
 
 import org.testng.annotations.Test;
 
-
 /**
  * 
  * @version $Id$
@@ -41,14 +40,13 @@ public final class ClassPathTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        createClassPathByDefaults().scan(
-            new ClassPathHandler(and(
+        createClassPathByDefaults()
+            .ifMatches(and(
                     inSubpackage("org.nnsoft.commons.meiyo.classpath"),
                     isPublic(),
                     not(isAbstract()),
                     not(isAnnotation()),
-                    not(classNameMatches(".*TestCase"))),
-                new ClassPathEntryHandler() {
+                    not(classNameMatches(".*TestCase")))).handle(new ClassPathEntryHandler() {
 
                     public void doHandle(ClassPathEntry classPathEntry) {
                         classes.add(classPathEntry.getClazz());
@@ -61,15 +59,15 @@ public final class ClassPathTestCase {
                         System.out.println(">>>> " + classPathEntry);
                     }
 
-                }
-            ), new ClassPathHandler(any(), new ClassPathEntryHandler() {
+                })
+            .ifMatches(any()).handle(new ClassPathEntryHandler() {
 
                 public void doHandle(ClassPathEntry classPathEntry) {
                     System.out.println("[INFO] found " + classPathEntry);
                 }
 
             })
-        );
+            .scan();
 
         assert 0 < classes.size();
     }

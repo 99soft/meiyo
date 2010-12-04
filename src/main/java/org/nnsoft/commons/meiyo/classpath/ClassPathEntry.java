@@ -30,7 +30,7 @@ public final class ClassPathEntry {
     /**
      * The classpath reference the the class was found.
      */
-    private final ClassPath classPath;
+    private final String path;
 
     /**
      * Creates a new classpath entry.
@@ -38,15 +38,15 @@ public final class ClassPathEntry {
      * @param clazz the class found during the scan operations.
      * @param classPath the classpath reference the the class was found.
      */
-    public ClassPathEntry(Class<?> clazz, ClassPath classPath) {
+    public ClassPathEntry(Class<?> clazz, String path) {
         if (clazz == null) {
             throw new IllegalArgumentException("Parameter 'clazz' must not be null");
         }
-        if (classPath == null) {
-            throw new IllegalArgumentException("Parameter 'classPath' must not be null");
+        if (path == null) {
+            throw new IllegalArgumentException("Parameter 'path' must not be null");
         }
         this.clazz = clazz;
-        this.classPath = classPath;
+        this.path = path;
     }
 
     /**
@@ -63,8 +63,8 @@ public final class ClassPathEntry {
      *
      * @return the classpath reference the the class was found.
      */
-    public ClassPath getClassPath() {
-        return this.classPath;
+    public String getPath() {
+        return this.path;
     }
 
     /**
@@ -74,7 +74,7 @@ public final class ClassPathEntry {
     public String toString() {
         return this.clazz.getName()
             + " ("
-            + this.classPath
+            + this.path
             + ")";
     }
 

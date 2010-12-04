@@ -13,17 +13,17 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.nnsoft.commons.meiyo.classpath;
+package org.nnsoft.commons.meiyo.classpath.builder;
 
+import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
+import org.nnsoft.commons.meiyo.classpath.ClassPathEntryHandler;
 import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 
 /**
  * A classpath handler notifies {@link ClassPathEntry} found to {@link ClassPathEntryHandler}
  * if and only if the {@link ClassPathEntry} satisfies the {@link Filter} requirements.
- *
- * @version $Id$
  */
-public final class ClassPathHandler {
+final class ClassPathHandler {
 
     /**
      * The {@link Filter} reference.
