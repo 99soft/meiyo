@@ -15,15 +15,19 @@
  */
 package org.nnsoft.commons.meiyo.classpath;
 
-import static org.nnsoft.commons.meiyo.classpath.filter.Filters.*;
+import static org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder.createClassPathByDefaults;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.and;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.any;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.classNameMatches;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.inSubpackage;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isAbstract;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isAnnotation;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isPublic;
+import static org.nnsoft.commons.meiyo.classpath.filter.Filters.not;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
-import org.nnsoft.commons.meiyo.classpath.ClassPathEntryHandler;
-import org.nnsoft.commons.meiyo.classpath.ClassPathHandler;
-import org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder;
 import org.testng.annotations.Test;
 
 
@@ -37,7 +41,7 @@ public final class ClassPathTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        ClassPathBuilder.createByDefaults().scan(
+        createClassPathByDefaults().scan(
             new ClassPathHandler(and(
                     inSubpackage("org.nnsoft.commons.meiyo.classpath"),
                     isPublic(),

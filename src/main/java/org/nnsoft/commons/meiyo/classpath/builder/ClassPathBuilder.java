@@ -36,25 +36,25 @@ public final class ClassPathBuilder {
         // do nothing
     }
 
-    public static ClassPath createByDefaults() {
-        return createFromJVM()
+    public static ClassPath createClassPathByDefaults() {
+        return createClassPathFromJVM()
                 .usingDefaultClassLoader()
                 .usingDefaultErrorHandler();
     }
 
-    public static ClassLoaderBuilder createFromJVM() {
-        return createFromPath(System.getProperty(JAVA_CLASS_PATH));
+    public static ClassLoaderBuilder createClassPathFromJVM() {
+        return createClassPathFromPath(System.getProperty(JAVA_CLASS_PATH));
     }
 
-    public static ClassLoaderBuilder createFromPath(final String classpath) {
+    public static ClassLoaderBuilder createClassPathFromPath(final String classpath) {
         if (classpath == null || classpath.length() == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
 
-        return createFromPath(classpath.split(File.pathSeparator));
+        return createClassPathFromPath(classpath.split(File.pathSeparator));
     }
 
-    public static ClassLoaderBuilder createFromPath(final String...classpath) {
+    public static ClassLoaderBuilder createClassPathFromPath(final String...classpath) {
         if (classpath == null || classpath.length == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
