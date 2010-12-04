@@ -29,26 +29,32 @@ public final class ClassPathBuilder {
 
     private static final String JAVA_CLASS_PATH = "java.class.path";
 
+    /**
+     * This class can't be instantiated.
+     */
+    private ClassPathBuilder() {
+        // do nothing
+    }
+
     public static ClassPath createByDefaults() {
-        return new ClassPathBuilder()
-                    .createFromJVM()
-                    .usingDefaultClassLoader()
-                    .usingDefaultErrorHandler();
+        return createFromJVM()
+                .usingDefaultClassLoader()
+                .usingDefaultErrorHandler();
     }
 
-    public ClassLoaderBuilder createFromJVM() {
-        return this.createFromPath(System.getProperty(JAVA_CLASS_PATH));
+    public static ClassLoaderBuilder createFromJVM() {
+        return createFromPath(System.getProperty(JAVA_CLASS_PATH));
     }
 
-    public ClassLoaderBuilder createFromPath(final String classpath) {
+    public static ClassLoaderBuilder createFromPath(final String classpath) {
         if (classpath == null || classpath.length() == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
 
-        return this.createFromPath(classpath.split(File.pathSeparator));
+        return createFromPath(classpath.split(File.pathSeparator));
     }
 
-    public ClassLoaderBuilder createFromPath(final String...classpath) {
+    public static ClassLoaderBuilder createFromPath(final String...classpath) {
         if (classpath == null || classpath.length == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
