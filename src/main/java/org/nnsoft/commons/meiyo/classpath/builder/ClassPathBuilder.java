@@ -20,10 +20,8 @@ import java.io.File;
 import org.nnsoft.commons.meiyo.classpath.ClassPath;
 import org.nnsoft.commons.meiyo.classpath.ErrorHandler;
 
-
 /**
- * 
- * @version $Id$
+ * TODO fill me
  */
 public final class ClassPathBuilder {
 
