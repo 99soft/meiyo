@@ -24,7 +24,7 @@
 
     <parent>
         <groupId>org.99soft</groupId>
-        <artifactId>99soft-parent</artifactId>
+        <artifactId>oss-parent</artifactId>
         <version>1-SNAPSHOT</version>
     </parent>
 
