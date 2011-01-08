@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-01-08T20:52:14.097">
+<file name="/Users/simonetripodi/Documents/99soft/meiyo/src/main/java/org/nnsoft/commons/meiyo/classvisitor/ClassVisitor.java">
+<violation beginline="121" endline="121" begincolumn="48" endcolumn="91" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="org.nnsoft.commons.meiyo.classvisitor" class="ClassVisitor" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'visitElements(PrivilegedAction)'.
+</violation>
+</file>
+</pmd>
