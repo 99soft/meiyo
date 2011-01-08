@@ -36,7 +36,7 @@ public final class ClassPathEntry {
      * Creates a new classpath entry.
      *
      * @param clazz the class found during the scan operations.
-     * @param classPath the classpath reference the the class was found.
+     * @param path the classpath reference the the class was found.
      */
     public ClassPathEntry(Class<?> clazz, String path) {
         if (clazz == null) {
