@@ -45,7 +45,7 @@
 
     <issueManagement>
         <system>GitHub Issue Management</system>
-        <url>https://github.com/99soft/meiyo/issues</url>
+        <url>https://github.com/99soft/${project.artifactId}/issues</url>
     </issueManagement>
 
     <dependencies>
