@@ -30,8 +30,7 @@ import java.util.List;
 import org.testng.annotations.Test;
 
 /**
- * 
- * @version $Id$
+ * FILL ME
  */
 public final class ClassPathTestCase {
 
@@ -40,11 +39,11 @@ public final class ClassPathTestCase {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
         MeiyoScanner.createClassPathFromJVM()
-                    .withConfiguration(new HandlerConfiguration() {
+                    .withConfiguration(new AbstractHandlerConfiguration() {
 
                         @Override
-                        public void configure(Matcher matcher) {
-                            matcher.ifMatches(and(
+                        public void configure() {
+                            ifMatches(and(
                                     inSubpackage("org.nnsoft.commons.meiyo.classpath"),
                                     isPublic(),
                                     not(isAbstract()),
@@ -66,7 +65,7 @@ public final class ClassPathTestCase {
 
                                 });
 
-                            matcher.ifMatches(any()).handleWith(new ClassPathEntryHandler() {
+                            ifMatches(any()).handleWith(new ClassPathEntryHandler() {
 
                                 @Override
                                 public void doHandle(String path, Class<?> classPathEntry) {
