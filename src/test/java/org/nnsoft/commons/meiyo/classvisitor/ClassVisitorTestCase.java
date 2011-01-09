@@ -37,7 +37,7 @@ public final class ClassVisitorTestCase {
     @BeforeClass
     public void setUp() {
         newClassVisitor()
-            .handleClass().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
+            .handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
                 public void handle(Class annnotatedElement, ClassAnnotation annotation) {
                     foundClassAnnotation = true;
                 }

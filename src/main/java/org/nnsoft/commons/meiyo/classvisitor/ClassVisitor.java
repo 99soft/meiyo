@@ -46,7 +46,7 @@ public final class ClassVisitor {
         // do nothing
     }
 
-    public AnnotatedHandlerBuilder<Class> handleClass() {
+    public AnnotatedHandlerBuilder<Class> handleType() {
         return this.handleElement(Class.class);
     }
 
