@@ -15,7 +15,6 @@
  */
 package org.nnsoft.commons.meiyo.classpath;
 
-import static org.nnsoft.commons.meiyo.classpath.builder.ClassPathBuilder.createClassPathByDefaultSettings;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.and;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.any;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.classNameMatches;
@@ -40,34 +39,46 @@ public final class ClassPathTestCase {
     public void justPrint() {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        createClassPathByDefaultSettings()
-            .ifMatches(and(
-                    inSubpackage("org.nnsoft.commons.meiyo.classpath"),
-                    isPublic(),
-                    not(isAbstract()),
-                    not(isAnnotation()),
-                    not(classNameMatches(".*TestCase")))).handle(new ClassPathEntryHandler() {
+        MeiyoScanner.createClassPathFromJVM()
+                    .withConfiguration(new Module() {
 
-                    public void doHandle(ClassPathEntry classPathEntry) {
-                        classes.add(classPathEntry.getClazz());
-                    }
+                        @Override
+                        public void configure(Binder binder) {
+                            binder.ifMatches(and(
+                                    inSubpackage("org.nnsoft.commons.meiyo.classpath"),
+                                    isPublic(),
+                                    not(isAbstract()),
+                                    not(isAnnotation()),
+                                    not(classNameMatches(".*TestCase"))))
+                                .handleWith(new ClassPathEntryHandler() {
 
-                },
-                new ClassPathEntryHandler() {
+                                    @Override
+                                    public void doHandle(String path, Class<?> classPathEntry) {
+                                        classes.add(classPathEntry);
+                                    }
 
-                    public void doHandle(ClassPathEntry classPathEntry) {
-                        System.out.println(">>>> " + classPathEntry);
-                    }
+                                }, new ClassPathEntryHandler() {
 
-                })
-            .ifMatches(any()).handle(new ClassPathEntryHandler() {
+                                    @Override
+                                    public void doHandle(String path, Class<?> classPathEntry) {
+                                        System.out.println(">>>> " + classPathEntry);
+                                    }
 
-                public void doHandle(ClassPathEntry classPathEntry) {
-                    System.out.println("[INFO] found " + classPathEntry);
-                }
+                                });
 
-            })
-            .scan();
+                            binder.ifMatches(any()).handleWith(new ClassPathEntryHandler() {
+
+                                @Override
+                                public void doHandle(String path, Class<?> classPathEntry) {
+                                    System.out.println("[INFO] found " + classPathEntry);
+                                }
+
+                            });
+                        }
+
+                    })
+                    .usingDefaultClassLoader()
+                    .scan();
 
         assert 0 < classes.size();
     }

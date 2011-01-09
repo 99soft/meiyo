@@ -24,8 +24,9 @@ import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isInterface;
 
 import java.util.List;
 
-import org.nnsoft.commons.meiyo.classpath.ClassPath;
-import org.nnsoft.commons.meiyo.classpath.ClassPathEntry;
+import org.nnsoft.commons.meiyo.classpath.Binder;
+import org.nnsoft.commons.meiyo.classpath.ClassLoaderBuilder;
+import org.nnsoft.commons.meiyo.classpath.MeiyoScanner;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -50,7 +51,7 @@ public final class FiltersTestCase {
 
     public void matchesInPackage() {
         Filter inMeiyoPackage = inPackage("org.nnsoft.commons.meiyo.classpath");
-        assert inMeiyoPackage.matches(ClassPath.class);
+        assert inMeiyoPackage.matches(MeiyoScanner.class);
         assert !inMeiyoPackage.matches(List.class);
     }
 
@@ -63,7 +64,7 @@ public final class FiltersTestCase {
     public void matchesInterface() {
         Filter isInterface = isInterface();
         assert !isInterface.matches(DummyAnnotation.class);
-        assert isInterface.matches(ClassPath.class);
+        assert isInterface.matches(Binder.class);
     }
 
     public void matchesAbstract() {
@@ -73,15 +74,15 @@ public final class FiltersTestCase {
     }
 
     public void matchesContainsMethodWithNoArguments() {
-        Filter containsMethod = containsMethod("getClazz");
-        assert containsMethod.matches(ClassPathEntry.class);
+        Filter containsMethod = containsMethod("usingDefaultClassLoader");
+        assert containsMethod.matches(ClassLoaderBuilder.class);
         assert !containsMethod.matches(Filter.class);
     }
 
     public void matchesContainsMethodWithArguments() {
         Filter containsMethod = containsMethod("matches", Class.class);
         assert containsMethod.matches(Filter.class);
-        assert !containsMethod.matches(ClassPath.class);
+        assert !containsMethod.matches(MeiyoScanner.class);
     }
 
 }
