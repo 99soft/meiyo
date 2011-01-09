@@ -40,11 +40,11 @@ public final class ClassPathTestCase {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
         MeiyoScanner.createClassPathFromJVM()
-                    .withConfiguration(new Module() {
+                    .withConfiguration(new HandlerConfiguration() {
 
                         @Override
-                        public void configure(Binder binder) {
-                            binder.ifMatches(and(
+                        public void configure(Matcher matcher) {
+                            matcher.ifMatches(and(
                                     inSubpackage("org.nnsoft.commons.meiyo.classpath"),
                                     isPublic(),
                                     not(isAbstract()),
@@ -66,7 +66,7 @@ public final class ClassPathTestCase {
 
                                 });
 
-                            binder.ifMatches(any()).handleWith(new ClassPathEntryHandler() {
+                            matcher.ifMatches(any()).handleWith(new ClassPathEntryHandler() {
 
                                 @Override
                                 public void doHandle(String path, Class<?> classPathEntry) {

@@ -16,8 +16,7 @@
 package org.nnsoft.commons.meiyo.classpath;
 
 /**
- * 
- * @version $Id$
+ * FILL ME
  */
 public interface ClassLoaderBuilder {
 

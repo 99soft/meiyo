@@ -17,8 +17,6 @@ package org.nnsoft.commons.meiyo.classpath;
 
 /**
  * The handler which receives ClassPath entry notifications.
- *
- * @version $Id$
  */
 public interface ClassPathEntryHandler {
 

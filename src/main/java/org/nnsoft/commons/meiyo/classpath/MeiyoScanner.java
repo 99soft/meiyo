@@ -1,3 +1,18 @@
+/*
+ *    Copyright 2010-2011 The Meiyo Team
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
 package org.nnsoft.commons.meiyo.classpath;
 
 import java.io.File;
@@ -9,6 +24,9 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 
+/**
+ * FILL ME
+ */
 public final class MeiyoScanner {
 
     private static final String JAVA_CLASS_PATH = "java.class.path";
@@ -21,11 +39,11 @@ public final class MeiyoScanner {
         // do nothing
     }
 
-    public static ModulesBuilder createClassPathFromJVM() {
+    public static HandlerConfigurationsBuilder createClassPathFromJVM() {
         return createClassPathFromPath(System.getProperty(JAVA_CLASS_PATH));
     }
 
-    public static ModulesBuilder createClassPathFromPath(final String classpath) {
+    public static HandlerConfigurationsBuilder createClassPathFromPath(final String classpath) {
         if (classpath == null || classpath.length() == 0) {
             throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
         }
@@ -33,33 +51,33 @@ public final class MeiyoScanner {
         return createClassPathFromPath(classpath.split(File.pathSeparator));
     }
 
-    public static ModulesBuilder createClassPathFromPath(final String...paths) {
+    public static HandlerConfigurationsBuilder createClassPathFromPath(final String...paths) {
         if (paths == null || paths.length == 0) {
             throw new IllegalArgumentException("At least one path has to be specified");
         }
 
-        return new ModulesBuilder() {
+        return new HandlerConfigurationsBuilder() {
 
             @Override
-            public ClassLoaderBuilder withConfiguration(final Module... modules) {
-                if (modules == null || modules.length == 0) {
-                    throw new IllegalArgumentException("At least one Module has to be specified");
+            public ClassLoaderBuilder withConfiguration(final HandlerConfiguration...configurations) {
+                if (configurations == null || configurations.length == 0) {
+                    throw new IllegalArgumentException("At least one HandlerConfiguration has to be specified");
                 }
-                return withConfiguration(Arrays.asList(modules));
+                return withConfiguration(Arrays.asList(configurations));
             }
 
             @Override
-            public ClassLoaderBuilder withConfiguration(final Collection<Module> modules) {
-                if (modules == null || modules.isEmpty()) {
-                    throw new IllegalArgumentException("Modules cannot be null or empty");
+            public ClassLoaderBuilder withConfiguration(final Collection<HandlerConfiguration> configurations) {
+                if (configurations == null || configurations.isEmpty()) {
+                    throw new IllegalArgumentException("Parameter 'configurations' must not be null or empty");
                 }
 
-                BinderImpl binderImpl = new BinderImpl();
-                for (Module module : modules) {
-                    module.configure(binderImpl);
+                MatcherImpl matcher = new MatcherImpl();
+                for (HandlerConfiguration configuration : configurations) {
+                    configuration.configure(matcher);
                 }
 
-                final Collection<ClassPathHandler> handlers = binderImpl.getHandlers();
+                final Collection<ClassPathHandler> handlers = matcher.getHandlers();
 
                 return new ClassLoaderBuilder() {
 

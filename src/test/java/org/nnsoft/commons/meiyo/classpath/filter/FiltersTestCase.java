@@ -24,7 +24,7 @@ import static org.nnsoft.commons.meiyo.classpath.filter.Filters.isInterface;
 
 import java.util.List;
 
-import org.nnsoft.commons.meiyo.classpath.Binder;
+import org.nnsoft.commons.meiyo.classpath.Matcher;
 import org.nnsoft.commons.meiyo.classpath.ClassLoaderBuilder;
 import org.nnsoft.commons.meiyo.classpath.MeiyoScanner;
 import org.testng.annotations.Parameters;
@@ -64,7 +64,7 @@ public final class FiltersTestCase {
     public void matchesInterface() {
         Filter isInterface = isInterface();
         assert !isInterface.matches(DummyAnnotation.class);
-        assert isInterface.matches(Binder.class);
+        assert isInterface.matches(Matcher.class);
     }
 
     public void matchesAbstract() {
