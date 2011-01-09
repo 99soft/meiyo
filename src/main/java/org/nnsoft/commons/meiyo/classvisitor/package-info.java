@@ -15,6 +15,6 @@
  */
 
 /**
- * Class scanner interfaces.
+ * Annotated elements scanner DSL.
  */
 package org.nnsoft.commons.meiyo.classvisitor;
