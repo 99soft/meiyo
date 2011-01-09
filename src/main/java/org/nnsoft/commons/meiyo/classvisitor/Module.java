@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010 The Meiyo Team
+ *    Copyright 2010-2011 The Meiyo Team
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,14 +15,11 @@
  */
 package org.nnsoft.commons.meiyo.classvisitor;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.AnnotatedElement;
-
 /**
  * FILL ME.
  */
-public interface LinkedHandlingBuilder<E extends AnnotatedElement, A extends Annotation> {
+public interface Module {
 
-    void withHandler(AnnotationHandler<E, A> handler);
+    void configure(Binder binder);
 
 }

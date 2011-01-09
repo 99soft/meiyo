@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010 The Meiyo Team
+ *    Copyright 2010-2011 The Meiyo Team
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,14 +15,21 @@
  */
 package org.nnsoft.commons.meiyo.classvisitor;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * FILL ME.
  */
-public interface LinkedHandlingBuilder<E extends AnnotatedElement, A extends Annotation> {
+public interface Binder {
 
-    void withHandler(AnnotationHandler<E, A> handler);
+    AnnotatedHandlerBuilder<Class> handleType();
+
+    AnnotatedHandlerBuilder<Constructor> handleConstructor();
+
+    AnnotatedHandlerBuilder<Field> handleField();
+
+    AnnotatedHandlerBuilder<Method> handleMethod();
 
 }

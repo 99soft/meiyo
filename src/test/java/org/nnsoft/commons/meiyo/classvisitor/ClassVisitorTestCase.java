@@ -15,8 +15,6 @@
  */
 package org.nnsoft.commons.meiyo.classvisitor;
 
-import static org.nnsoft.commons.meiyo.classvisitor.ClassVisitor.newClassVisitor;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
@@ -36,23 +34,32 @@ public final class ClassVisitorTestCase {
 
     @BeforeClass
     public void setUp() {
-        newClassVisitor()
-            .handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
-                public void handle(Class annnotatedElement, ClassAnnotation annotation) {
-                    foundClassAnnotation = true;
-                }
-            })
-            .handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
-                public void handle(Constructor annnotatedElement, ConstructorAnnotation annotation) {
-                    foundConstructorAnnotation = true;
-                }
-            })
-            .handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
-                public void handle(Method annnotatedElement, MethodAnnotation annotation) {
-                    foundMethodAnnotation = true;
-                }
-            })
-            .visit(AnnotatedBean.class);
+        ClassVisitor visitor = MeiyoVisitor.createVisitor(new Module() {
+
+            @Override
+            public void configure(Binder binder) {
+                binder.handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
+                    public void handle(Class annnotatedElement, ClassAnnotation annotation) {
+                        foundClassAnnotation = true;
+                    }
+                });
+
+                binder.handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
+                    public void handle(Constructor annnotatedElement, ConstructorAnnotation annotation) {
+                        foundConstructorAnnotation = true;
+                    }
+                });
+
+                binder.handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
+                    public void handle(Method annnotatedElement, MethodAnnotation annotation) {
+                        foundMethodAnnotation = true;
+                    }
+                });
+            }
+
+        });
+
+        visitor.visit(AnnotatedBean.class);
     }
 
     @Test
