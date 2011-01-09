@@ -23,7 +23,8 @@ public interface ClassPathEntryHandler {
     /**
      * Receive a ClassPath entry notification event.
      *
-     * @param classPathEntry the notified {@link ClassPathEntry}.
+     * @param path
+     * @param classPathEntry
      */
     void doHandle(String path, Class<?> classPathEntry);
 
