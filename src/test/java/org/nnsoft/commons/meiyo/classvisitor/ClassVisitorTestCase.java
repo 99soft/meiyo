@@ -34,7 +34,7 @@ public final class ClassVisitorTestCase {
 
     @BeforeClass
     public void setUp() {
-        ClassVisitor visitor = MeiyoVisitor.createVisitor(new Module() {
+        MeiyoVisitor.createVisitor(new Module() {
 
             @Override
             public void configure(Binder binder) {
@@ -57,9 +57,7 @@ public final class ClassVisitorTestCase {
                 });
             }
 
-        });
-
-        visitor.visit(AnnotatedBean.class);
+        }).visit(AnnotatedBean.class);
     }
 
     @Test
