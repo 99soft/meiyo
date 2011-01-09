@@ -11,7 +11,7 @@ public final class MeiyoVisitor {
 
     public static ClassVisitor createVisitor(Module...modules) {
         if (modules == null || modules.length == 0) {
-            throw new IllegalArgumentException("Modules cannot be null or empty");
+            throw new IllegalArgumentException("At least one Module has to be specified");
         }
         return createVisitor(Arrays.asList(modules));
     }
