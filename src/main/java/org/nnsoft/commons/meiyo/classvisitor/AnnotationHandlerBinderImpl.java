@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-final class BinderImpl implements Binder {
+final class AnnotationHandlerBinderImpl implements AnnotationHandlerBinder {
 
     private final Map<Key, AnnotationHandler<AnnotatedElement, Annotation>> registry =
         new HashMap<Key, AnnotationHandler<AnnotatedElement, Annotation>>();
@@ -43,7 +43,7 @@ final class BinderImpl implements Binder {
                             throw new IllegalArgumentException("Parameter 'handler' must not be null");
                         }
 
-                        BinderImpl.this.registry.put(new Key(annotatedElementType, annotationType), (AnnotationHandler<AnnotatedElement, Annotation>) handler);
+                        AnnotationHandlerBinderImpl.this.registry.put(new Key(annotatedElementType, annotationType), (AnnotationHandler<AnnotatedElement, Annotation>) handler);
                     }
                 };
             }

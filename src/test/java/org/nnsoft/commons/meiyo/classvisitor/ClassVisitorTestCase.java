@@ -34,10 +34,10 @@ public final class ClassVisitorTestCase {
 
     @BeforeClass
     public void setUp() {
-        MeiyoVisitor.createVisitor(new Module() {
+        MeiyoVisitor.createVisitor(new VisitorConfiguration() {
 
             @Override
-            public void configure(Binder binder) {
+            public void configure(AnnotationHandlerBinder binder) {
                 binder.handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
                     public void handle(Class annnotatedElement, ClassAnnotation annotation) {
                         foundClassAnnotation = true;

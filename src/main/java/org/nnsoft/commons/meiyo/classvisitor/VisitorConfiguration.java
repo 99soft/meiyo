@@ -18,8 +18,8 @@ package org.nnsoft.commons.meiyo.classvisitor;
 /**
  * FILL ME.
  */
-public interface Module {
+public interface VisitorConfiguration {
 
-    void configure(Binder binder);
+    void configure(AnnotationHandlerBinder binder);
 
 }

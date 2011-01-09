@@ -30,9 +30,9 @@ final class ClassVisitorImpl implements ClassVisitor {
 
     private static final String JAVA_PACKAGE = "java";
 
-    private final BinderImpl binder;
+    private final AnnotationHandlerBinderImpl binder;
 
-    public ClassVisitorImpl(final BinderImpl binder) {
+    public ClassVisitorImpl(final AnnotationHandlerBinderImpl binder) {
         this.binder = binder;
     }
 

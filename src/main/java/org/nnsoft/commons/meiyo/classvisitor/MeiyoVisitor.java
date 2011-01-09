@@ -9,20 +9,20 @@ public final class MeiyoVisitor {
         // do nothing
     }
 
-    public static ClassVisitor createVisitor(Module...modules) {
-        if (modules == null || modules.length == 0) {
-            throw new IllegalArgumentException("At least one Module has to be specified");
+    public static ClassVisitor createVisitor(VisitorConfiguration...configurations) {
+        if (configurations == null || configurations.length == 0) {
+            throw new IllegalArgumentException("At least one VisitorConfiguration has to be specified");
         }
-        return createVisitor(Arrays.asList(modules));
+        return createVisitor(Arrays.asList(configurations));
     }
 
-    public static ClassVisitor createVisitor(Collection<Module> modules) {
-        if (modules == null || modules.isEmpty()) {
-            throw new IllegalArgumentException("Modules cannot be null or empty");
+    public static ClassVisitor createVisitor(Collection<VisitorConfiguration> configurations) {
+        if (configurations == null || configurations.isEmpty()) {
+            throw new IllegalArgumentException("Parameter 'configurations' must not be null or empty");
         }
 
-        BinderImpl binderImpl = new BinderImpl();
-        for (Module module : modules) {
+        AnnotationHandlerBinderImpl binderImpl = new AnnotationHandlerBinderImpl();
+        for (VisitorConfiguration module : configurations) {
             module.configure(binderImpl);
         }
 

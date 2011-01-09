@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 /**
  * FILL ME.
  */
-public interface Binder {
+public interface AnnotationHandlerBinder {
 
     AnnotatedHandlerBuilder<Class> handleType();
 
