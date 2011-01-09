@@ -34,23 +34,23 @@ public final class ClassVisitorTestCase {
 
     @BeforeClass
     public void setUp() {
-        MeiyoVisitor.createVisitor(new VisitorConfiguration() {
+        MeiyoVisitor.createVisitor(new AbstractVisitorConfiguration() {
 
             @Override
-            public void configure(AnnotationHandlerBinder binder) {
-                binder.handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
+            public void configure() {
+                handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
                     public void handle(Class annnotatedElement, ClassAnnotation annotation) {
                         foundClassAnnotation = true;
                     }
                 });
 
-                binder.handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
+                handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
                     public void handle(Constructor annnotatedElement, ConstructorAnnotation annotation) {
                         foundConstructorAnnotation = true;
                     }
                 });
 
-                binder.handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
+                handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
                     public void handle(Method annnotatedElement, MethodAnnotation annotation) {
                         foundMethodAnnotation = true;
                     }
