@@ -1,0 +1,15 @@
+-bootclasspath
+'/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/jsfd.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/ui.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/laf.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/sunrsasign.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/jsse.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/jce.jar:/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/charsets.jar'
+-classpath
+'/Users/simonetripodi/Documents/99soft/meiyo/target/classes'
+-doclet
+'com.google.doclava.Doclava'
+-docletpath
+'/Users/simonetripodi/.m2/repository/com/google/doclava/doclava/1.0.2/doclava-1.0.2.jar:/Users/simonetripodi/.m2/repository/com/google/guava/guava/r06/guava-r06.jar:/Users/simonetripodi/.m2/repository/com/google/jsilver/jsilver/1.0.0/jsilver-1.0.0.jar:/Users/simonetripodi/.m2/repository/junit/junit/4.8.2/junit-4.8.2.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/Users/simonetripodi/Documents/99soft/meiyo/src/main/java'
+-hdf project.name "99soft :: Meiyo"
+                                -d /Users/simonetripodi/Documents/99soft/meiyo/target/site/apidocs
