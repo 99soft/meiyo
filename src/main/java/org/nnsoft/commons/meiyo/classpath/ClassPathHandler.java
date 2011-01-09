@@ -46,10 +46,11 @@ final class ClassPathHandler {
     }
 
     /**
-     * Notified the {@link ClassPathEntry} if the {@link Filter} reference requirements
+     * Notified the ClassPath entry if the {@link Filter} reference requirements
      * are satisfied.
      *
-     * @param entry the classpath entry found.
+     * @param path
+     * @param classPathEntry
      */
     public void doHandle(String path, Class<?> classPathEntry) {
         if (this.filter.matches(classPathEntry)) {
