@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2011-01-09T20:54:36.830">
+<pmd version="4.2.5" timestamp="2011-01-14T16:55:48.871">
 <file name="/Users/simonetripodi/Documents/99soft/meiyo/src/main/java/org/nnsoft/commons/meiyo/classpath/MeiyoScanner.java">
 <violation beginline="151" endline="166" begincolumn="26" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.nnsoft.commons.meiyo.classpath" class="MeiyoScanner" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
