@@ -1,0 +1,931 @@
+<api>
+<package name="org.nnsoft.commons.meiyo.classpath"
+>
+<class name="AbstractHandlerConfiguration"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="org.nnsoft.commons.meiyo.classpath.HandlerConfiguration">
+</implements>
+<implements name="org.nnsoft.commons.meiyo.classpath.Matcher">
+</implements>
+<constructor name="AbstractHandlerConfiguration"
+ type="org.nnsoft.commons.meiyo.classpath.AbstractHandlerConfiguration"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="configure"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="configure"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="matcher" type="org.nnsoft.commons.meiyo.classpath.Matcher">
+</parameter>
+</method>
+<method name="ifMatches"
+ return="org.nnsoft.commons.meiyo.classpath.LinkedHandlerBuilder"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filter" type="org.nnsoft.commons.meiyo.classpath.filter.Filter">
+</parameter>
+</method>
+</class>
+<interface name="ClassLoaderBuilder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="usingClassLoader"
+ return="org.nnsoft.commons.meiyo.classpath.ErrorHandlerBuilder"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="classLoader" type="java.lang.ClassLoader">
+</parameter>
+</method>
+<method name="usingDefaultClassLoader"
+ return="org.nnsoft.commons.meiyo.classpath.ErrorHandlerBuilder"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+<interface name="ClassPathEntryHandler"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="doHandle"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="path" type="java.lang.String">
+</parameter>
+<parameter name="classPathEntry" type="java.lang.Class&lt;?&gt;">
+</parameter>
+</method>
+</interface>
+<interface name="ErrorHandler"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onClassNotFound"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="className" type="java.lang.String">
+</parameter>
+</method>
+<method name="onJARReadingError"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="file" type="java.io.File">
+</parameter>
+<parameter name="e" type="java.io.IOException">
+</parameter>
+</method>
+</interface>
+<interface name="ErrorHandlerBuilder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="scan"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="scan"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="errorHandler" type="org.nnsoft.commons.meiyo.classpath.ErrorHandler">
+</parameter>
+</method>
+</interface>
+<interface name="HandlerConfiguration"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="configure"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="matcher" type="org.nnsoft.commons.meiyo.classpath.Matcher">
+</parameter>
+</method>
+</interface>
+<interface name="HandlerConfigurationsBuilder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="withConfiguration"
+ return="org.nnsoft.commons.meiyo.classpath.ClassLoaderBuilder"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="configurations" type="java.util.Collection&lt;org.nnsoft.commons.meiyo.classpath.HandlerConfiguration&gt;">
+</parameter>
+</method>
+<method name="withConfiguration"
+ return="org.nnsoft.commons.meiyo.classpath.ClassLoaderBuilder"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="configurations" type="org.nnsoft.commons.meiyo.classpath.HandlerConfiguration...">
+</parameter>
+</method>
+</interface>
+<interface name="LinkedHandlerBuilder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="handleWith"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="entryHandler" type="org.nnsoft.commons.meiyo.classpath.ClassPathEntryHandler...">
+</parameter>
+</method>
+</interface>
+<interface name="Matcher"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="ifMatches"
+ return="org.nnsoft.commons.meiyo.classpath.LinkedHandlerBuilder"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filter" type="org.nnsoft.commons.meiyo.classpath.filter.Filter">
+</parameter>
+</method>
+</interface>
+<class name="MeiyoScanner"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="createClassPathFromJVM"
+ return="org.nnsoft.commons.meiyo.classpath.HandlerConfigurationsBuilder"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="createClassPathFromPath"
+ return="org.nnsoft.commons.meiyo.classpath.HandlerConfigurationsBuilder"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="classpath" type="java.lang.String">
+</parameter>
+</method>
+<method name="createClassPathFromPath"
+ return="org.nnsoft.commons.meiyo.classpath.HandlerConfigurationsBuilder"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="paths" type="java.lang.String...">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.nnsoft.commons.meiyo.classpath.filter"
+>
+<interface name="Filter"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="matches"
+ return="boolean"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="clazz" type="java.lang.Class&lt;?&gt;">
+</parameter>
+</method>
+</interface>
+<class name="Filters"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="and"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="org.nnsoft.commons.meiyo.classpath.filter.Filter...">
+</parameter>
+</method>
+<method name="annotatedWith"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="annotation" type="java.lang.annotation.Annotation">
+</parameter>
+</method>
+<method name="annotatedWithType"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="annotationType" type="java.lang.Class&lt;? extends java.lang.annotation.Annotation&gt;">
+</parameter>
+</method>
+<method name="any"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="classNameMatches"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="regex" type="java.lang.String">
+</parameter>
+</method>
+<method name="containsMethod"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+<parameter name="argumentsType" type="java.lang.Class&lt;?&gt;...">
+</parameter>
+</method>
+<method name="inPackage"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="targetPackage" type="java.lang.String">
+</parameter>
+</method>
+<method name="inSubpackage"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="targetPackage" type="java.lang.String">
+</parameter>
+</method>
+<method name="isAbstract"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isAnnotation"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isAssignableTo"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="superclassOrInterface" type="java.lang.Class&lt;?&gt;">
+</parameter>
+</method>
+<method name="isFinal"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isInterface"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isPrivate"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isPublic"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isStatic"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isStrict"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="nand"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="org.nnsoft.commons.meiyo.classpath.filter.Filter...">
+</parameter>
+</method>
+<method name="nor"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="org.nnsoft.commons.meiyo.classpath.filter.Filter...">
+</parameter>
+</method>
+<method name="not"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="delegate" type="org.nnsoft.commons.meiyo.classpath.filter.Filter">
+</parameter>
+</method>
+<method name="or"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="org.nnsoft.commons.meiyo.classpath.filter.Filter...">
+</parameter>
+</method>
+<method name="xnor"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="org.nnsoft.commons.meiyo.classpath.filter.Filter...">
+</parameter>
+</method>
+<method name="xor"
+ return="org.nnsoft.commons.meiyo.classpath.filter.Filter"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="org.nnsoft.commons.meiyo.classpath.filter.Filter...">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.nnsoft.commons.meiyo.classvisitor"
+>
+<class name="AbstractVisitorConfiguration"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="org.nnsoft.commons.meiyo.classvisitor.AnnotationHandlerBinder">
+</implements>
+<implements name="org.nnsoft.commons.meiyo.classvisitor.VisitorConfiguration">
+</implements>
+<constructor name="AbstractVisitorConfiguration"
+ type="org.nnsoft.commons.meiyo.classvisitor.AbstractVisitorConfiguration"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="configure"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="configure"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="binder" type="org.nnsoft.commons.meiyo.classvisitor.AnnotationHandlerBinder">
+</parameter>
+</method>
+<method name="handleConstructor"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.reflect.Constructor&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="handleField"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.reflect.Field&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="handleMethod"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.reflect.Method&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="handleType"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.Class&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<interface name="AnnotatedHandlerBuilder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="annotatedWith"
+ return="org.nnsoft.commons.meiyo.classvisitor.LinkedHandlingBuilder&lt;E, A&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="annotationType" type="java.lang.Class&lt;A&gt;">
+</parameter>
+</method>
+</interface>
+<interface name="AnnotationHandler"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="handle"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="annnotatedElement" type="E">
+</parameter>
+<parameter name="annotation" type="A">
+</parameter>
+</method>
+</interface>
+<interface name="AnnotationHandlerBinder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="handleConstructor"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.reflect.Constructor&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="handleField"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.reflect.Field&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="handleMethod"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.reflect.Method&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="handleType"
+ return="org.nnsoft.commons.meiyo.classvisitor.AnnotatedHandlerBuilder&lt;java.lang.Class&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+<interface name="ClassVisitor"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="visit"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="java.lang.Class&lt;?&gt;">
+</parameter>
+</method>
+</interface>
+<interface name="LinkedHandlingBuilder"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="withHandler"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="handler" type="org.nnsoft.commons.meiyo.classvisitor.AnnotationHandler&lt;E, A&gt;">
+</parameter>
+</method>
+</interface>
+<class name="MeiyoVisitor"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="createVisitor"
+ return="org.nnsoft.commons.meiyo.classvisitor.ClassVisitor"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="configurations" type="java.util.Collection&lt;org.nnsoft.commons.meiyo.classvisitor.VisitorConfiguration&gt;">
+</parameter>
+</method>
+<method name="createVisitor"
+ return="org.nnsoft.commons.meiyo.classvisitor.ClassVisitor"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="configurations" type="org.nnsoft.commons.meiyo.classvisitor.VisitorConfiguration...">
+</parameter>
+</method>
+</class>
+<interface name="VisitorConfiguration"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="configure"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="binder" type="org.nnsoft.commons.meiyo.classvisitor.AnnotationHandlerBinder">
+</parameter>
+</method>
+</interface>
+</package>
+</api>

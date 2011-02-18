@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2011-02-18T22:00:24.490">
+<file name="/Users/simonetripodi/Documents/99soft/meiyo/src/main/java/org/nnsoft/commons/meiyo/classpath/MeiyoScanner.java">
+<violation beginline="151" endline="166" begincolumn="26" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.nnsoft.commons.meiyo.classpath" class="MeiyoScanner" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="168" endline="187" begincolumn="26" endcolumn="5" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.nnsoft.commons.meiyo.classpath" class="MeiyoScanner" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+</file>
+<file name="/Users/simonetripodi/Documents/99soft/meiyo/src/main/java/org/nnsoft/commons/meiyo/classvisitor/ClassVisitorImpl.java">
+<violation beginline="73" endline="73" begincolumn="48" endcolumn="91" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="org.nnsoft.commons.meiyo.classvisitor" class="ClassVisitorImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'visitElements(PrivilegedAction)'.
+</violation>
+</file>
+</pmd>
