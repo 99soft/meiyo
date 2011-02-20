@@ -14,7 +14,12 @@ public abstract class AbstractVisitorConfiguration implements VisitorConfigurati
     @Override
     public final void configure(final AnnotationHandlerBinder binder) {
         this.wrapped = binder;
-        this.configure();
+
+        try {
+            this.configure();
+        } final {
+            this.wrapped = null;
+        }
     }
 
     public abstract void configure();
