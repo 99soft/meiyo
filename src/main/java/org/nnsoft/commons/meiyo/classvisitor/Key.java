@@ -97,11 +97,9 @@ final class Key {
      */
     @Override
     public String toString() {
-        return "Key [annotatedElementType="
-                + this.annotatedElementType
-                + ", annotationType="
-                + this.annotationType
-                + "]";
+        return String.format("Key [annotatedElementType=%s, annotationType=%s]",
+                this.annotatedElementType,
+                this.annotationType);
     }
 
 }
