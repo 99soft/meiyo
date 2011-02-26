@@ -51,14 +51,12 @@ public final class ClassPathTestCase {
                                     not(classNameMatches(".*TestCase"))))
                                 .handleWith(new ClassPathEntryHandler() {
 
-                                    @Override
                                     public void doHandle(String path, Class<?> classPathEntry) {
                                         classes.add(classPathEntry);
                                     }
 
                                 }, new ClassPathEntryHandler() {
 
-                                    @Override
                                     public void doHandle(String path, Class<?> classPathEntry) {
                                         System.out.println(">>>> " + classPathEntry);
                                     }
@@ -67,7 +65,6 @@ public final class ClassPathTestCase {
 
                             ifMatches(any()).handleWith(new ClassPathEntryHandler() {
 
-                                @Override
                                 public void doHandle(String path, Class<?> classPathEntry) {
                                     System.out.println("[INFO] found " + classPathEntry);
                                 }
