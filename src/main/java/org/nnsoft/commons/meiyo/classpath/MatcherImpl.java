@@ -27,7 +27,6 @@ final class MatcherImpl implements Matcher {
 
     private final Collection<ClassPathHandler> handlers = new LinkedList<ClassPathHandler>();
 
-    @Override
     public LinkedHandlerBuilder ifMatches(final Filter filter) {
         if (filter == null) {
             throw new IllegalArgumentException("Filter must not be null");
@@ -35,7 +34,6 @@ final class MatcherImpl implements Matcher {
 
         return new LinkedHandlerBuilder() {
 
-            @Override
             public void handleWith(final ClassPathEntryHandler...entryHandlers) {
                 if (entryHandlers == null || entryHandlers.length == 0) {
                     throw new IllegalArgumentException("At least one ClassPathEntryHandler must be specified");
