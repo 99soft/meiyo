@@ -4,20 +4,19 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-public abstract class AbstractVisitorConfiguration implements VisitorConfiguration, AnnotationHandlerBinder {
+public abstract class AbstractVisitorConfiguration implements VisitorConfiguration {
 
     private AnnotationHandlerBinder wrapped;
 
     /**
      * {@inheritDoc}
      */
-    @Override
     public final void configure(final AnnotationHandlerBinder binder) {
         this.wrapped = binder;
 
         try {
             this.configure();
-        } final {
+        } finally {
             this.wrapped = null;
         }
     }
@@ -27,7 +26,6 @@ public abstract class AbstractVisitorConfiguration implements VisitorConfigurati
     /**
      * {@inheritDoc}
      */
-    @Override
     public AnnotatedHandlerBuilder<Class> handleType() {
         return this.wrapped.handleType();
     }
@@ -35,7 +33,6 @@ public abstract class AbstractVisitorConfiguration implements VisitorConfigurati
     /**
      * {@inheritDoc}
      */
-    @Override
     public AnnotatedHandlerBuilder<Constructor> handleConstructor() {
         return this.wrapped.handleConstructor();
     }
@@ -43,7 +40,6 @@ public abstract class AbstractVisitorConfiguration implements VisitorConfigurati
     /**
      * {@inheritDoc}
      */
-    @Override
     public AnnotatedHandlerBuilder<Field> handleField() {
         return this.wrapped.handleField();
     }
@@ -51,7 +47,6 @@ public abstract class AbstractVisitorConfiguration implements VisitorConfigurati
     /**
      * {@inheritDoc}
      */
-    @Override
     public AnnotatedHandlerBuilder<Method> handleMethod() {
         return this.wrapped.handleMethod();
     }
