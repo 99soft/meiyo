@@ -20,17 +20,20 @@ import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 /**
  * FILL ME
  */
-public abstract class AbstractHandlerConfiguration implements HandlerConfiguration, Matcher {
+public abstract class AbstractHandlerConfiguration implements HandlerConfiguration {
 
     private Matcher wrapped;
 
-    @Override
     public final void configure(final Matcher matcher) {
         this.wrapped = matcher;
-        this.configure();
+
+        try {
+            this.configure();
+        } finally {
+            this.wrapped = null;
+        }
     }
 
-    @Override
     public LinkedHandlerBuilder ifMatches(Filter filter) {
         return this.wrapped.ifMatches(filter);
     }
