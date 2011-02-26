@@ -58,7 +58,6 @@ public final class MeiyoScanner {
 
         return new HandlerConfigurationsBuilder() {
 
-            @Override
             public ClassLoaderBuilder withConfiguration(final HandlerConfiguration...configurations) {
                 if (configurations == null || configurations.length == 0) {
                     throw new IllegalArgumentException("At least one HandlerConfiguration has to be specified");
@@ -66,7 +65,6 @@ public final class MeiyoScanner {
                 return withConfiguration(Arrays.asList(configurations));
             }
 
-            @Override
             public ClassLoaderBuilder withConfiguration(final Collection<HandlerConfiguration> configurations) {
                 if (configurations == null || configurations.isEmpty()) {
                     throw new IllegalArgumentException("Parameter 'configurations' must not be null or empty");
@@ -81,12 +79,10 @@ public final class MeiyoScanner {
 
                 return new ClassLoaderBuilder() {
 
-                    @Override
                     public ErrorHandlerBuilder usingDefaultClassLoader() {
                         return this.usingClassLoader(Thread.currentThread().getContextClassLoader());
                     }
 
-                    @Override
                     public ErrorHandlerBuilder usingClassLoader(final ClassLoader classLoader) {
                         if (classLoader == null) {
                             throw new IllegalArgumentException("Parameter 'classLoader' must not be null");
@@ -94,18 +90,15 @@ public final class MeiyoScanner {
 
                         return new ErrorHandlerBuilder() {
 
-                            @Override
                             public void scan() {
                                 scan(new ErrorHandler() {
 
-                                    @Override
                                     public void onJARReadingError(File file, IOException e) {
                                         throw new RuntimeException("An error occurred while loading '"
                                                 + file
                                                 + "' jar entry", e);
                                     }
 
-                                    @Override
                                     public void onClassNotFound(String className) {
                                         // do nothing, just ignore it
                                     }
@@ -113,7 +106,6 @@ public final class MeiyoScanner {
                                 });
                             }
 
-                            @Override
                             public void scan(final ErrorHandler errorHandler) {
                                 if (errorHandler == null) {
                                     throw new IllegalArgumentException("Parameter 'errorHandler' must not be null");
