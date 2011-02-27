@@ -17,10 +17,8 @@ package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
  * Filter that verifies the found class is in the given package or subpackage.
- *
- * @version $Id$
  */
-final class InSubpackage implements Filter {
+final class InSubpackage extends AbstractFilter {
 
     /**
      * The root package where classes are looked for.
@@ -50,9 +48,7 @@ final class InSubpackage implements Filter {
      */
     @Override
     public String toString() {
-      return "inSubPackage("
-              + this.targetPackageName
-              + ")";
+      return String.format("inSubPackage(%s)", this.targetPackageName);
     }
 
 }

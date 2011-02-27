@@ -20,7 +20,7 @@ package org.nnsoft.commons.meiyo.classpath.filter;
  *
  * @version $Id$
  */
-final class IsAnnotation implements Filter {
+final class IsAnnotation extends AbstractFilter {
 
     /**
      * {@inheritDoc}

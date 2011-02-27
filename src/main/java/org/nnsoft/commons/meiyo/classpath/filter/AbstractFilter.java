@@ -1,5 +1,5 @@
 /*
- *    Copyright 2010 The Meiyo Team
+ *    Copyright 2010-2011 The Meiyo Team
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,38 +15,45 @@
  */
 package org.nnsoft.commons.meiyo.classpath.filter;
 
-/**
- * Filter that verifies the found class is exactly in the given package.
- */
-final class InPackage extends AbstractFilter {
+abstract class AbstractFilter implements Filter {
 
     /**
-     * The package where classes are looked for.
+     * {@inheritDoc}
      */
-    private final String targetPackage;
-
-    /**
-     * Creates a new package based filter.
-     *
-     * @param targetPackage the package where classes are looked for.
-     */
-    public InPackage(String targetPackage) {
-        this.targetPackage = targetPackage;
+    public Filter and(Filter other) {
+        return new And(this, other);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return this.targetPackage.equals(clazz.getPackage().getName());
+    public Filter nand(Filter other) {
+        return new Not(and(other));
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String toString() {
-        return String.format("inPackage(%s)", this.targetPackage);
+    public Filter or(Filter other) {
+        return new Or(this, other);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Filter nor(Filter other) {
+        return new Not(or(other));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Filter xor(Filter other) {
+        return new Xor(this, other);
+    }
+
+    public Filter xnor(Filter other) {
+        return new Not(xor(other));
     }
 
 }

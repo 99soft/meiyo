@@ -21,27 +21,27 @@ package org.nnsoft.commons.meiyo.classpath.filter;
  *
  * @version $Id$
  */
-final class And extends AbstractMultipleArgumentFilter implements Filter {
+final class And extends AbstractFilter {
 
-    /**
-     * Creates a new and filer.
-     *
-     * @param filters the filters array have to be applied.
-     */
-    public And(Filter...filters) {
-        super(filters);
+    private final Filter a;
+
+    private final Filter b;
+
+    public And(Filter a, Filter b) {
+        this.a = a;
+        this.b = b;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        for (Filter filter : this.getFilters()) {
-            if (!filter.matches(clazz)) {
-                return false;
-            }
-        }
-        return true;
+        return this.a.matches(clazz) && this.b.matches(clazz);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("and(%s, %s)", this.a, this.b);
     }
 
 }

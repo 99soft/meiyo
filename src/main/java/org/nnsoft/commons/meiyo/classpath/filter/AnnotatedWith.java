@@ -22,7 +22,7 @@ import java.lang.annotation.Annotation;
  *
  * @version $Id$
  */
-final class AnnotatedWith implements Filter {
+final class AnnotatedWith extends AbstractFilter {
 
     /**
      * The annotation has to be searched on classes.
@@ -51,9 +51,7 @@ final class AnnotatedWith implements Filter {
      */
     @Override
     public String toString() {
-        return "annotatedWith("
-                + this.annotation
-                + ")";
+        return String.format("annotatedWith(%s)", this.annotation);
     }
 
 }

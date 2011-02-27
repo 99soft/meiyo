@@ -20,7 +20,7 @@ package org.nnsoft.commons.meiyo.classpath.filter;
  *
  * @version $Id$
  */
-final class Not implements Filter {
+final class Not extends AbstractFilter {
 
     final Filter delegate;
 
@@ -43,9 +43,7 @@ final class Not implements Filter {
      */
     @Override
     public String toString() {
-        return "not("
-                + this.delegate
-                + ")";
+        return String.format("not(%s)", this.delegate);
     }
 
 }

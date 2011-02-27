@@ -21,8 +21,6 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Simple filters language implementation.
- *
- * @version $Id$
  */
 public final class Filters {
 
@@ -31,17 +29,6 @@ public final class Filters {
      */
     private Filters() {
         // do nothing
-    }
-
-    public static Filter and(Filter...filters) {
-        if (filters == null) {
-            throw new IllegalArgumentException("Parameter 'filters' must be not null");
-        }
-        if (filters.length == 0) {
-            throw new IllegalArgumentException("Empty filters list not allowed");
-        }
-
-        return new And(filters);
     }
 
     public static Filter annotatedWith(Annotation annotation) {
@@ -152,46 +139,12 @@ public final class Filters {
         return new IsStrict();
     }
 
-    public static Filter nand(Filter...filters) {
-        return not(and(filters));
-    }
-
-    public static Filter nor(Filter...filters) {
-        return not(or(filters));
-    }
-
     public static Filter not(Filter delegate) {
         if (delegate == null) {
             throw new IllegalArgumentException("Parameter 'delegate' must be not null");
         }
 
         return new Not(delegate);
-    }
-
-    public static Filter or(Filter...filters) {
-        if (filters == null) {
-            throw new IllegalArgumentException("Parameter 'filters' must be not null");
-        }
-        if (filters.length == 0) {
-            throw new IllegalArgumentException("Empty filters list not allowed");
-        }
-
-        return new Or(filters);
-    }
-
-    public static Filter xor(Filter...filters) {
-        if (filters == null) {
-            throw new IllegalArgumentException("Parameter 'filters' must be not null");
-        }
-        if (filters.length == 0) {
-            throw new IllegalArgumentException("Empty filters list not allowed");
-        }
-
-        return new Xor(filters);
-    }
-
-    public static Filter xnor(Filter...filters) {
-        return not(xor(filters));
     }
 
 }

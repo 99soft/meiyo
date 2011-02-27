@@ -17,8 +17,6 @@ package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
  * A filter is a class, found in the classpath, discriminator.
- *
- * @version $Id$
  */
 public interface Filter {
 
@@ -28,5 +26,17 @@ public interface Filter {
      * @return {@code true} if the given class satisfies the requirements, {@code false} otherwise.
      */
     boolean matches(Class<?> clazz);
+
+    Filter and(Filter other);
+
+    Filter nand(Filter other);
+
+    Filter or(Filter other);
+
+    Filter nor(Filter other);
+
+    Filter xor(Filter other);
+
+    Filter xnor(Filter other);
 
 }

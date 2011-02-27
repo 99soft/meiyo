@@ -69,7 +69,7 @@ public final class FiltersTestCase {
 
     public void matchesAbstract() {
         Filter isAbstract = isAbstract();
-        assert isAbstract.matches(AbstractMultipleArgumentFilter.class);
+        assert isAbstract.matches(AbstractFilter.class);
         assert !isAbstract.matches(Filter.class);
     }
 

@@ -23,10 +23,8 @@ import java.util.Arrays;
 
 /**
  * A filter that verifies the class found contains a method with the given signature.
- *
- * @version $Id$
  */
-final class ContainsMethod implements Filter {
+final class ContainsMethod extends AbstractFilter {
 
     /**
      * The method name has to be contained in the class found.
@@ -81,6 +79,14 @@ final class ContainsMethod implements Filter {
                         return declaredMethods;
                     }
                 });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format("containsMethod(%s(%s))", this.name, Arrays.toString(this.argumentsType));
     }
 
 }

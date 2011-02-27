@@ -15,7 +15,6 @@
  */
 package org.nnsoft.commons.meiyo.classpath;
 
-import static org.nnsoft.commons.meiyo.classpath.filter.Filters.and;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.any;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.classNameMatches;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.inSubpackage;
@@ -43,12 +42,11 @@ public final class ClassPathTestCase {
 
                         @Override
                         public void configure() {
-                            ifMatches(and(
-                                    inSubpackage("org.nnsoft.commons.meiyo.classpath"),
-                                    isPublic(),
-                                    not(isAbstract()),
-                                    not(isAnnotation()),
-                                    not(classNameMatches(".*TestCase"))))
+                            ifMatches(inSubpackage("org.nnsoft.commons.meiyo.classpath")
+                                    .and(isPublic())
+                                    .and(not(isAbstract()))
+                                    .and(not(isAnnotation()))
+                                    .and(not(classNameMatches(".*TestCase"))))
                                 .handleWith(new ClassPathEntryHandler() {
 
                                     public void doHandle(String path, Class<?> classPathEntry) {

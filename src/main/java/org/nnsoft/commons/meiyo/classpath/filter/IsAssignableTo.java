@@ -20,7 +20,7 @@ package org.nnsoft.commons.meiyo.classpath.filter;
  *
  * @version $Id$
  */
-final class IsAssignableTo implements Filter {
+final class IsAssignableTo extends AbstractFilter {
 
     private final Class<?> superclassOrInterface;
 
@@ -40,9 +40,7 @@ final class IsAssignableTo implements Filter {
      */
     @Override
     public String toString() {
-        return "isAssignableTo("
-                + this.superclassOrInterface.getSimpleName()
-                + ")";
+        return String.format("isAssignableTo(%s)", this.superclassOrInterface.getSimpleName());
     }
 
 }

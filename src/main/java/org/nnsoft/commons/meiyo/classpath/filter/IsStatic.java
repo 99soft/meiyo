@@ -19,10 +19,8 @@ import java.lang.reflect.Modifier;
 
 /**
  * 
- *
- * @version $Id$
  */
-final class IsStatic implements Filter {
+final class IsStatic extends AbstractFilter {
 
     /**
      * {@inheritDoc}

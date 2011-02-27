@@ -19,10 +19,8 @@ import java.util.regex.Pattern;
 
 /**
  * A filter that verifies the class found name matches against a given pattern.
- *
- * @version $Id$
  */
-final class ClassNameMatchesFilter implements Filter {
+final class ClassNameMatchesFilter extends AbstractFilter {
 
     /**
      * The class name pattern has to be matched.
@@ -59,9 +57,7 @@ final class ClassNameMatchesFilter implements Filter {
      */
     @Override
     public String toString() {
-        return "classNameMatches("
-                + this.pattern.toString()
-                + ")";
+        return String.format("classNameMatches(%s)", this.pattern.toString());
     }
 
 }

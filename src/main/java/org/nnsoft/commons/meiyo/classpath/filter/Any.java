@@ -17,10 +17,8 @@ package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
  * A filter that returns true for any class found.
- *
- * @version $Id$
  */
-final class Any implements Filter {
+final class Any extends AbstractFilter {
 
     /**
      * {@inheritDoc}

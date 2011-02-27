@@ -20,22 +20,27 @@ package org.nnsoft.commons.meiyo.classpath.filter;
  *
  * @version $Id$
  */
-class Or extends AbstractMultipleArgumentFilter implements Filter {
+class Or extends AbstractFilter {
 
-    public Or(Filter...filters) {
-        super(filters);
+    private final Filter a;
+
+    private final Filter b;
+
+    public Or(Filter a, Filter b) {
+        this.a = a;
+        this.b = b;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        for (Filter filter : this.getFilters()) {
-            if (filter.matches(clazz)) {
-                return true;
-            }
-        }
-        return false;
+        return this.a.matches(clazz) || this.b.matches(clazz);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("or(%s, %s)", this.a, this.b);
     }
 
 }

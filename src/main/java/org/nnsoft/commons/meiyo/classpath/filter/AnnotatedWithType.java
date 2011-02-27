@@ -19,10 +19,8 @@ import java.lang.annotation.Annotation;
 
 /**
  * A filter that verifies the given annotation type is present on the class found.
- *
- * @version $Id$
  */
-final class AnnotatedWithType implements Filter {
+final class AnnotatedWithType extends AbstractFilter {
 
     /**
      * The annotation type has to be present on the class found.
@@ -50,9 +48,7 @@ final class AnnotatedWithType implements Filter {
      */
     @Override
     public String toString() {
-        return "annotatedWith("
-            + this.annotationType.getName()
-            + ")";
+        return String.format("annotatedWith(%s)", this.annotationType.getName());
     }
 
 }

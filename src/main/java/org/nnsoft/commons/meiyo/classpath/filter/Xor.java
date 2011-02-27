@@ -19,29 +19,27 @@ package org.nnsoft.commons.meiyo.classpath.filter;
  * 
  * @version $Id$
  */
-final class Xor extends AbstractMultipleArgumentFilter implements Filter {
+final class Xor extends AbstractFilter {
 
-    public Xor(Filter...filters) {
-        super(filters);
+    private final Filter a;
+
+    private final Filter b;
+
+    public Xor(Filter a, Filter b) {
+        this.a = a;
+        this.b = b;
     }
 
     /**
      * {@inheritDoc}
      */
     public boolean matches(Class<?> clazz) {
-        boolean matches = false;
+        return this.a.matches(clazz) ^ this.b.matches(clazz);
+    }
 
-        for (Filter filter : this.getFilters()) {
-            if (filter.matches(clazz)) {
-                if (matches) {
-                    return false;
-                } else {
-                    matches = true;
-                }
-            }
-        }
-
-        return matches;
+    @Override
+    public String toString() {
+        return String.format("xor(%s, %s)", this.a, this.b);
     }
 
 }
