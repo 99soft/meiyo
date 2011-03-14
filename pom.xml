@@ -21,7 +21,7 @@
     <parent>
         <groupId>org.99soft</groupId>
         <artifactId>oss-parent</artifactId>
-        <version>1-SNAPSHOT</version>
+        <version>2</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -30,14 +30,20 @@
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <name>99soft :: Meiyo</name>
-    <description>Meiyo is THE Java classpath class scanner</description>
-    <url>https://github.com/99soft/${project.artifactId}</url>
+    <description>Meiyo is THE Java classpath and class scanner</description>
 
     <scm>
         <url>http://github.com/99soft/meiyo</url>
         <connection>scm:git:ssh://github.com/99soft/meiyo.git</connection>
         <developerConnection>scm:git:git+ssh://git@github.com/99soft/meiyo.git</developerConnection>
     </scm>
+
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>gitsite:git@github.com/99soft/${project.artifactId}.git</url>
+        </site>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
