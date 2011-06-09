@@ -48,12 +48,12 @@ public abstract class AbstractVisitorConfiguration
         }
     }
 
-    public abstract void configure();
+    protected abstract void configure();
 
     /**
      * {@inheritDoc}
      */
-    public AnnotatedHandlerBuilder<Class> handleType()
+    protected AnnotatedHandlerBuilder<Class> handleType()
     {
         return wrapped.handleType();
     }
@@ -61,7 +61,7 @@ public abstract class AbstractVisitorConfiguration
     /**
      * {@inheritDoc}
      */
-    public AnnotatedHandlerBuilder<Constructor> handleConstructor()
+    protected AnnotatedHandlerBuilder<Constructor> handleConstructor()
     {
         return wrapped.handleConstructor();
     }
@@ -69,7 +69,7 @@ public abstract class AbstractVisitorConfiguration
     /**
      * {@inheritDoc}
      */
-    public AnnotatedHandlerBuilder<Field> handleField()
+    protected AnnotatedHandlerBuilder<Field> handleField()
     {
         return wrapped.handleField();
     }
@@ -77,7 +77,7 @@ public abstract class AbstractVisitorConfiguration
     /**
      * {@inheritDoc}
      */
-    public AnnotatedHandlerBuilder<Method> handleMethod()
+    protected AnnotatedHandlerBuilder<Method> handleMethod()
     {
         return wrapped.handleMethod();
     }
