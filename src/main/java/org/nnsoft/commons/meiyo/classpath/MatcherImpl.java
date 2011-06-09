@@ -23,29 +23,37 @@ import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 /**
  * FILL ME
  */
-final class MatcherImpl implements Matcher {
+final class MatcherImpl
+    implements Matcher
+{
 
     private final Collection<ClassPathHandler> handlers = new LinkedList<ClassPathHandler>();
 
-    public LinkedHandlerBuilder ifMatches(final Filter filter) {
-        if (filter == null) {
-            throw new IllegalArgumentException("Filter must not be null");
+    public LinkedHandlerBuilder ifMatches( final Filter filter )
+    {
+        if ( filter == null )
+        {
+            throw new IllegalArgumentException( "Filter must not be null" );
         }
 
-        return new LinkedHandlerBuilder() {
+        return new LinkedHandlerBuilder()
+        {
 
-            public void handleWith(final ClassPathEntryHandler...entryHandlers) {
-                if (entryHandlers == null || entryHandlers.length == 0) {
-                    throw new IllegalArgumentException("At least one ClassPathEntryHandler must be specified");
+            public void handleWith( final ClassPathEntryHandler... entryHandlers )
+            {
+                if ( entryHandlers == null || entryHandlers.length == 0 )
+                {
+                    throw new IllegalArgumentException( "At least one ClassPathEntryHandler must be specified" );
                 }
 
-                MatcherImpl.this.handlers.add(new ClassPathHandler(filter, entryHandlers));
+                MatcherImpl.this.handlers.add( new ClassPathHandler( filter, entryHandlers ) );
             }
 
         };
     }
 
-    public Collection<ClassPathHandler> getHandlers() {
+    public Collection<ClassPathHandler> getHandlers()
+    {
         return this.handlers;
     }
 

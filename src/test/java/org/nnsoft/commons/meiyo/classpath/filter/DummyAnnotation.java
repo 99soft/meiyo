@@ -21,12 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 
- *
  * @version $Id$
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface DummyAnnotation {
+@Retention( RetentionPolicy.RUNTIME )
+@Target( ElementType.TYPE )
+public @interface DummyAnnotation
+{
 
 }

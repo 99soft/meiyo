@@ -18,8 +18,9 @@ package org.nnsoft.commons.meiyo.classvisitor;
 /**
  * FILL ME.
  */
-public interface ClassVisitor {
+public interface ClassVisitor
+{
 
-    void visit(final Class<?> type);
+    void visit( final Class<?> type );
 
 }

@@ -20,22 +20,29 @@ import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 /**
  * FILL ME
  */
-public abstract class AbstractHandlerConfiguration implements HandlerConfiguration {
+public abstract class AbstractHandlerConfiguration
+    implements HandlerConfiguration
+{
 
     private Matcher wrapped;
 
-    public final void configure(final Matcher matcher) {
+    public final void configure( final Matcher matcher )
+    {
         this.wrapped = matcher;
 
-        try {
+        try
+        {
             this.configure();
-        } finally {
+        }
+        finally
+        {
             this.wrapped = null;
         }
     }
 
-    public LinkedHandlerBuilder ifMatches(Filter filter) {
-        return this.wrapped.ifMatches(filter);
+    public LinkedHandlerBuilder ifMatches( Filter filter )
+    {
+        return this.wrapped.ifMatches( filter );
     }
 
     public abstract void configure();

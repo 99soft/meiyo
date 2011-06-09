@@ -20,10 +20,11 @@ import java.util.Collection;
 /**
  * FILL ME
  */
-public interface HandlerConfigurationsBuilder {
+public interface HandlerConfigurationsBuilder
+{
 
-    ClassLoaderBuilder withConfiguration(HandlerConfiguration...configurations);
+    ClassLoaderBuilder withConfiguration( HandlerConfiguration... configurations );
 
-    ClassLoaderBuilder withConfiguration(Collection<HandlerConfiguration> configurations);
+    ClassLoaderBuilder withConfiguration( Collection<HandlerConfiguration> configurations );
 
 }

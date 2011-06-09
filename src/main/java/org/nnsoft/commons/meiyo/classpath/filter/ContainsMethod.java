@@ -24,7 +24,9 @@ import java.util.Arrays;
 /**
  * A filter that verifies the class found contains a method with the given signature.
  */
-final class ContainsMethod extends AbstractFilter {
+final class ContainsMethod
+    extends AbstractFilter
+{
 
     /**
      * The method name has to be contained in the class found.
@@ -38,11 +40,12 @@ final class ContainsMethod extends AbstractFilter {
 
     /**
      * Creates a new {@code ContainsMethod} instance.
-     *
+     * 
      * @param name the method name has to be contained in the class found.
      * @param argumentsType the optional method arguments type.
      */
-    public ContainsMethod(String name, Class<?>...argumentsType) {
+    public ContainsMethod( String name, Class<?>... argumentsType )
+    {
         this.name = name;
         this.argumentsType = argumentsType;
     }
@@ -50,12 +53,16 @@ final class ContainsMethod extends AbstractFilter {
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
+    public boolean matches( Class<?> clazz )
+    {
         Class<?> current = clazz;
-        while (current != null) {
-            for (Method method : getDeclaredMethods(current)) {
-                if (this.name.equals(method.getName())
-                        && Arrays.equals(this.argumentsType, method.getParameterTypes())) {
+        while ( current != null )
+        {
+            for ( Method method : getDeclaredMethods( current ) )
+            {
+                if ( this.name.equals( method.getName() )
+                    && Arrays.equals( this.argumentsType, method.getParameterTypes() ) )
+                {
                     return true;
                 }
             }
@@ -66,27 +73,30 @@ final class ContainsMethod extends AbstractFilter {
 
     /**
      * Returns all the declared methods in the given class, using the privileged access.
-     *
+     * 
      * @param type the class from which extract the declared methods.
      * @return the declared methods array.
      */
-    private static Method[] getDeclaredMethods(final Class<?> type) {
-        return AccessController.doPrivileged(
-                new PrivilegedAction<Method[]>() {
-                    public Method[] run() {
-                        final Method[] declaredMethods = type.getDeclaredMethods();
-                        AccessibleObject.setAccessible(declaredMethods, true);
-                        return declaredMethods;
-                    }
-                });
+    private static Method[] getDeclaredMethods( final Class<?> type )
+    {
+        return AccessController.doPrivileged( new PrivilegedAction<Method[]>()
+        {
+            public Method[] run()
+            {
+                final Method[] declaredMethods = type.getDeclaredMethods();
+                AccessibleObject.setAccessible( declaredMethods, true );
+                return declaredMethods;
+            }
+        } );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("containsMethod(%s(%s))", this.name, Arrays.toString(this.argumentsType));
+    public String toString()
+    {
+        return String.format( "containsMethod(%s(%s))", this.name, Arrays.toString( this.argumentsType ) );
     }
 
 }

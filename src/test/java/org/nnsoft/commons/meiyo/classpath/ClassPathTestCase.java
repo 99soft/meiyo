@@ -15,6 +15,7 @@
  */
 package org.nnsoft.commons.meiyo.classpath;
 
+import static org.nnsoft.commons.meiyo.classpath.MeiyoScanner.createClassPathFromJVM;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.any;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.classNameMatches;
 import static org.nnsoft.commons.meiyo.classpath.filter.Filters.inSubpackage;
@@ -31,48 +32,55 @@ import org.testng.annotations.Test;
 /**
  * FILL ME
  */
-public final class ClassPathTestCase {
+public final class ClassPathTestCase
+{
 
     @Test
-    public void justPrint() {
+    public void justPrint()
+    {
         final List<Class<?>> classes = new ArrayList<Class<?>>();
 
-        MeiyoScanner.createClassPathFromJVM()
-                    .withConfiguration(new AbstractHandlerConfiguration() {
+        createClassPathFromJVM().withConfiguration( new AbstractHandlerConfiguration()
+        {
 
-                        @Override
-                        public void configure() {
-                            ifMatches(inSubpackage("org.nnsoft.commons.meiyo.classpath")
-                                    .and(isPublic())
-                                    .and(not(isAbstract()))
-                                    .and(not(isAnnotation()))
-                                    .and(not(classNameMatches(".*TestCase"))))
-                                .handleWith(new ClassPathEntryHandler() {
+            @Override
+            public void configure()
+            {
+                ifMatches(
+                           inSubpackage( "org.nnsoft.commons.meiyo.classpath" ).and( isPublic() ).and( not( isAbstract() ) ).and( not( isAnnotation() ) ).and( not( classNameMatches( ".*TestCase" ) ) ) ).handleWith( new ClassPathEntryHandler()
+                                                                                                                                                                                                                       {
 
-                                    public void doHandle(String path, Class<?> classPathEntry) {
-                                        classes.add(classPathEntry);
-                                    }
+                                                                                                                                                                                                                           public void doHandle( String path,
+                                                                                                                                                                                                                                                 Class<?> classPathEntry )
+                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                               classes.add( classPathEntry );
+                                                                                                                                                                                                                           }
 
-                                }, new ClassPathEntryHandler() {
+                                                                                                                                                                                                                       },
+                                                                                                                                                                                                                       new ClassPathEntryHandler()
+                                                                                                                                                                                                                       {
 
-                                    public void doHandle(String path, Class<?> classPathEntry) {
-                                        System.out.println(">>>> " + classPathEntry);
-                                    }
+                                                                                                                                                                                                                           public void doHandle( String path,
+                                                                                                                                                                                                                                                 Class<?> classPathEntry )
+                                                                                                                                                                                                                           {
+                                                                                                                                                                                                                               System.out.println( ">>>> "
+                                                                                                                                                                                                                                   + classPathEntry );
+                                                                                                                                                                                                                           }
 
-                                });
+                                                                                                                                                                                                                       } );
 
-                            ifMatches(any()).handleWith(new ClassPathEntryHandler() {
+                ifMatches( any() ).handleWith( new ClassPathEntryHandler()
+                {
 
-                                public void doHandle(String path, Class<?> classPathEntry) {
-                                    System.out.println("[INFO] found " + classPathEntry);
-                                }
+                    public void doHandle( String path, Class<?> classPathEntry )
+                    {
+                        System.out.println( "[INFO] found " + classPathEntry );
+                    }
 
-                            });
-                        }
+                } );
+            }
 
-                    })
-                    .usingDefaultClassLoader()
-                    .scan();
+        } ).usingDefaultClassLoader().scan();
 
         assert 0 < classes.size();
     }

@@ -16,17 +16,19 @@
 package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
- * 
- *
  * @version $Id$
  */
-final class Not extends AbstractFilter {
+final class Not
+    extends AbstractFilter
+{
 
     final Filter delegate;
 
-    public Not(Filter delegate) {
-        if (delegate == null) {
-            throw new IllegalArgumentException("Parameter 'delegate' must not be null");
+    public Not( Filter delegate )
+    {
+        if ( delegate == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'delegate' must not be null" );
         }
         this.delegate = delegate;
     }
@@ -34,16 +36,18 @@ final class Not extends AbstractFilter {
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return !this.delegate.matches(clazz);
+    public boolean matches( Class<?> clazz )
+    {
+        return !this.delegate.matches( clazz );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("not(%s)", this.delegate);
+    public String toString()
+    {
+        return String.format( "not(%s)", this.delegate );
     }
 
 }

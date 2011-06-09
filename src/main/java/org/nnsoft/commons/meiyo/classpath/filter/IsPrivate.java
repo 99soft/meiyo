@@ -20,20 +20,24 @@ import java.lang.reflect.Modifier;
 /**
  * 
  */
-final class IsPrivate extends AbstractFilter {
+final class IsPrivate
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return Modifier.isPrivate(clazz.getModifiers());
+    public boolean matches( Class<?> clazz )
+    {
+        return Modifier.isPrivate( clazz.getModifiers() );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "isPrivate()";
     }
 

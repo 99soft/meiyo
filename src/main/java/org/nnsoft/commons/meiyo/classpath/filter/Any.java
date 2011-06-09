@@ -18,12 +18,15 @@ package org.nnsoft.commons.meiyo.classpath.filter;
 /**
  * A filter that returns true for any class found.
  */
-final class Any extends AbstractFilter {
+final class Any
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
+    public boolean matches( Class<?> clazz )
+    {
         return true;
     }
 
@@ -31,7 +34,8 @@ final class Any extends AbstractFilter {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "any()";
     }
 

@@ -20,11 +20,12 @@ import java.lang.reflect.AnnotatedElement;
 
 /**
  * FILL ME.
- *
+ * 
  * @version $Id$
  */
-public interface AnnotationHandler<E extends AnnotatedElement, A extends Annotation> {
+public interface AnnotationHandler<E extends AnnotatedElement, A extends Annotation>
+{
 
-    void handle(E annnotatedElement, A annotation);
+    void handle( E annnotatedElement, A annotation );
 
 }

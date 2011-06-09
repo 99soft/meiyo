@@ -20,20 +20,24 @@ import java.lang.reflect.Modifier;
 /**
  * 
  */
-final class IsStatic extends AbstractFilter {
+final class IsStatic
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return Modifier.isStatic(clazz.getModifiers());
+    public boolean matches( Class<?> clazz )
+    {
+        return Modifier.isStatic( clazz.getModifiers() );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "isStatic()";
     }
 

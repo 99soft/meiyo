@@ -18,7 +18,9 @@ package org.nnsoft.commons.meiyo.classpath.filter;
 /**
  * Filter that verifies the found class is exactly in the given package.
  */
-final class InPackage extends AbstractFilter {
+final class InPackage
+    extends AbstractFilter
+{
 
     /**
      * The package where classes are looked for.
@@ -27,26 +29,29 @@ final class InPackage extends AbstractFilter {
 
     /**
      * Creates a new package based filter.
-     *
+     * 
      * @param targetPackage the package where classes are looked for.
      */
-    public InPackage(String targetPackage) {
+    public InPackage( String targetPackage )
+    {
         this.targetPackage = targetPackage;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return this.targetPackage.equals(clazz.getPackage().getName());
+    public boolean matches( Class<?> clazz )
+    {
+        return this.targetPackage.equals( clazz.getPackage().getName() );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("inPackage(%s)", this.targetPackage);
+    public String toString()
+    {
+        return String.format( "inPackage(%s)", this.targetPackage );
     }
 
 }

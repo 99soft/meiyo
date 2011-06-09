@@ -16,31 +16,34 @@
 package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
- * 
- *
  * @version $Id$
  */
-final class IsAssignableTo extends AbstractFilter {
+final class IsAssignableTo
+    extends AbstractFilter
+{
 
     private final Class<?> superclassOrInterface;
 
-    public IsAssignableTo(Class<?> superclassOrInterface) {
+    public IsAssignableTo( Class<?> superclassOrInterface )
+    {
         this.superclassOrInterface = superclassOrInterface;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return this.superclassOrInterface.isAssignableFrom(clazz);
+    public boolean matches( Class<?> clazz )
+    {
+        return this.superclassOrInterface.isAssignableFrom( clazz );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("isAssignableTo(%s)", this.superclassOrInterface.getSimpleName());
+    public String toString()
+    {
+        return String.format( "isAssignableTo(%s)", this.superclassOrInterface.getSimpleName() );
     }
 
 }

@@ -20,20 +20,24 @@ import java.lang.reflect.Modifier;
 /**
  * 
  */
-final class IsFinal extends AbstractFilter {
+final class IsFinal
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return Modifier.isFinal(clazz.getModifiers());
+    public boolean matches( Class<?> clazz )
+    {
+        return Modifier.isFinal( clazz.getModifiers() );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "isFinal()";
     }
 

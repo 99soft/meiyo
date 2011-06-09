@@ -24,7 +24,8 @@ import org.testng.annotations.Test;
 /**
  * FILL ME.
  */
-public final class ClassVisitorTestCase {
+public final class ClassVisitorTestCase
+{
 
     private boolean foundClassAnnotation = false;
 
@@ -33,45 +34,62 @@ public final class ClassVisitorTestCase {
     private boolean foundMethodAnnotation = false;
 
     @BeforeClass
-    public void setUp() {
-        MeiyoVisitor.createVisitor(new AbstractVisitorConfiguration() {
+    public void setUp()
+    {
+        MeiyoVisitor.createVisitor( new AbstractVisitorConfiguration()
+        {
 
             @Override
-            public void configure() {
-                handleType().annotatedWith(ClassAnnotation.class).withHandler(new AnnotationHandler<Class, ClassAnnotation>() {
-                    public void handle(Class annnotatedElement, ClassAnnotation annotation) {
-                        foundClassAnnotation = true;
-                    }
-                });
+            public void configure()
+            {
+                handleType().annotatedWith( ClassAnnotation.class ).withHandler( new AnnotationHandler<Class, ClassAnnotation>()
+                                                                                 {
+                                                                                     public void handle( Class annnotatedElement,
+                                                                                                         ClassAnnotation annotation )
+                                                                                     {
+                                                                                         foundClassAnnotation = true;
+                                                                                     }
+                                                                                 } );
 
-                handleConstructor().annotatedWith(ConstructorAnnotation.class).withHandler(new AnnotationHandler<Constructor, ConstructorAnnotation>() {
-                    public void handle(Constructor annnotatedElement, ConstructorAnnotation annotation) {
-                        foundConstructorAnnotation = true;
-                    }
-                });
+                handleConstructor().annotatedWith( ConstructorAnnotation.class ).withHandler( new AnnotationHandler<Constructor, ConstructorAnnotation>()
+                                                                                              {
+                                                                                                  public void handle( Constructor annnotatedElement,
+                                                                                                                      ConstructorAnnotation annotation )
+                                                                                                  {
+                                                                                                      foundConstructorAnnotation =
+                                                                                                          true;
+                                                                                                  }
+                                                                                              } );
 
-                handleMethod().annotatedWith(MethodAnnotation.class).withHandler(new AnnotationHandler<Method, MethodAnnotation>() {
-                    public void handle(Method annnotatedElement, MethodAnnotation annotation) {
-                        foundMethodAnnotation = true;
-                    }
-                });
+                handleMethod().annotatedWith( MethodAnnotation.class ).withHandler( new AnnotationHandler<Method, MethodAnnotation>()
+                                                                                    {
+                                                                                        public void handle( Method annnotatedElement,
+                                                                                                            MethodAnnotation annotation )
+                                                                                        {
+                                                                                            foundMethodAnnotation =
+                                                                                                true;
+                                                                                        }
+                                                                                    } );
             }
 
-        }).visit(AnnotatedBean.class);
+        } ).visit( AnnotatedBean.class );
     }
 
     @Test
-    public void verifyClassAnnotationsFound() {
+    public void verifyClassAnnotationsFound()
+    {
         assert this.foundClassAnnotation;
     }
 
     @Test
-    public void verifyConstructorAnnotationsFound() {
+    public void verifyConstructorAnnotationsFound()
+    {
         assert this.foundConstructorAnnotation;
     }
 
     @Test
-    public void verifyMethodAnnotationsFound() {
+    public void verifyMethodAnnotationsFound()
+    {
         assert this.foundMethodAnnotation;
     }
 

@@ -1,16 +1,19 @@
 package org.nnsoft.commons.meiyo.classvisitor;
 
 @ClassAnnotation
-final class AnnotatedBean {
+final class AnnotatedBean
+{
 
     @ConstructorAnnotation
-    public AnnotatedBean() {
-        
+    public AnnotatedBean()
+    {
+
     }
 
     @MethodAnnotation
-    public void doNothing() {
-        
+    public void doNothing()
+    {
+
     }
 
 }

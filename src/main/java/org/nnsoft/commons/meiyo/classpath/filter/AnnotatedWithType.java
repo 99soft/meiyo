@@ -20,7 +20,9 @@ import java.lang.annotation.Annotation;
 /**
  * A filter that verifies the given annotation type is present on the class found.
  */
-final class AnnotatedWithType extends AbstractFilter {
+final class AnnotatedWithType
+    extends AbstractFilter
+{
 
     /**
      * The annotation type has to be present on the class found.
@@ -29,26 +31,29 @@ final class AnnotatedWithType extends AbstractFilter {
 
     /**
      * Creates a new annotation type matcher filter.
-     *
+     * 
      * @param annotationType the annotation type has to be present on the class found.
      */
-    public AnnotatedWithType(Class<? extends Annotation> annotationType) {
+    public AnnotatedWithType( Class<? extends Annotation> annotationType )
+    {
         this.annotationType = annotationType;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return clazz.isAnnotationPresent(this.annotationType);
+    public boolean matches( Class<?> clazz )
+    {
+        return clazz.isAnnotationPresent( this.annotationType );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("annotatedWith(%s)", this.annotationType.getName());
+    public String toString()
+    {
+        return String.format( "annotatedWith(%s)", this.annotationType.getName() );
     }
 
 }

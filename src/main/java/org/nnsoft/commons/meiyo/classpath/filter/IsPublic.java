@@ -20,20 +20,24 @@ import java.lang.reflect.Modifier;
 /**
  * 
  */
-final class IsPublic extends AbstractFilter {
+final class IsPublic
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return Modifier.isPublic(clazz.getModifiers());
+    public boolean matches( Class<?> clazz )
+    {
+        return Modifier.isPublic( clazz.getModifiers() );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "isPublic()";
     }
 

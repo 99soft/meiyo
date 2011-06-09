@@ -22,129 +22,158 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Simple filters language implementation.
  */
-public final class Filters {
+public final class Filters
+{
 
     /**
      * This class can't be instantiated.
      */
-    private Filters() {
+    private Filters()
+    {
         // do nothing
     }
 
-    public static Filter annotatedWith(Annotation annotation) {
-        if (annotation == null) {
-            throw new IllegalArgumentException("Parameter 'annotation' must not be null");
+    public static Filter annotatedWith( Annotation annotation )
+    {
+        if ( annotation == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'annotation' must not be null" );
         }
 
-        checkForRuntimeRetention(annotation.annotationType());
+        checkForRuntimeRetention( annotation.annotationType() );
 
-        return new AnnotatedWith(annotation);
+        return new AnnotatedWith( annotation );
     }
 
-    public static Filter annotatedWithType(Class<? extends Annotation> annotationType) {
-        if (annotationType == null) {
-            throw new IllegalArgumentException("Parameter 'annotationType' must not be null");
+    public static Filter annotatedWithType( Class<? extends Annotation> annotationType )
+    {
+        if ( annotationType == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'annotationType' must not be null" );
         }
 
-        checkForRuntimeRetention(annotationType);
+        checkForRuntimeRetention( annotationType );
 
-        return new AnnotatedWithType(annotationType);
+        return new AnnotatedWithType( annotationType );
     }
 
-    private static void checkForRuntimeRetention(Class<? extends Annotation> annotationType) {
-        Retention retention = annotationType.getAnnotation(Retention.class);
-        if (retention == null || RetentionPolicy.RUNTIME != retention.value()) {
-            throw new IllegalArgumentException("Annotation @"
-                    + annotationType.getName()
-                    + " is missing RUNTIME retention");
+    private static void checkForRuntimeRetention( Class<? extends Annotation> annotationType )
+    {
+        Retention retention = annotationType.getAnnotation( Retention.class );
+        if ( retention == null || RetentionPolicy.RUNTIME != retention.value() )
+        {
+            throw new IllegalArgumentException( "Annotation @" + annotationType.getName()
+                + " is missing RUNTIME retention" );
         }
     }
 
-    public static Filter any() {
+    public static Filter any()
+    {
         return new Any();
     }
 
-    public static Filter classNameMatches(String regex) {
-        if (regex == null) {
-            throw new IllegalArgumentException("Parameter 'regex' must not be null");
+    public static Filter classNameMatches( String regex )
+    {
+        if ( regex == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'regex' must not be null" );
         }
-        if (regex.length() == 0) {
-            throw new IllegalArgumentException("Empty 'regex' not allowed");
+        if ( regex.length() == 0 )
+        {
+            throw new IllegalArgumentException( "Empty 'regex' not allowed" );
         }
 
-        return new ClassNameMatchesFilter(regex);
+        return new ClassNameMatchesFilter( regex );
     }
 
-    public static Filter containsMethod(String name, Class<?>...argumentsType) {
-        if (name == null) {
-            throw new IllegalArgumentException("Parameter 'name' must not be null");
+    public static Filter containsMethod( String name, Class<?>... argumentsType )
+    {
+        if ( name == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'name' must not be null" );
         }
 
-        return new ContainsMethod(name, argumentsType);
+        return new ContainsMethod( name, argumentsType );
     }
 
-    public static Filter inPackage(String targetPackage) {
-        if (targetPackage == null) {
-            throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
+    public static Filter inPackage( String targetPackage )
+    {
+        if ( targetPackage == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'targetPackage' must be not null" );
         }
 
-        return new InPackage(targetPackage);
+        return new InPackage( targetPackage );
     }
 
-    public static Filter inSubpackage(String targetPackage) {
-        if (targetPackage == null) {
-            throw new IllegalArgumentException("Parameter 'targetPackage' must be not null");
+    public static Filter inSubpackage( String targetPackage )
+    {
+        if ( targetPackage == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'targetPackage' must be not null" );
         }
 
-        return new InSubpackage(targetPackage);
+        return new InSubpackage( targetPackage );
     }
 
-    public static Filter isAbstract() {
+    public static Filter isAbstract()
+    {
         return new IsAbstract();
     }
 
-    public static Filter isAnnotation() {
+    public static Filter isAnnotation()
+    {
         return new IsAnnotation();
     }
 
-    public static Filter isAssignableTo(Class<?> superclassOrInterface) {
-        if (superclassOrInterface == null) {
-            throw new IllegalArgumentException("Parameter 'superclassOrInterface' must be not null");
+    public static Filter isAssignableTo( Class<?> superclassOrInterface )
+    {
+        if ( superclassOrInterface == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'superclassOrInterface' must be not null" );
         }
 
-        return new IsAssignableTo(superclassOrInterface);
+        return new IsAssignableTo( superclassOrInterface );
     }
 
-    public static Filter isFinal() {
+    public static Filter isFinal()
+    {
         return new IsFinal();
     }
 
-    public static Filter isInterface() {
+    public static Filter isInterface()
+    {
         return new IsInterface();
     }
 
-    public static Filter isPrivate() {
+    public static Filter isPrivate()
+    {
         return new IsPrivate();
     }
 
-    public static Filter isPublic() {
+    public static Filter isPublic()
+    {
         return new IsPublic();
     }
 
-    public static Filter isStatic() {
+    public static Filter isStatic()
+    {
         return new IsStatic();
     }
 
-    public static Filter isStrict() {
+    public static Filter isStrict()
+    {
         return new IsStrict();
     }
 
-    public static Filter not(Filter delegate) {
-        if (delegate == null) {
-            throw new IllegalArgumentException("Parameter 'delegate' must be not null");
+    public static Filter not( Filter delegate )
+    {
+        if ( delegate == null )
+        {
+            throw new IllegalArgumentException( "Parameter 'delegate' must be not null" );
         }
 
-        return new Not(delegate);
+        return new Not( delegate );
     }
 
 }

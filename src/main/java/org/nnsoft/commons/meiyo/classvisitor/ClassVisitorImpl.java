@@ -26,68 +26,88 @@ import java.security.PrivilegedAction;
 /**
  * FILL ME.
  */
-final class ClassVisitorImpl implements ClassVisitor {
+final class ClassVisitorImpl
+    implements ClassVisitor
+{
 
     private static final String JAVA_PACKAGE = "java";
 
     private final AnnotationHandlerBinderImpl binder;
 
-    public ClassVisitorImpl(final AnnotationHandlerBinderImpl binder) {
+    public ClassVisitorImpl( final AnnotationHandlerBinderImpl binder )
+    {
         this.binder = binder;
     }
 
-    public void visit(final Class<?> type) {
-        if (type == null || type.getPackage().getName().startsWith(JAVA_PACKAGE)) {
+    public void visit( final Class<?> type )
+    {
+        if ( type == null || type.getPackage().getName().startsWith( JAVA_PACKAGE ) )
+        {
             return;
         }
 
         // TYPE
-        this.visitElements(type);
+        this.visitElements( type );
 
-        if (!type.isInterface()) {
+        if ( !type.isInterface() )
+        {
             // CONSTRUCTOR
-            this.visitElements(new PrivilegedAction<Constructor<?>[]>() {
-                public Constructor<?>[] run() {
+            this.visitElements( new PrivilegedAction<Constructor<?>[]>()
+            {
+                public Constructor<?>[] run()
+                {
                     return type.getDeclaredConstructors();
                 }
-            });
+            } );
 
             // FIELD
-            this.visitElements(new PrivilegedAction<Field[]>() {
-                public Field[] run() {
+            this.visitElements( new PrivilegedAction<Field[]>()
+            {
+                public Field[] run()
+                {
                     return type.getDeclaredFields();
                 }
-            });
+            } );
         }
 
         // METHOD
-        this.visitElements(new PrivilegedAction<Method[]>() {
-            public Method[] run() {
+        this.visitElements( new PrivilegedAction<Method[]>()
+        {
+            public Method[] run()
+            {
                 return type.getDeclaredMethods();
             }
-        });
+        } );
 
-        this.visit(type.getSuperclass());
+        this.visit( type.getSuperclass() );
     }
 
-    private <AE extends AnnotatedElement> void visitElements(PrivilegedAction<AE[]> action) {
+    private <AE extends AnnotatedElement> void visitElements( PrivilegedAction<AE[]> action )
+    {
         AE[] annotatedElements = null;
-        if (System.getSecurityManager() != null) {
-            annotatedElements = AccessController.doPrivileged(action);
-        } else {
+        if ( System.getSecurityManager() != null )
+        {
+            annotatedElements = AccessController.doPrivileged( action );
+        }
+        else
+        {
             annotatedElements = action.run();
         }
-        this.visitElements(annotatedElements);
+        this.visitElements( annotatedElements );
     }
 
-    private void visitElements(AnnotatedElement...annotatedElements) {
-        for (AnnotatedElement element : annotatedElements) {
-            for (Annotation annotation : element.getAnnotations()) {
+    private void visitElements( AnnotatedElement... annotatedElements )
+    {
+        for ( AnnotatedElement element : annotatedElements )
+        {
+            for ( Annotation annotation : element.getAnnotations() )
+            {
                 AnnotationHandler<AnnotatedElement, Annotation> handler =
-                    this.binder.getHandler(element.getClass(), annotation.annotationType());
+                    this.binder.getHandler( element.getClass(), annotation.annotationType() );
 
-                if (handler != null) {
-                    handler.handle(element, annotation);
+                if ( handler != null )
+                {
+                    handler.handle( element, annotation );
                 }
             }
         }

@@ -15,45 +15,53 @@
  */
 package org.nnsoft.commons.meiyo.classpath.filter;
 
-abstract class AbstractFilter implements Filter {
+abstract class AbstractFilter
+    implements Filter
+{
 
     /**
      * {@inheritDoc}
      */
-    public Filter and(Filter other) {
-        return new And(this, other);
+    public Filter and( Filter other )
+    {
+        return new And( this, other );
     }
 
     /**
      * {@inheritDoc}
      */
-    public Filter nand(Filter other) {
-        return new Not(and(other));
+    public Filter nand( Filter other )
+    {
+        return new Not( and( other ) );
     }
 
     /**
      * {@inheritDoc}
      */
-    public Filter or(Filter other) {
-        return new Or(this, other);
+    public Filter or( Filter other )
+    {
+        return new Or( this, other );
     }
 
     /**
      * {@inheritDoc}
      */
-    public Filter nor(Filter other) {
-        return new Not(or(other));
+    public Filter nor( Filter other )
+    {
+        return new Not( or( other ) );
     }
 
     /**
      * {@inheritDoc}
      */
-    public Filter xor(Filter other) {
-        return new Xor(this, other);
+    public Filter xor( Filter other )
+    {
+        return new Xor( this, other );
     }
 
-    public Filter xnor(Filter other) {
-        return new Not(xor(other));
+    public Filter xnor( Filter other )
+    {
+        return new Not( xor( other ) );
     }
 
 }

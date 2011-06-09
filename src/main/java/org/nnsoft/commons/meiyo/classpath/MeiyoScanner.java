@@ -27,107 +27,140 @@ import java.util.regex.Pattern;
 /**
  * FILL ME
  */
-public final class MeiyoScanner {
+public final class MeiyoScanner
+{
 
     private static final String JAVA_CLASS_PATH = "java.class.path";
 
-    private static final Pattern JAR_FILE = Pattern.compile(".+\\.(jar|zip)", Pattern.CASE_INSENSITIVE);
+    private static final Pattern JAR_FILE = Pattern.compile( ".+\\.(jar|zip)", Pattern.CASE_INSENSITIVE );
 
     private static final String CLASS_EXTENSION = ".class";
 
-    private MeiyoScanner() {
+    private MeiyoScanner()
+    {
         // do nothing
     }
 
-    public static HandlerConfigurationsBuilder createClassPathFromJVM() {
-        return createClassPathFromPath(System.getProperty(JAVA_CLASS_PATH));
+    public static HandlerConfigurationsBuilder createClassPathFromJVM()
+    {
+        return createClassPathFromPath( System.getProperty( JAVA_CLASS_PATH ) );
     }
 
-    public static HandlerConfigurationsBuilder createClassPathFromPath(final String classpath) {
-        if (classpath == null || classpath.length() == 0) {
-            throw new IllegalArgumentException("Parameter 'classpath' must not be empty");
+    public static HandlerConfigurationsBuilder createClassPathFromPath( final String classpath )
+    {
+        if ( classpath == null || classpath.length() == 0 )
+        {
+            throw new IllegalArgumentException( "Parameter 'classpath' must not be empty" );
         }
 
-        return createClassPathFromPath(classpath.split(File.pathSeparator));
+        return createClassPathFromPath( classpath.split( File.pathSeparator ) );
     }
 
-    public static HandlerConfigurationsBuilder createClassPathFromPath(final String...paths) {
-        if (paths == null || paths.length == 0) {
-            throw new IllegalArgumentException("At least one path has to be specified");
+    public static HandlerConfigurationsBuilder createClassPathFromPath( final String... paths )
+    {
+        if ( paths == null || paths.length == 0 )
+        {
+            throw new IllegalArgumentException( "At least one path has to be specified" );
         }
 
-        return new HandlerConfigurationsBuilder() {
+        return new HandlerConfigurationsBuilder()
+        {
 
-            public ClassLoaderBuilder withConfiguration(final HandlerConfiguration...configurations) {
-                if (configurations == null || configurations.length == 0) {
-                    throw new IllegalArgumentException("At least one HandlerConfiguration has to be specified");
+            public ClassLoaderBuilder withConfiguration( final HandlerConfiguration... configurations )
+            {
+                if ( configurations == null || configurations.length == 0 )
+                {
+                    throw new IllegalArgumentException( "At least one HandlerConfiguration has to be specified" );
                 }
-                return withConfiguration(Arrays.asList(configurations));
+                return withConfiguration( Arrays.asList( configurations ) );
             }
 
-            public ClassLoaderBuilder withConfiguration(final Collection<HandlerConfiguration> configurations) {
-                if (configurations == null || configurations.isEmpty()) {
-                    throw new IllegalArgumentException("Parameter 'configurations' must not be null or empty");
+            public ClassLoaderBuilder withConfiguration( final Collection<HandlerConfiguration> configurations )
+            {
+                if ( configurations == null || configurations.isEmpty() )
+                {
+                    throw new IllegalArgumentException( "Parameter 'configurations' must not be null or empty" );
                 }
 
                 MatcherImpl matcher = new MatcherImpl();
-                for (HandlerConfiguration configuration : configurations) {
-                    configuration.configure(matcher);
+                for ( HandlerConfiguration configuration : configurations )
+                {
+                    configuration.configure( matcher );
                 }
 
                 final Collection<ClassPathHandler> handlers = matcher.getHandlers();
 
-                return new ClassLoaderBuilder() {
+                return new ClassLoaderBuilder()
+                {
 
-                    public ErrorHandlerBuilder usingDefaultClassLoader() {
-                        return this.usingClassLoader(Thread.currentThread().getContextClassLoader());
+                    public ErrorHandlerBuilder usingDefaultClassLoader()
+                    {
+                        return this.usingClassLoader( Thread.currentThread().getContextClassLoader() );
                     }
 
-                    public ErrorHandlerBuilder usingClassLoader(final ClassLoader classLoader) {
-                        if (classLoader == null) {
-                            throw new IllegalArgumentException("Parameter 'classLoader' must not be null");
+                    public ErrorHandlerBuilder usingClassLoader( final ClassLoader classLoader )
+                    {
+                        if ( classLoader == null )
+                        {
+                            throw new IllegalArgumentException( "Parameter 'classLoader' must not be null" );
                         }
 
-                        return new ErrorHandlerBuilder() {
+                        return new ErrorHandlerBuilder()
+                        {
 
-                            public void scan() {
-                                scan(new ErrorHandler() {
+                            public void scan()
+                            {
+                                scan( new ErrorHandler()
+                                {
 
-                                    public void onJARReadingError(File file, IOException e) {
-                                        throw new RuntimeException("An error occurred while loading '"
-                                                + file
-                                                + "' jar entry", e);
+                                    public void onJARReadingError( File file, IOException e )
+                                    {
+                                        throw new RuntimeException( "An error occurred while loading '" + file
+                                            + "' jar entry", e );
                                     }
 
-                                    public void onClassNotFound(String className) {
+                                    public void onClassNotFound( String className )
+                                    {
                                         // do nothing, just ignore it
                                     }
 
-                                });
+                                } );
                             }
 
-                            public void scan(final ErrorHandler errorHandler) {
-                                if (errorHandler == null) {
-                                    throw new IllegalArgumentException("Parameter 'errorHandler' must not be null");
+                            public void scan( final ErrorHandler errorHandler )
+                            {
+                                if ( errorHandler == null )
+                                {
+                                    throw new IllegalArgumentException( "Parameter 'errorHandler' must not be null" );
                                 }
 
-                                for (String path: paths) {
-                                    File file = new File(path);
-                                    if (JAR_FILE.matcher(path).matches()) {
-                                        try {
-                                            JarFile jarFile = new JarFile(path);
+                                for ( String path : paths )
+                                {
+                                    File file = new File( path );
+                                    if ( JAR_FILE.matcher( path ).matches() )
+                                    {
+                                        try
+                                        {
+                                            JarFile jarFile = new JarFile( path );
                                             Enumeration<JarEntry> enumeration = jarFile.entries();
-                                            while (enumeration.hasMoreElements()) {
+                                            while ( enumeration.hasMoreElements() )
+                                            {
                                                 JarEntry entry = enumeration.nextElement();
-                                                if (!entry.isDirectory()) {
-                                                    handleEntry(entry.getName(), path, handlers, classLoader, errorHandler);
+                                                if ( !entry.isDirectory() )
+                                                {
+                                                    handleEntry( entry.getName(), path, handlers, classLoader,
+                                                                 errorHandler );
                                                 }
                                             }
-                                        } catch (IOException e) {
-                                            errorHandler.onJARReadingError(file, e);
                                         }
-                                    } else {
-                                        traverse(file, path, handlers, classLoader, errorHandler);
+                                        catch ( IOException e )
+                                        {
+                                            errorHandler.onJARReadingError( file, e );
+                                        }
+                                    }
+                                    else
+                                    {
+                                        traverse( file, path, handlers, classLoader, errorHandler );
                                     }
                                     // else ignore it
                                 }
@@ -140,41 +173,46 @@ public final class MeiyoScanner {
         };
     }
 
-    private static final void traverse(final File file,
-            final String path,
-            final Collection<ClassPathHandler> handlers,
-            final ClassLoader classLoader,
-            final ErrorHandler errorHandler) {
-        if (file.isDirectory()) {
+    private static final void traverse( final File file, final String path,
+                                        final Collection<ClassPathHandler> handlers, final ClassLoader classLoader,
+                                        final ErrorHandler errorHandler )
+    {
+        if ( file.isDirectory() )
+        {
 
-            for (File child : file.listFiles()) {
-                traverse(child, path, handlers, classLoader, errorHandler);
+            for ( File child : file.listFiles() )
+            {
+                traverse( child, path, handlers, classLoader, errorHandler );
             }
 
             return;
         }
 
-        handleEntry(file.getAbsolutePath().substring(path.length() + 1), path, handlers, classLoader, errorHandler);
+        handleEntry( file.getAbsolutePath().substring( path.length() + 1 ), path, handlers, classLoader, errorHandler );
     }
 
-    private static final void handleEntry(String entry,
-            final String path,
-            final Collection<ClassPathHandler> handlers,
-            final ClassLoader classLoader,
-            final ErrorHandler errorHandler) {
-        if (!entry.endsWith(CLASS_EXTENSION)) {
+    private static final void handleEntry( String entry, final String path,
+                                           final Collection<ClassPathHandler> handlers, final ClassLoader classLoader,
+                                           final ErrorHandler errorHandler )
+    {
+        if ( !entry.endsWith( CLASS_EXTENSION ) )
+        {
             return;
         }
 
-        entry = entry.substring(0, entry.lastIndexOf('.')).replace('/', '.');
-        try {
-            Class<?> clazz = classLoader.loadClass(entry);
+        entry = entry.substring( 0, entry.lastIndexOf( '.' ) ).replace( '/', '.' );
+        try
+        {
+            Class<?> clazz = classLoader.loadClass( entry );
 
-            for (ClassPathHandler classPathHandler : handlers) {
-                classPathHandler.doHandle(path, clazz);
+            for ( ClassPathHandler classPathHandler : handlers )
+            {
+                classPathHandler.doHandle( path, clazz );
             }
-        } catch (Throwable t) {
-            errorHandler.onClassNotFound(entry);
+        }
+        catch ( Throwable t )
+        {
+            errorHandler.onClassNotFound( entry );
         }
     }
 

@@ -16,16 +16,17 @@
 package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
- * 
- *
  * @version $Id$
  */
-final class IsAnnotation extends AbstractFilter {
+final class IsAnnotation
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
+    public boolean matches( Class<?> clazz )
+    {
         return clazz.isAnnotation();
     }
 
@@ -33,7 +34,8 @@ final class IsAnnotation extends AbstractFilter {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "isAnnotation()";
     }
 

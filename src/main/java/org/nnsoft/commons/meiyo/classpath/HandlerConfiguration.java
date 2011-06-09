@@ -18,8 +18,9 @@ package org.nnsoft.commons.meiyo.classpath;
 /**
  * FILL ME
  */
-public interface HandlerConfiguration {
+public interface HandlerConfiguration
+{
 
-    void configure(Matcher matcher);
+    void configure( Matcher matcher );
 
 }

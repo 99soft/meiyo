@@ -30,59 +30,65 @@ import org.nnsoft.commons.meiyo.classpath.MeiyoScanner;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-
 /**
- * 
- *
  * @version $Id$
  */
 @Test
-public final class FiltersTestCase {
+public final class FiltersTestCase
+{
 
-    public void matchesAnnotatedWithType() {
-        assert annotatedWithType(Test.class).matches(this.getClass());
-        assert !annotatedWithType(Parameters.class).matches(this.getClass());
+    public void matchesAnnotatedWithType()
+    {
+        assert annotatedWithType( Test.class ).matches( this.getClass() );
+        assert !annotatedWithType( Parameters.class ).matches( this.getClass() );
     }
 
-    @Test(expectedExceptions = { IllegalArgumentException.class })
-    public void noRuntimeRetention() {
-        annotatedWithType(NoRuntimeRetention.class);
+    @Test( expectedExceptions = { IllegalArgumentException.class } )
+    public void noRuntimeRetention()
+    {
+        annotatedWithType( NoRuntimeRetention.class );
     }
 
-    public void matchesInPackage() {
-        Filter inMeiyoPackage = inPackage("org.nnsoft.commons.meiyo.classpath");
-        assert inMeiyoPackage.matches(MeiyoScanner.class);
-        assert !inMeiyoPackage.matches(List.class);
+    public void matchesInPackage()
+    {
+        Filter inMeiyoPackage = inPackage( "org.nnsoft.commons.meiyo.classpath" );
+        assert inMeiyoPackage.matches( MeiyoScanner.class );
+        assert !inMeiyoPackage.matches( List.class );
     }
 
-    public void matchesInSubPackage() {
-        Filter inMeiyoPackage = inSubpackage("org.nnsoft.commons.meiyo.classpath");
-        assert inMeiyoPackage.matches(Filters.class);
-        assert !inMeiyoPackage.matches(List.class);
+    public void matchesInSubPackage()
+    {
+        Filter inMeiyoPackage = inSubpackage( "org.nnsoft.commons.meiyo.classpath" );
+        assert inMeiyoPackage.matches( Filters.class );
+        assert !inMeiyoPackage.matches( List.class );
     }
 
-    public void matchesInterface() {
+    public void matchesInterface()
+    {
         Filter isInterface = isInterface();
-        assert !isInterface.matches(DummyAnnotation.class);
-        assert isInterface.matches(Matcher.class);
+        assert !isInterface.matches( DummyAnnotation.class );
+        assert isInterface.matches( Matcher.class );
     }
 
-    public void matchesAbstract() {
+    public void matchesAbstract()
+    {
         Filter isAbstract = isAbstract();
-        assert isAbstract.matches(AbstractFilter.class);
-        assert !isAbstract.matches(Filter.class);
+        assert isAbstract.matches( AbstractFilter.class );
+        assert !isAbstract.matches( Filter.class );
     }
 
-    public void matchesContainsMethodWithNoArguments() {
-        Filter containsMethod = containsMethod("usingDefaultClassLoader");
-        assert containsMethod.matches(ClassLoaderBuilder.class);
-        assert !containsMethod.matches(Filter.class);
+    public void matchesContainsMethodWithNoArguments()
+    {
+        Filter containsMethod = containsMethod( "usingDefaultClassLoader" );
+        assert containsMethod.matches( ClassLoaderBuilder.class );
+        assert !containsMethod.matches( Filter.class );
     }
 
-    public void matchesContainsMethodWithArguments() {
-        Filter containsMethod = containsMethod("matches", Class.class);
-        assert containsMethod.matches(Filter.class);
-        assert !containsMethod.matches(MeiyoScanner.class);
+    public void matchesContainsMethodWithArguments()
+    {
+        Filter containsMethod = containsMethod( "matches", Class.class );
+        assert containsMethod.matches( Filter.class );
+        assert !containsMethod.matches( MeiyoScanner.class );
     }
 
 }

@@ -21,8 +21,9 @@ import java.lang.reflect.AnnotatedElement;
 /**
  * FILL ME.
  */
-public interface LinkedHandlingBuilder<E extends AnnotatedElement, A extends Annotation> {
+public interface LinkedHandlingBuilder<E extends AnnotatedElement, A extends Annotation>
+{
 
-    void withHandler(AnnotationHandler<E, A> handler);
+    void withHandler( AnnotationHandler<E, A> handler );
 
 }

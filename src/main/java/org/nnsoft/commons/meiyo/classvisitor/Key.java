@@ -21,22 +21,26 @@ import java.lang.reflect.AnnotatedElement;
 /**
  * FILL ME.
  */
-final class Key {
+final class Key
+{
 
     private final Class<? extends AnnotatedElement> annotatedElementType;
 
     private final Class<? extends Annotation> annotationType;
 
-    public Key(Class<? extends AnnotatedElement> annotatedElementType, Class<? extends Annotation> annotationType) {
+    public Key( Class<? extends AnnotatedElement> annotatedElementType, Class<? extends Annotation> annotationType )
+    {
         this.annotatedElementType = annotatedElementType;
         this.annotationType = annotationType;
     }
 
-    protected Class<? extends AnnotatedElement> getAnnotatedElementType() {
+    protected Class<? extends AnnotatedElement> getAnnotatedElementType()
+    {
         return this.annotatedElementType;
     }
 
-    protected Class<? extends Annotation> getAnnotationType() {
+    protected Class<? extends Annotation> getAnnotationType()
+    {
         return this.annotationType;
     }
 
@@ -44,15 +48,12 @@ final class Key {
      * {@inheritDoc}
      */
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         final int prime = 31;
         int result = 1;
-        result = prime
-                * result
-                + ((this.annotatedElementType == null) ? 0 : this.annotatedElementType
-                        .hashCode());
-        result = prime * result
-                + ((this.annotationType == null) ? 0 : this.annotationType.hashCode());
+        result = prime * result + ( ( this.annotatedElementType == null ) ? 0 : this.annotatedElementType.hashCode() );
+        result = prime * result + ( ( this.annotationType == null ) ? 0 : this.annotationType.hashCode() );
         return result;
     }
 
@@ -60,32 +61,44 @@ final class Key {
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals( Object obj )
+    {
+        if ( this == obj )
+        {
             return true;
         }
-        if (obj == null) {
+        if ( obj == null )
+        {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if ( getClass() != obj.getClass() )
+        {
             return false;
         }
 
         Key other = (Key) obj;
 
-        if (this.annotatedElementType == null) {
-            if (other.getAnnotatedElementType() != null) {
+        if ( this.annotatedElementType == null )
+        {
+            if ( other.getAnnotatedElementType() != null )
+            {
                 return false;
             }
-        } else if (!this.annotatedElementType.equals(other.getAnnotatedElementType())) {
+        }
+        else if ( !this.annotatedElementType.equals( other.getAnnotatedElementType() ) )
+        {
             return false;
         }
 
-        if (this.annotationType == null) {
-            if (other.getAnnotationType() != null) {
+        if ( this.annotationType == null )
+        {
+            if ( other.getAnnotationType() != null )
+            {
                 return false;
             }
-        } else if (!this.annotationType.equals(other.getAnnotationType())) {
+        }
+        else if ( !this.annotationType.equals( other.getAnnotationType() ) )
+        {
             return false;
         }
 
@@ -96,10 +109,10 @@ final class Key {
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("Key [annotatedElementType=%s, annotationType=%s]",
-                this.annotatedElementType,
-                this.annotationType);
+    public String toString()
+    {
+        return String.format( "Key [annotatedElementType=%s, annotationType=%s]", this.annotatedElementType,
+                              this.annotationType );
     }
 
 }

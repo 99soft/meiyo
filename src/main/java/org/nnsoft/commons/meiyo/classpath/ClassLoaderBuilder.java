@@ -18,10 +18,11 @@ package org.nnsoft.commons.meiyo.classpath;
 /**
  * FILL ME
  */
-public interface ClassLoaderBuilder {
+public interface ClassLoaderBuilder
+{
 
     ErrorHandlerBuilder usingDefaultClassLoader();
 
-    ErrorHandlerBuilder usingClassLoader(ClassLoader classLoader);
+    ErrorHandlerBuilder usingClassLoader( ClassLoader classLoader );
 
 }

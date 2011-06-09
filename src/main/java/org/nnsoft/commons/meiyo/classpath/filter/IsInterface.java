@@ -20,20 +20,24 @@ import java.lang.reflect.Modifier;
 /**
  * 
  */
-final class IsInterface extends AbstractFilter {
+final class IsInterface
+    extends AbstractFilter
+{
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return Modifier.isInterface(clazz.getModifiers()) && !clazz.isAnnotation();
+    public boolean matches( Class<?> clazz )
+    {
+        return Modifier.isInterface( clazz.getModifiers() ) && !clazz.isAnnotation();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "isInterface()";
     }
 

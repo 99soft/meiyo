@@ -18,8 +18,9 @@ package org.nnsoft.commons.meiyo.classpath;
 /**
  * TODO fill me;
  */
-public interface LinkedHandlerBuilder {
+public interface LinkedHandlerBuilder
+{
 
-    void handleWith(ClassPathEntryHandler...entryHandler);
+    void handleWith( ClassPathEntryHandler... entryHandler );
 
 }

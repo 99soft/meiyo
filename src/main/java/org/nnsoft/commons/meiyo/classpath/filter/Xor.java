@@ -16,16 +16,18 @@
 package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
- * 
  * @version $Id$
  */
-final class Xor extends AbstractFilter {
+final class Xor
+    extends AbstractFilter
+{
 
     private final Filter a;
 
     private final Filter b;
 
-    public Xor(Filter a, Filter b) {
+    public Xor( Filter a, Filter b )
+    {
         this.a = a;
         this.b = b;
     }
@@ -33,13 +35,15 @@ final class Xor extends AbstractFilter {
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return this.a.matches(clazz) ^ this.b.matches(clazz);
+    public boolean matches( Class<?> clazz )
+    {
+        return this.a.matches( clazz ) ^ this.b.matches( clazz );
     }
 
     @Override
-    public String toString() {
-        return String.format("xor(%s, %s)", this.a, this.b);
+    public String toString()
+    {
+        return String.format( "xor(%s, %s)", this.a, this.b );
     }
 
 }

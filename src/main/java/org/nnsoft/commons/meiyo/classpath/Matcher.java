@@ -20,8 +20,9 @@ import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 /**
  * FILL ME
  */
-public interface Matcher {
+public interface Matcher
+{
 
-    LinkedHandlerBuilder ifMatches(Filter filter);
+    LinkedHandlerBuilder ifMatches( Filter filter );
 
 }

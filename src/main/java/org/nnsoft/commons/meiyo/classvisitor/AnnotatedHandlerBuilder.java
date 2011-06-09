@@ -21,8 +21,9 @@ import java.lang.reflect.AnnotatedElement;
 /**
  * FILL ME.
  */
-public interface AnnotatedHandlerBuilder<E extends AnnotatedElement> {
+public interface AnnotatedHandlerBuilder<E extends AnnotatedElement>
+{
 
-    <A extends Annotation> LinkedHandlingBuilder<E, A> annotatedWith(Class<A> annotationType);
+    <A extends Annotation> LinkedHandlingBuilder<E, A> annotatedWith( Class<A> annotationType );
 
 }

@@ -18,14 +18,15 @@ package org.nnsoft.commons.meiyo.classpath;
 /**
  * The handler which receives ClassPath entry notifications.
  */
-public interface ClassPathEntryHandler {
+public interface ClassPathEntryHandler
+{
 
     /**
      * Receive a ClassPath entry notification event.
-     *
+     * 
      * @param path
      * @param classPathEntry
      */
-    void doHandle(String path, Class<?> classPathEntry);
+    void doHandle( String path, Class<?> classPathEntry );
 
 }

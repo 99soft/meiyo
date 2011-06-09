@@ -20,7 +20,9 @@ import java.util.regex.Pattern;
 /**
  * A filter that verifies the class found name matches against a given pattern.
  */
-final class ClassNameMatchesFilter extends AbstractFilter {
+final class ClassNameMatchesFilter
+    extends AbstractFilter
+{
 
     /**
      * The class name pattern has to be matched.
@@ -29,35 +31,39 @@ final class ClassNameMatchesFilter extends AbstractFilter {
 
     /**
      * Creates a new class name matcher.
-     *
+     * 
      * @param regex the class name regexp pattern has to be matched.
      */
-    public ClassNameMatchesFilter(String regex) {
-        this(Pattern.compile(regex));
+    public ClassNameMatchesFilter( String regex )
+    {
+        this( Pattern.compile( regex ) );
     }
 
     /**
      * Creates a new class name matcher.
-     *
+     * 
      * @param pattern the class name pattern has to be matched.
      */
-    public ClassNameMatchesFilter(Pattern pattern) {
+    public ClassNameMatchesFilter( Pattern pattern )
+    {
         this.pattern = pattern;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return this.pattern.matcher(clazz.getSimpleName()).matches();
+    public boolean matches( Class<?> clazz )
+    {
+        return this.pattern.matcher( clazz.getSimpleName() ).matches();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("classNameMatches(%s)", this.pattern.toString());
+    public String toString()
+    {
+        return String.format( "classNameMatches(%s)", this.pattern.toString() );
     }
 
 }

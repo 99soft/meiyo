@@ -18,10 +18,11 @@ package org.nnsoft.commons.meiyo.classpath;
 /**
  * FILL ME
  */
-public interface ErrorHandlerBuilder {
+public interface ErrorHandlerBuilder
+{
 
     void scan();
 
-    void scan(ErrorHandler errorHandler);
+    void scan( ErrorHandler errorHandler );
 
 }

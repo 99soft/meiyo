@@ -19,10 +19,12 @@ import java.lang.annotation.Annotation;
 
 /**
  * A filter that verifies the class found is annotated with the given annotation.
- *
+ * 
  * @version $Id$
  */
-final class AnnotatedWith extends AbstractFilter {
+final class AnnotatedWith
+    extends AbstractFilter
+{
 
     /**
      * The annotation has to be searched on classes.
@@ -31,27 +33,30 @@ final class AnnotatedWith extends AbstractFilter {
 
     /**
      * Crates a new annotation filter.
-     *
+     * 
      * @param annotation the annotation has to be searched on classes.
      */
-    public AnnotatedWith(Annotation annotation) {
+    public AnnotatedWith( Annotation annotation )
+    {
         this.annotation = annotation;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        Annotation fromElement = clazz.getAnnotation(this.annotation.annotationType());
-        return this.annotation.equals(fromElement);
+    public boolean matches( Class<?> clazz )
+    {
+        Annotation fromElement = clazz.getAnnotation( this.annotation.annotationType() );
+        return this.annotation.equals( fromElement );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String toString() {
-        return String.format("annotatedWith(%s)", this.annotation);
+    public String toString()
+    {
+        return String.format( "annotatedWith(%s)", this.annotation );
     }
 
 }

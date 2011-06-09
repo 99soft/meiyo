@@ -18,10 +18,11 @@ package org.nnsoft.commons.meiyo.classpath;
 import org.nnsoft.commons.meiyo.classpath.filter.Filter;
 
 /**
- * A classpath handler notifies {@link ClassPathEntry} found to {@link ClassPathEntryHandler}
- * if and only if the {@link ClassPathEntry} satisfies the {@link Filter} requirements.
+ * A classpath handler notifies {@link ClassPathEntry} found to {@link ClassPathEntryHandler} if and only if the
+ * {@link ClassPathEntry} satisfies the {@link Filter} requirements.
  */
-final class ClassPathHandler {
+final class ClassPathHandler
+{
 
     /**
      * The {@link Filter} reference.
@@ -29,33 +30,36 @@ final class ClassPathHandler {
     private final Filter filter;
 
     /**
-     * The handlers list to witch {@link ClassPathEntry} will be notified if
-     * this last satisfies the {@link Filter} requirements.
+     * The handlers list to witch {@link ClassPathEntry} will be notified if this last satisfies the {@link Filter}
+     * requirements.
      */
     private final ClassPathEntryHandler[] classHandlers;
 
     /**
      * Creates a new classpath hanlder.
-     *
+     * 
      * @param filter the {@link Filter} reference.
      * @param classHandlers the handlers list to witch {@link ClassPathEntry} will be notified.
      */
-    public ClassPathHandler(Filter filter, ClassPathEntryHandler...classHandlers) {
+    public ClassPathHandler( Filter filter, ClassPathEntryHandler... classHandlers )
+    {
         this.filter = filter;
         this.classHandlers = classHandlers;
     }
 
     /**
-     * Notified the ClassPath entry if the {@link Filter} reference requirements
-     * are satisfied.
-     *
+     * Notified the ClassPath entry if the {@link Filter} reference requirements are satisfied.
+     * 
      * @param path
      * @param classPathEntry
      */
-    public void doHandle(String path, Class<?> classPathEntry) {
-        if (this.filter.matches(classPathEntry)) {
-            for (ClassPathEntryHandler classHandler : this.classHandlers) {
-                classHandler.doHandle(path, classPathEntry);
+    public void doHandle( String path, Class<?> classPathEntry )
+    {
+        if ( this.filter.matches( classPathEntry ) )
+        {
+            for ( ClassPathEntryHandler classHandler : this.classHandlers )
+            {
+                classHandler.doHandle( path, classPathEntry );
             }
         }
     }

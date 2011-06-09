@@ -16,18 +16,20 @@
 package org.nnsoft.commons.meiyo.classpath.filter;
 
 /**
- * Implementation of the logic AND between filters, return true if all
- * the given filters return true.
- *
+ * Implementation of the logic AND between filters, return true if all the given filters return true.
+ * 
  * @version $Id$
  */
-final class And extends AbstractFilter {
+final class And
+    extends AbstractFilter
+{
 
     private final Filter a;
 
     private final Filter b;
 
-    public And(Filter a, Filter b) {
+    public And( Filter a, Filter b )
+    {
         this.a = a;
         this.b = b;
     }
@@ -35,13 +37,15 @@ final class And extends AbstractFilter {
     /**
      * {@inheritDoc}
      */
-    public boolean matches(Class<?> clazz) {
-        return this.a.matches(clazz) && this.b.matches(clazz);
+    public boolean matches( Class<?> clazz )
+    {
+        return this.a.matches( clazz ) && this.b.matches( clazz );
     }
 
     @Override
-    public String toString() {
-        return String.format("and(%s, %s)", this.a, this.b);
+    public String toString()
+    {
+        return String.format( "and(%s, %s)", this.a, this.b );
     }
 
 }
