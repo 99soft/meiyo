@@ -31,6 +31,11 @@ public abstract class AbstractVisitorConfiguration
      */
     public final void configure( final AnnotationHandlerBinder binder )
     {
+        if ( wrapped != null )
+        {
+            throw new IllegalStateException( "Re-entry is not allowed." );
+        }
+
         wrapped = binder;
 
         try
