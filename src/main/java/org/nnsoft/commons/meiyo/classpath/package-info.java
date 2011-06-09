@@ -1,3 +1,10 @@
+/**
+ * Contains the base classpath scanner interfaces.
+ *
+ * @version $Id$
+ */
+package org.nnsoft.commons.meiyo.classpath;
+
 /*
  *    Copyright 2010 The Meiyo Team
  *
@@ -13,11 +20,3 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
-/**
- * Contains the base classpath scanner interfaces.
- *
- * @version $Id$
- */
-package org.nnsoft.commons.meiyo.classpath;
-

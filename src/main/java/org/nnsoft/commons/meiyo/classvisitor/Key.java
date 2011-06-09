@@ -1,3 +1,5 @@
+package org.nnsoft.commons.meiyo.classvisitor;
+
 /*
  *    Copyright 2010 The Meiyo Team
  *
@@ -13,7 +15,6 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.nnsoft.commons.meiyo.classvisitor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;

@@ -1,3 +1,8 @@
+/**
+ * Annotated elements scanner DSL.
+ */
+package org.nnsoft.commons.meiyo.classvisitor;
+
 /*
  *    Copyright 2010 The Meiyo Team
  *
@@ -13,9 +18,3 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-
-/**
- * Annotated elements scanner DSL.
- */
-package org.nnsoft.commons.meiyo.classvisitor;
-
