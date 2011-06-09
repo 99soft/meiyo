@@ -31,15 +31,15 @@ public abstract class AbstractVisitorConfiguration
      */
     public final void configure( final AnnotationHandlerBinder binder )
     {
-        this.wrapped = binder;
+        wrapped = binder;
 
         try
         {
-            this.configure();
+            configure();
         }
         finally
         {
-            this.wrapped = null;
+            wrapped = null;
         }
     }
 
@@ -50,7 +50,7 @@ public abstract class AbstractVisitorConfiguration
      */
     public AnnotatedHandlerBuilder<Class> handleType()
     {
-        return this.wrapped.handleType();
+        return wrapped.handleType();
     }
 
     /**
@@ -58,7 +58,7 @@ public abstract class AbstractVisitorConfiguration
      */
     public AnnotatedHandlerBuilder<Constructor> handleConstructor()
     {
-        return this.wrapped.handleConstructor();
+        return wrapped.handleConstructor();
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class AbstractVisitorConfiguration
      */
     public AnnotatedHandlerBuilder<Field> handleField()
     {
-        return this.wrapped.handleField();
+        return wrapped.handleField();
     }
 
     /**
@@ -74,7 +74,7 @@ public abstract class AbstractVisitorConfiguration
      */
     public AnnotatedHandlerBuilder<Method> handleMethod()
     {
-        return this.wrapped.handleMethod();
+        return wrapped.handleMethod();
     }
 
 }
