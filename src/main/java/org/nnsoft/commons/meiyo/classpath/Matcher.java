@@ -1,7 +1,7 @@
 package org.nnsoft.commons.meiyo.classpath;
 
 /*
- *    Copyright 2010 The Meiyo Team
+ *    Copyright 2010-2011 The 99 Software Foundation
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
